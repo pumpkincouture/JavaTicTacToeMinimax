@@ -4,14 +4,16 @@ import java.util.Random;
 
 public class ComputerPlayer extends Player {
     private Random randomGenerator;
+    private Board board;
 
-    public ComputerPlayer(String gamePiece) {
+    public ComputerPlayer(String gamePiece, Board board) {
         super(gamePiece);
+        this.board = board;
         randomGenerator = new Random();
     }
 
     @Override
-    public String getMove(Board board) {
+    public String getMove() {
         return convertChosenIndexToString(board);
     }
 

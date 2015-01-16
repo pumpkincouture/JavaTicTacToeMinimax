@@ -22,7 +22,7 @@ public class AIComputerTest {
     @Before
     public void setUp() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O");
+        aiComputerTest = new AIComputerPlayer("O", board);
         ui = new CommandLineInterface(output, input);
     }
 
@@ -36,7 +36,7 @@ public class AIComputerTest {
         fillBoard("7", "X");
         fillBoard("8", "O");
 
-        assertEquals("3", aiComputerTest.getMove(board));
+        assertEquals("3", aiComputerTest.getMove());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class AIComputerTest {
         fillBoard("8", "O");
         fillBoard("9", "X");
 
-        assertEquals("2", aiComputerTest.getMove(board));
+        assertEquals("2", aiComputerTest.getMove());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AIComputerTest {
         fillBoard("7", "O");
         fillBoard("9", "X");
 
-        assertEquals("5", aiComputerTest.getMove(board));
+        assertEquals("5", aiComputerTest.getMove());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class AIComputerTest {
         fillBoard("4", "X");
         fillBoard("5", "O");
 
-        assertEquals("8", aiComputerTest.getMove(board));
+        assertEquals("8", aiComputerTest.getMove());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class AIComputerTest {
         fillBoard("8", "O");
         fillBoard("9", "O");
 
-        assertEquals("5", aiComputerTest.getMove(board));
+        assertEquals("5", aiComputerTest.getMove());
     }
 
     @Test
@@ -93,14 +93,14 @@ public class AIComputerTest {
         fillBoard("3", "O");
         fillBoard("5", "X");
 
-        assertEquals("2", aiComputerTest.getMove(board));
+        assertEquals("2", aiComputerTest.getMove());
     }
 
     @Test
     public void returnsBestMoveAfterOpponentPlacesFirstMove() {
         fillBoard("1", "X");
 
-        assertEquals("5", aiComputerTest.getMove(board));
+        assertEquals("5", aiComputerTest.getMove());
     }
 
     @Test
@@ -109,7 +109,7 @@ public class AIComputerTest {
         fillBoard("7", "O");
         fillBoard("5", "X");
 
-        assertEquals("9", aiComputerTest.getMove(board));
+        assertEquals("9", aiComputerTest.getMove());
     }
 
     @Test
@@ -118,6 +118,6 @@ public class AIComputerTest {
         fillBoard("1", "O");
         fillBoard("8", "X");
 
-        assertEquals("7", aiComputerTest.getMove(board));
+        assertEquals("7", aiComputerTest.getMove());
     }
 }

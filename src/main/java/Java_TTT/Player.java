@@ -1,6 +1,6 @@
 package Java_TTT;
 
-public class Player implements MoveInterface {
+public class Player  {
 
     private String gamePiece;
 
@@ -12,8 +12,7 @@ public class Player implements MoveInterface {
         return gamePiece;
     }
 
-    @Override
-    public String getMove(Board board) {
+    public String getMove() {
         return "";
     }
 }

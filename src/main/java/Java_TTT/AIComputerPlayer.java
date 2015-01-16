@@ -5,19 +5,21 @@ import java.util.*;
 public class AIComputerPlayer extends Player {
     private GameScorer gameScorer;
     private int choice;
+    private Board board;
 
-    public AIComputerPlayer(String gamePiece) {
+    public AIComputerPlayer(String gamePiece, Board board) {
         super(gamePiece);
+        this.board = board;
+        gameScorer = new GameScorer(board);
     }
 
     @Override
-    public String getMove(Board board) {
-        minimax(board, 0, this.getGamePiece());
+    public String getMove() {
+        minimax(this.board, 0, this.getGamePiece());
         return convertChosenIndexToString(choice);
     }
 
     private int minimax(Board board, int depth, String gamePiece) {
-        gameScorer = new GameScorer(board);
         ArrayList<Integer> scores = new ArrayList();
         ArrayList<Integer> moves = new ArrayList();
         depth += 1;

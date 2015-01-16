@@ -28,6 +28,6 @@ public class HumanOpponentTest {
     @Test
     public void getHumanPlayerMove() {
         mockUI.addNextMove("5");
-        assertEquals("5", humanPlayerTest.getMove(new Board(3)));
+        assertEquals("5", humanPlayerTest.getMove());
     }
 }

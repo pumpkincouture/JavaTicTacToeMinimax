@@ -23,7 +23,7 @@ public class ComputerPlayerTest {
     @Before
     public void setUp() {
         board = new Board(3);
-        computerPlayerTest = new ComputerPlayer("Z");
+        computerPlayerTest = new ComputerPlayer("Z", board);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ComputerPlayerTest {
         fillBoard("7", "O");
         fillBoard("6", "O");
         fillBoard("5", "X");
-        assertEquals("9", computerPlayerTest.getMove(board));
+        assertEquals("9", computerPlayerTest.getMove());
     }
 
     @Test
@@ -48,6 +48,6 @@ public class ComputerPlayerTest {
         fillBoard("9", "O");
         fillBoard("7", "O");
         fillBoard("5", "X");
-        assertEquals("6", computerPlayerTest.getMove(board));
+        assertEquals("6", computerPlayerTest.getMove());
     }
 }

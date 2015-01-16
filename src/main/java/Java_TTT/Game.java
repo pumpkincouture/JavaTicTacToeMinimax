@@ -39,7 +39,7 @@ public class Game {
     public void getFirstMove(String playerOne) {
         printPlayerPrompt(player1.getClass().getSimpleName(), playerOne);
         displayBoard();
-        String choice = player1.getMove(board);
+        String choice = player1.getMove();
         if (isInvalidMove(choice)) {
             printChoiceError(choice);
             getFirstMove((playerOne));
@@ -59,7 +59,7 @@ public class Game {
     private void getHumanOpponentMove() {
         printPlayerPrompt(player2.getClass().getSimpleName(), player2.getGamePiece());
         displayBoard();
-        String choice = player2.getMove(board);
+        String choice = player2.getMove();
         if (isInvalidMove(choice)) {
             printChoiceError(choice);
             getSecondMove();
@@ -70,7 +70,7 @@ public class Game {
 
     private void getComputerOpponentMove() {
         userinterface.printComputerThinking();
-        placeMoveOnBoard(player2.getMove(board), player2.getGamePiece());
+        placeMoveOnBoard(player2.getMove(), player2.getGamePiece());
     }
 
     public String getWinnerName(String playerOne, String playerTwo) {
