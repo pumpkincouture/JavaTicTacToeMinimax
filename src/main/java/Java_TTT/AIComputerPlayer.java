@@ -20,8 +20,8 @@ public class AIComputerPlayer extends Player {
     }
 
     private int minimax(Board board, int depth, String gamePiece) {
-        ArrayList<Integer> scores = new ArrayList();
-        ArrayList<Integer> moves = new ArrayList();
+        List<Integer> scores = new ArrayList();
+        List<Integer> moves = new ArrayList();
         depth += 1;
 
         if (isGameOver(board)) {
@@ -48,17 +48,17 @@ public class AIComputerPlayer extends Player {
         }
     }
 
-    private static int getMaxValue(ArrayList<Integer> scoresList) {
+    private static int getMaxValue(List<Integer> scoresList) {
         int maxValue = Collections.max(scoresList);
         return maxValue;
     }
 
-    private static int getMinValue(ArrayList<Integer> scoresList) {
+    private static int getMinValue(List<Integer> scoresList) {
         int minValue = Collections.min(scoresList);
         return minValue;
     }
 
-    private static Integer maxIndex(ArrayList<Integer> list) {
+    private static Integer maxIndex(List<Integer> list) {
         List<Integer> index = new ArrayList();
         int max =  getMaxValue(list);
         for (int i = 0; i < list.size(); i++) {
@@ -69,7 +69,7 @@ public class AIComputerPlayer extends Player {
         return index.get(0);
     }
 
-    private static Integer minIndex(ArrayList<Integer> list) {
+    private static Integer minIndex(List<Integer> list) {
         List<Integer> index = new ArrayList();
         int min = getMinValue(list);
         for (int i = 0; i < list.size(); i++) {
