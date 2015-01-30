@@ -32,11 +32,6 @@ public class GameScorerTest {
     }
 
     @Test
-    public void getLengthOfBoard() {
-        assertEquals(9, gameScorerTest.getBoardLength());
-    }
-
-    @Test
     public void checkBoardSquareRoot() {
         assertEquals(3, gameScorerTest.getBoardSquareRoot());
     }

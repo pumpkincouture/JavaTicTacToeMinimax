@@ -3,7 +3,7 @@ package Java_TTT;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Board implements Cloneable {
+public class Board {
 
     private String[] boardCells;
 

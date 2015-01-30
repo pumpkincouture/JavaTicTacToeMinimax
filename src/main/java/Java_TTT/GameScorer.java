@@ -9,12 +9,8 @@ public class GameScorer {
         this.board = board;
     }
 
-    public int getBoardLength() {
-        return board.getLength();
-    }
-
     public int getBoardSquareRoot() {
-        return board.getCellsSquareRoot(getBoardLength());
+        return board.getCellsSquareRoot(board.getLength());
     }
 
     public boolean isGameOver(String playerOne, String playerTwo) {
