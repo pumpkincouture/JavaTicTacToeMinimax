@@ -28,7 +28,7 @@ public class Game {
             if (thereIsAWinner(firstPlayerPiece()) || !boardHasOpenSpaces()) {
                 return false;
             }
-            getSecondMove();
+            getSecondMove(secondPlayerPiece());
             if (thereIsAWinner(secondPlayerPiece())) {
                 return false;
             }
@@ -37,7 +37,7 @@ public class Game {
     }
 
     public void getFirstMove(String playerOne) {
-        printPlayerPrompt(player1.getClass().getSimpleName(), playerOne);
+        printPlayerPrompt(playerOne);
         displayBoard();
         String choice = player1.getMove();
         if (isInvalidMove(choice)) {
@@ -48,37 +48,24 @@ public class Game {
         }
     }
 
-    public void getSecondMove() {
-        if (player2.getClass().getSimpleName().equals("HumanPlayer")) {
-            getHumanOpponentMove();
-        } else {
-            getComputerOpponentMove();
-        }
-    }
-
-    private void getHumanOpponentMove() {
-        printPlayerPrompt(player2.getClass().getSimpleName(), player2.getGamePiece());
+    public void getSecondMove(String playerTwo) {
+        printPlayerPrompt(playerTwo);
         displayBoard();
         String choice = player2.getMove();
         if (isInvalidMove(choice)) {
             printChoiceError(choice);
-            getSecondMove();
+            getFirstMove((playerTwo));
         } else {
             placeMoveOnBoard(choice, secondPlayerPiece());
         }
-    }
-
-    private void getComputerOpponentMove() {
-        userinterface.printComputerThinking();
-        placeMoveOnBoard(player2.getMove(), player2.getGamePiece());
     }
 
     public String getWinnerName(String playerOne, String playerTwo) {
         return gameScorer.getWinningPlayer(playerOne, playerTwo);
     }
 
-    public void printPlayerPrompt(String playerName, String gamePiece) {
-        userinterface.printUserPrompt(playerName, gamePiece);
+    public void printPlayerPrompt(String gamePiece) {
+        userinterface.printUserPrompt(gamePiece);
     }
 
     public void printGameWinner(String gamePiece) {

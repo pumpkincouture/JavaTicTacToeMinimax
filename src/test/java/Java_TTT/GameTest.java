@@ -66,7 +66,7 @@ public class GameTest {
 
     @Test
     public void displayUserPrompt() {
-        gameTest.printPlayerPrompt(player1.getClass().getSimpleName(), player1.getGamePiece());
+        gameTest.printPlayerPrompt(player1.getGamePiece());
         assertEquals(true, mockUi.isUserPromptCalled());
     }
     @Test

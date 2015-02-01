@@ -39,10 +39,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayGamePieceAssignmentCalled = true;
     }
 
-    public void printComputerThinking() {
-        displayComputerThinkingMessage = true;
-    }
-
     public void printChosenOpponent(String opponentName) {
         displayChosenOpponent = true;
     }
@@ -55,7 +51,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayOpponentPrompt = true;
     }
 
-    public void printUserPrompt(String playerName, String gamePiece) {
+    public void printUserPrompt(String playerName) {
         displayUserPromptCalled = true;
     }
 
@@ -85,10 +81,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     public boolean isStartingPlayerCalled() {
         return displayStartingPlayerCalled;
-    }
-
-    public boolean isComputerThinkingMessageCalled() {
-        return displayComputerThinkingMessage;
     }
 
     public boolean isDisplayBoardCalled() {

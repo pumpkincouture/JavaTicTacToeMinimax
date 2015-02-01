@@ -13,13 +13,11 @@ public interface UserInterface {
 
     public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece);
 
-    public void printComputerThinking();
-
     public void printStartingPlayer(String gamePiece);
 
     public void promptForOpponent();
 
-    public void printUserPrompt(String playerName, String gamePiece);
+    public void printUserPrompt(String playerName);
 
     public void printBoard(String[] boardCells);
 

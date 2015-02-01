@@ -46,12 +46,6 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
-    public void printComputerThinkingAboutAMove() {
-        ui.printComputerThinking();
-        assertEquals("Computer is considering a move....\n", printedToScreen.toString());
-    }
-
-    @Test
     public void printStartingPlayerMessage() {
         ui.printStartingPlayer("X");
         assertEquals("Player with X will start.\n", printedToScreen.toString());
@@ -73,8 +67,8 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printUserPromptMessage() {
-        ui.printUserPrompt("Player", "X");
-        assertEquals("Player, please choose a move for your X by pressing a number for that corresponding space.\n", printedToScreen.toString());
+        ui.printUserPrompt("X");
+        assertEquals("Please choose a move for your X by pressing a number for that corresponding space.\n", printedToScreen.toString());
     }
 
     @Test

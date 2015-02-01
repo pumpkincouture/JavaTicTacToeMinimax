@@ -28,10 +28,6 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Player 1 will have the " + playerOnePiece + " piece and " + opponentName + " will have the " + playerTwoPiece + " piece.");
     }
 
-    public void printComputerThinking() {
-        printMessage("Computer is considering a move....");
-    }
-
     public void printStartingPlayer(String gamePiece) {
         printMessage("Player with " + gamePiece + " will start.");
     }
@@ -44,8 +40,8 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.");
     }
 
-    public void printUserPrompt(String playerName, String gamePiece) {
-        printMessage(playerName + ", please choose a move for your " + gamePiece + " by pressing a number for that corresponding space.");
+    public void printUserPrompt(String gamePiece) {
+        printMessage("Please choose a move for your " + gamePiece + " by pressing a number for that corresponding space.");
     }
 
     public void printWinner(String gamePiece) {
