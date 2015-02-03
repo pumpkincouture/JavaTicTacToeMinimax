@@ -34,6 +34,12 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
+    public void printChooseStartingPlayerPrompt() {
+        ui.chooseStartingPlayer();
+        assertEquals("Please choose the starting player : yourself, or your opponent (please enter 'y' to indicate yourself and 'o' to indicate your opponent\n", printedToScreen.toString());
+    }
+
+    @Test
     public void printChosenOpponentTest() {
         ui.printChosenOpponent("ComputerOpponent");
         assertEquals("You've chosen to play against ComputerOpponent.\n", printedToScreen.toString());
