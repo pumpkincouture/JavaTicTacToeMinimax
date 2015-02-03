@@ -111,13 +111,18 @@ public class BoardTest {
 
     @Test
     public void checkIfBoardHasOpenSpaces() {
-        assertEquals(true, boardTest.isBoardOpen());
+        assertEquals(true, boardTest.doesBoardHaveOpenSpaces());
+    }
+
+    @Test
+    public void checkIfBoardCompletelyEmpty() {
+        assertEquals(true, boardTest.isBoardEmpty());
     }
 
     @Test
     public void checkIfBoardFullWithMockInputs () {
         simulateFilledBoard();
-        assertEquals(false, boardTest.isBoardOpen());
+        assertEquals(false, boardTest.doesBoardHaveOpenSpaces());
     }
 
     @Test

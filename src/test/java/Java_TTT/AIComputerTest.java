@@ -13,7 +13,7 @@ public class AIComputerTest {
     private Board board;
     PrintStream output = new PrintStream(System.out);
     Scanner input = new Scanner(System.in);
-    private CommandLineInterface ui;
+    private MockUserInterface mockUi = new MockUserInterface(output, input);
 
     private void fillBoard(String choice, String gamePiece) {
         board.placeMove(choice, gamePiece);
@@ -22,8 +22,7 @@ public class AIComputerTest {
     @Before
     public void setUp() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board);
-        ui = new CommandLineInterface(output, input);
+        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
     }
 
     @Test
@@ -119,5 +118,11 @@ public class AIComputerTest {
         fillBoard("8", "X");
 
         assertEquals("7", aiComputerTest.getMove());
+    }
+
+    @Test
+    public void picksMiddleSpaceIfBoardEmpty() {
+
+        assertEquals("5", aiComputerTest.getMove());
     }
 }

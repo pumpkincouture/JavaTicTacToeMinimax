@@ -3,11 +3,18 @@ package Java_TTT;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 
 public class ComputerPlayerTest {
     private ComputerPlayer computerPlayerTest;
     private Board board;
+    PrintStream output = new PrintStream(System.out);
+    Scanner input = new Scanner(System.in);
+    private MockUserInterface mockUi = new MockUserInterface(output, input);
+
 
     private void simulateFilledBoard() {
         fillBoard("4", "O");
@@ -23,7 +30,7 @@ public class ComputerPlayerTest {
     @Before
     public void setUp() {
         board = new Board(3);
-        computerPlayerTest = new ComputerPlayer("Z", board);
+        computerPlayerTest = new ComputerPlayer("Z", board, mockUi);
     }
 
     @Test

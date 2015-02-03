@@ -29,11 +29,11 @@ public class PlayerFactory {
 
         switch (capitalizedChoice) {
             case "I":
-                player = new AIComputerPlayer("O", board);
+                player = new AIComputerPlayer("O", board, ui);
                 ui.printChosenOpponent(player.getClass().getSimpleName());
                 break;
             case "C":
-                player = new ComputerPlayer("O", board);
+                player = new ComputerPlayer("O", board, ui);
                 ui.printChosenOpponent(player.getClass().getSimpleName());
                 break;
             case "H":

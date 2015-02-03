@@ -9,11 +9,13 @@ public interface UserInterface {
 
     public void printChosenOpponent(String opponentName);
 
+    public void printComputerThinking();
+
     public void printWelcomeMessage();
 
     public void chooseStartingPlayer();
 
-    public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece);
+    public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece, String firstPlayer);
 
     public void printStartingPlayer(String gamePiece);
 

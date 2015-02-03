@@ -5,15 +5,18 @@ import java.util.Random;
 public class ComputerPlayer extends Player {
     private Random randomGenerator;
     private Board board;
+    private CommandLineInterface ui;
 
-    public ComputerPlayer(String gamePiece, Board board) {
+    public ComputerPlayer(String gamePiece, Board board, CommandLineInterface ui) {
         super(gamePiece);
         this.board = board;
+        this.ui = ui;
         randomGenerator = new Random();
     }
 
     @Override
     public String getMove() {
+        ui.printComputerThinking();
         return convertChosenIndexToString(board);
     }
 

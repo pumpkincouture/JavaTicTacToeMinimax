@@ -41,62 +41,48 @@ public class GameTest {
         gameTest = new Game(player1, player2, board, mockUi, gameScorer);
     }
 
-//    @Test
-//    public void captureInputFromUserAndValidate() {
-//        mockUi.addNextMove("t");
-//        mockUi.addNextMove("o");
-//
-//        gameTest.validateStartingPlayer(mockUi.captureChoice());
-//
-//        assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
-//        assertEquals("HumanPlayer", gameTest.accessFirstAndSecondPlayers().get(0).getClass().getSimpleName());
-//    }
-//
-//    @Test
-//    public void displayWelcomeMessage() {
-//        gameTest.printWelcome();
-//        assertEquals(true, mockUi.isWelcomeMessageCalled());
-//    }
-//
-//    @Test
-//    public void displayGamePieces() {
-//        gameTest.printGamePieces();
-//        assertEquals(true, mockUi.isGamePieceMessageCalled());
-//    }
-//
-//    @Test
-//    public void displayStartingPlayer() {
-//        gameTest.printStartingPlayer();
-//        assertEquals(true, mockUi.isStartingPlayerCalled());
-//    }
-//
-//    @Test
-//    public void getInitialBoardDisplay() {
-//        gameTest.displayBoard();
-//        assertEquals(true, mockUi.isDisplayBoardCalled());
-//    }
-//
-//    @Test
-//    public void displayUserPrompt() {
-//        gameTest.printPlayerPrompt(player1.getGamePiece());
-//        assertEquals(true, mockUi.isUserPromptCalled());
-//    }
-//    @Test
-//    public void testIfMoveInvalid() {
-//        mockUi.addNextMove("ppppp");
-//        gameTest.printChoiceError(mockUi.captureChoice());
-//        assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
-//    }
+    @Test
+    public void displayWelcomeMessage() {
+        gameTest.printWelcome();
+        assertEquals(true, mockUi.isWelcomeMessageCalled());
+    }
+
+    @Test
+    public void displayGamePieces() {
+        gameTest.printGamePieces();
+        assertEquals(true, mockUi.isGamePieceMessageCalled());
+    }
+
+    @Test
+    public void displayStartingPlayer() {
+        gameTest.printStartingPlayer();
+        assertEquals(true, mockUi.isStartingPlayerCalled());
+    }
+
+    @Test
+    public void getInitialBoardDisplay() {
+        gameTest.displayBoard();
+        assertEquals(true, mockUi.isDisplayBoardCalled());
+    }
+
+    @Test
+    public void displayUserPrompt() {
+        gameTest.printPlayerPrompt(player1.getGamePiece());
+        assertEquals(true, mockUi.isUserPromptCalled());
+    }
+    @Test
+    public void testIfMoveInvalid() {
+        mockUi.addNextMove("ppppp");
+        gameTest.printChoiceError(mockUi.captureChoice());
+        assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
+    }
 
     @Test
     public void promptUntilMoveValid() {
         mockUi.addNextMove("PPP");
         mockUi.addNextMove("hehhghntnt");
         mockUi.addNextMove("3");
-
-        gameTest.validateStartingPlayer("y");
         gameTest.getFirstMove(mockUi.captureChoice());
-
 
         assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
         fillBoard("3", "X");

@@ -32,8 +32,12 @@ public class Board {
         return validateCells(answer);
     }
 
-    public boolean isBoardOpen() {
+    public boolean doesBoardHaveOpenSpaces() {
         return checkForOpenCells();
+    }
+
+    public boolean isBoardEmpty() {
+        return getOpenCellLocations().size() == boardCells.length;
     }
 
     public String[] placeMove(String answer, String gamePiece) {

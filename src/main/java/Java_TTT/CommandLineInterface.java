@@ -28,8 +28,12 @@ public class CommandLineInterface implements UserInterface {
         printMessage("You've chosen to play against " + opponentName + ".");
     }
 
-    public void printGamePieceAssignment(String playerOnePiece, String opponentName, String playerTwoPiece) {
-        printMessage("Player 1 will have the " + playerOnePiece + " piece and " + opponentName + " will have the " + playerTwoPiece + " piece.");
+    public void printComputerThinking() {
+        printMessage("Computer is considering a move....");
+    }
+
+    public void printGamePieceAssignment(String firstPlayer, String playerOnePiece, String secondPlayer, String playerTwoPiece) {
+        printMessage(firstPlayer +  " will have the " + playerOnePiece + " piece and " + secondPlayer + " will have the " + playerTwoPiece + " piece.");
     }
 
     public void printStartingPlayer(String gamePiece) {
