@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class MockUserInterface extends CommandLineInterface implements UserInterface {
 
     private List<String> nextMoves = new LinkedList<String>();
+    private boolean displayGameOptions = false;
+    private boolean displayComputerThinking = false;
     private boolean displayWelcomePromptCalled = false;
     private boolean displayGamePieceAssignmentCalled = false;
     private boolean displayChooseStartingPlayerCalled = false;
@@ -38,6 +40,13 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     public void chooseStartingPlayer() {
         displayChooseStartingPlayerCalled = true;
     }
+
+    public void chooseGameConfiguration() { displayGameOptions = true;
+    }
+
+    public void printComputerThinking() {
+    displayComputerThinking = true;
+    };
 
     public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece, String firstPlayer) {
         displayGamePieceAssignmentCalled = true;
@@ -75,6 +84,14 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         catsGameCalled = true;
     }
 
+    public boolean areGameConfigOptionsCalled() {
+        return displayGameOptions;
+    }
+
+    public boolean isComputerThinkingCalled() {
+        return displayComputerThinking;
+    }
+
     public boolean isWelcomeMessageCalled() {
         return displayWelcomePromptCalled;
     }
@@ -99,7 +116,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         return displayUserPromptCalled;
     }
 
-    public boolean isDisplayInvalidMoveMessageCalled() {
+    public boolean isDisplayInvalidChoiceMessageCalled() {
         return displayInvalidMoveMessageCalled;
     }
 

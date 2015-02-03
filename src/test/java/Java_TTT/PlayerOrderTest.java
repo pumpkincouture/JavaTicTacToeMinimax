@@ -29,7 +29,7 @@ public class PlayerOrderTest {
 
         playerOrderTest.validateStartingPlayer(mockUi.captureChoice());
 
-        assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
+        assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
         assertEquals(true, mockUi.isChooseStartingPlayerMessafeCalled());
     }
 

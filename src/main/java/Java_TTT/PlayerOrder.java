@@ -19,9 +19,9 @@ public class PlayerOrder {
         ui.chooseStartingPlayer();
     }
 
-    public List<Player> findStartingPlayer() {
+    public void findStartingPlayer() {
+        chooseStartingPlayerPrompt();
         validateStartingPlayer(captureStartingPlayerChoice());
-        return accessFirstAndSecondPlayers();
     }
 
     public List<Player> accessFirstAndSecondPlayers() {
@@ -50,7 +50,7 @@ public class PlayerOrder {
                 break;
             default:
                 ui.printError(capitalizedChoice);
-                ui.chooseStartingPlayer();
+                chooseStartingPlayerPrompt();
                 validateStartingPlayer(captureStartingPlayerChoice());
         }
     }

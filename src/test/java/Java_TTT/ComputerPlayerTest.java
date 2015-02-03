@@ -45,7 +45,9 @@ public class ComputerPlayerTest {
         fillBoard("7", "O");
         fillBoard("6", "O");
         fillBoard("5", "X");
+
         assertEquals("9", computerPlayerTest.getMove());
+        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 
     @Test
@@ -55,6 +57,8 @@ public class ComputerPlayerTest {
         fillBoard("9", "O");
         fillBoard("7", "O");
         fillBoard("5", "X");
+
         assertEquals("6", computerPlayerTest.getMove());
+        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 }

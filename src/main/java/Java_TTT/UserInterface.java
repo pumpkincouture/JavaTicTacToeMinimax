@@ -7,6 +7,8 @@ public interface UserInterface {
 
     public String captureChoice();
 
+    public void chooseGameConfiguration();
+
     public void printChosenOpponent(String opponentName);
 
     public void printComputerThinking();

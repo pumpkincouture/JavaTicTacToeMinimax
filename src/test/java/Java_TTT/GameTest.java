@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -74,7 +73,7 @@ public class GameTest {
     public void testIfMoveInvalid() {
         mockUi.addNextMove("ppppp");
         gameTest.printChoiceError(mockUi.captureChoice());
-        assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
+        assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
     }
 
     @Test
@@ -84,7 +83,7 @@ public class GameTest {
         mockUi.addNextMove("3");
         gameTest.getFirstMove(mockUi.captureChoice());
 
-        assertEquals(true, mockUi.isDisplayInvalidMoveMessageCalled());
+        assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
         fillBoard("3", "X");
         assertEquals(true, getCell("3", "X"));
     }
@@ -93,7 +92,7 @@ public class GameTest {
     public void testIfMoveValid() {
         mockUi.addNextMove("5");
         gameTest.printChoiceError(mockUi.captureChoice());
-        assertEquals(false, mockUi.isDisplayInvalidMoveMessageCalled());
+        assertEquals(false, mockUi.isDisplayInvalidChoiceMessageCalled());
     }
 
     @Test

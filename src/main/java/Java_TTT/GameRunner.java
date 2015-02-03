@@ -15,7 +15,6 @@ public class GameRunner {
         Player HumanPlayer = new HumanPlayer("X", (CommandLineInterface) ui);
         GameScorer gameScorer = new GameScorer(board);
         PlayerOrder determinePlayerOrder = new PlayerOrder(HumanPlayer, gameOpponent, (CommandLineInterface) ui);
-        determinePlayerOrder.chooseStartingPlayerPrompt();
         determinePlayerOrder.findStartingPlayer();
         Player player1 = determinePlayerOrder.accessFirstAndSecondPlayers().get(0);
         Player player2 = determinePlayerOrder.accessFirstAndSecondPlayers().get(1);

@@ -124,5 +124,6 @@ public class AIComputerTest {
     public void picksMiddleSpaceIfBoardEmpty() {
 
         assertEquals("5", aiComputerTest.getMove());
+        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 }

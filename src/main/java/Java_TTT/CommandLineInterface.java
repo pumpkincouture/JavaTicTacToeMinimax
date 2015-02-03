@@ -16,6 +16,14 @@ public class CommandLineInterface implements UserInterface {
         out.print(string);
     }
 
+    public void chooseGameConfiguration() {
+        printMessage("Welcome, please choose your desired game configuration.\n" +
+                "1 : Human vs Human Player \n" +
+                "2 : Human vs Basic Computer Player \n" +
+                "3 : Human vs AI Computer Player \n" +
+                "4 : Basic Computer Player vs AI Computer Player");
+    }
+
     public void printWelcomeMessage() {
         printMessage("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!");
     }

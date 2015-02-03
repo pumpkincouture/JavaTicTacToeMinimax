@@ -47,7 +47,7 @@ public class PlayerFactoryTest {
         mockui.addNextMove("c");
         playerFactoryTest.getChosenOpponent();
 
-        assertEquals(true, mockui.isDisplayInvalidMoveMessageCalled());
+        assertEquals(true, mockui.isDisplayInvalidChoiceMessageCalled());
         assertEquals("ComputerPlayer", playerFactoryTest.getAssignedOpponent().getClass().getSimpleName());
     }
 }
