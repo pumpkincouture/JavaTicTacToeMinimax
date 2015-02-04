@@ -10,10 +10,10 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     private List<String> nextMoves = new LinkedList<String>();
     private boolean displayWelcomePromptCalled = false;
     private boolean displayGamePieceAssignmentCalled = false;
-    private boolean displayChooseStartingPlayerCalled = false;
     private boolean displayStartingPlayerCalled = false;
     private boolean displayUserPromptCalled = false;
     private boolean displayOpponentPrompt = false;
+    private boolean displayComputerThinkingMessage = false;
     private boolean displayChosenOpponent = false;
     private boolean displayInvalidMoveMessageCalled = false;
     private boolean displayBoardCalled = false;
@@ -23,8 +23,8 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     public MockUserInterface(PrintStream out, Scanner in) {
         super(out, in);
     }
-
-    public void addNextMove(String move) {nextMoves.add(move);
+    public void addNextMove(String move) {
+        nextMoves.add(move);
     }
 
     public String captureChoice() {
@@ -33,10 +33,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     public void printWelcomeMessage() {
         displayWelcomePromptCalled = true;
-    }
-
-    public void chooseStartingPlayer() {
-        displayChooseStartingPlayerCalled = true;
     }
 
     public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece) {
@@ -81,10 +77,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     public boolean isGamePieceMessageCalled() {
         return displayGamePieceAssignmentCalled;
-    }
-
-    public boolean isChooseStartingPlayerMessafeCalled() {
-        return displayChooseStartingPlayerCalled;
     }
 
     public boolean isStartingPlayerCalled() {

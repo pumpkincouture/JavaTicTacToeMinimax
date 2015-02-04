@@ -1,16 +1,11 @@
 package Java_TTT;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Game {
     private Player player1;
     private Player player2;
     private Board board;
     private CommandLineInterface userinterface;
     private GameScorer gameScorer;
-    private List<Player> positionsOfPlayers;
-
 
     public Game(Player player1, Player player2, Board board, CommandLineInterface userinterface, GameScorer gameScorer) {
         this.player1 = player1;
@@ -21,58 +16,19 @@ public class Game {
     }
 
     public void startGame() {
-        userinterface.chooseStartingPlayer();
-        findStartingPlayer();
         playGame();
         printGameWinner(getWinnerName(firstPlayerPiece(), secondPlayerPiece()));
         displayBoard();
     }
 
-    public List<Player> findStartingPlayer() {
-        validateStartingPlayer(captureStartingPlayerChoice());
-        return accessFirstAndSecondPlayers();
-    }
-
-    public List<Player> accessFirstAndSecondPlayers() {
-        return positionsOfPlayers;
-    }
-
-    public String captureStartingPlayerChoice() {
-        return userinterface.captureChoice();
-    }
-
-    public void validateStartingPlayer(String startingPlayerChoice) {
-        String capitalizedChoice = startingPlayerChoice.toUpperCase();
-        List<Player> playerPositions = new ArrayList<>();
-
-
-        switch (capitalizedChoice) {
-            case "O":
-                playerPositions.add(player2);
-                playerPositions.add(player1);
-                positionsOfPlayers = playerPositions;
-                break;
-            case "Y":
-                playerPositions.add(player1);
-                playerPositions.add(player2);
-                positionsOfPlayers = playerPositions;
-                break;
-            default:
-                userinterface.printError(capitalizedChoice);
-                userinterface.chooseStartingPlayer();
-                validateStartingPlayer(captureStartingPlayerChoice());
-        }
-    }
-
-
     private boolean playGame() {
         printIntro();
         while (boardHasOpenSpaces()) {
-            getFirstMove(positionsOfPlayers.get(0).getGamePiece());
+            getFirstMove(firstPlayerPiece());
             if (thereIsAWinner(firstPlayerPiece()) || !boardHasOpenSpaces()) {
                 return false;
             }
-            getSecondMove(positionsOfPlayers.get(1));
+            getSecondMove(secondPlayerPiece());
             if (thereIsAWinner(secondPlayerPiece())) {
                 return false;
             }
@@ -80,27 +36,25 @@ public class Game {
         return true;
     }
 
-    public void getFirstMove(String firstPlayer) {
-        printPlayerPrompt(firstPlayerPiece());
+    public void getFirstMove(String playerOne) {
+        printPlayerPrompt(playerOne);
         displayBoard();
-        String choice = positionsOfPlayers.get((0)).getMove();
+        String choice = player1.getMove();
         if (isInvalidMove(choice)) {
             printChoiceError(choice);
-            getFirstMove(firstPlayer);
+            getFirstMove((playerOne));
         } else {
             placeMoveOnBoard(choice, firstPlayerPiece());
         }
-
-
     }
 
-    public void getSecondMove(Player secondPlayer) {
-        printPlayerPrompt(secondPlayer.getGamePiece());
+    public void getSecondMove(String playerTwo) {
+        printPlayerPrompt(playerTwo);
         displayBoard();
-        String choice = secondPlayer.getMove();
+        String choice = player2.getMove();
         if (isInvalidMove(choice)) {
             printChoiceError(choice);
-            getSecondMove(positionsOfPlayers.get(1));
+            getFirstMove((playerTwo));
         } else {
             placeMoveOnBoard(choice, secondPlayerPiece());
         }
