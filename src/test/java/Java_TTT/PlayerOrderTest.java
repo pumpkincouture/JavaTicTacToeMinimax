@@ -25,7 +25,7 @@ public class PlayerOrderTest {
     public void capturesAndValidatesChoiceUntilValidInputIsReturned() {
         mockUi.addNextMove("dddd");
         mockUi.addNextMove("5555");
-        mockUi.addNextMove("y");
+        mockUi.addNextMove("1");
 
         playerOrderTest.validateStartingPlayer(mockUi.captureChoice());
 
@@ -35,21 +35,21 @@ public class PlayerOrderTest {
 
     @Test
     public void choiceReturnsOpponentAsPlayerOne() {
-        mockUi.addNextMove("o");
-
-        playerOrderTest.validateStartingPlayer(mockUi.captureChoice());
-
-        assertEquals("O", playerOrderTest.accessFirstAndSecondPlayers().get(0).getGamePiece());
-        assertEquals("X", playerOrderTest.accessFirstAndSecondPlayers().get(1).getGamePiece());
-    }
-
-    @Test
-    public void choiceReturnsUserAsPlayerOne() {
-        mockUi.addNextMove("y");
+        mockUi.addNextMove("1");
 
         playerOrderTest.validateStartingPlayer(mockUi.captureChoice());
 
         assertEquals("X", playerOrderTest.accessFirstAndSecondPlayers().get(0).getGamePiece());
         assertEquals("O", playerOrderTest.accessFirstAndSecondPlayers().get(1).getGamePiece());
+    }
+
+    @Test
+    public void choiceReturnsUserAsPlayerOne() {
+        mockUi.addNextMove("2");
+
+        playerOrderTest.validateStartingPlayer(mockUi.captureChoice());
+
+        assertEquals("O", playerOrderTest.accessFirstAndSecondPlayers().get(0).getGamePiece());
+        assertEquals("X", playerOrderTest.accessFirstAndSecondPlayers().get(1).getGamePiece());
     }
 }

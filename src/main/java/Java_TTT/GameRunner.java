@@ -10,11 +10,10 @@ public class GameRunner {
         Scanner input = new Scanner(System.in);
         UserInterface ui = new CommandLineInterface(output, input);
         Board board = new Board(3);
-        PlayerFactory pickOpponent = new PlayerFactory((CommandLineInterface) ui, board);
-        Player gameOpponent = (Player) pickOpponent.getChosenOpponent();
-        Player HumanPlayer = new HumanPlayer("X", (CommandLineInterface) ui);
         GameScorer gameScorer = new GameScorer(board);
-        PlayerOrder determinePlayerOrder = new PlayerOrder(HumanPlayer, gameOpponent, (CommandLineInterface) ui);
+        GameConfiguration gameOptions = new GameConfiguration((CommandLineInterface) ui, board);
+        gameOptions.getGameConfigurationChoice();
+        PlayerOrder determinePlayerOrder = new PlayerOrder(gameOptions.getPlayer1(), gameOptions.getPlayer2(), (CommandLineInterface) ui);
         determinePlayerOrder.findStartingPlayer();
         Player player1 = determinePlayerOrder.accessFirstAndSecondPlayers().get(0);
         Player player2 = determinePlayerOrder.accessFirstAndSecondPlayers().get(1);

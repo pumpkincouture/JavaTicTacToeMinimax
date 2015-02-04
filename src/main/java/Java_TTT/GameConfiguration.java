@@ -24,6 +24,7 @@ public class GameConfiguration {
     }
 
     public void getGameConfigurationChoice() {
+        chooseConfigurationsPrompt();
         validateGameConfiguration(captureGameConfigurationChoice());
     }
 

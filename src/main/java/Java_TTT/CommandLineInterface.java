@@ -28,8 +28,9 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!");
     }
 
-    public void chooseStartingPlayer() {
-        printMessage("Please choose the starting player : yourself, or your opponent (please enter 'y' to indicate yourself and 'o' to indicate your opponent)");
+    public void chooseStartingPlayer(String player1, String player2) {
+        printMessage("Please choose the starting player :" + player1 + " or " + player2 +
+                     " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
     }
 
     public void printChosenOpponent(String opponentName) {

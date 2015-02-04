@@ -37,7 +37,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayWelcomePromptCalled = true;
     }
 
-    public void chooseStartingPlayer() {
+    public void chooseStartingPlayer(String player1, String player2) {
         displayChooseStartingPlayerCalled = true;
     }
 

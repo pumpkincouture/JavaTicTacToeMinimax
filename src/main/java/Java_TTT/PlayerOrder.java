@@ -16,7 +16,7 @@ public class PlayerOrder {
     }
 
     public void chooseStartingPlayerPrompt() {
-        ui.chooseStartingPlayer();
+        ui.chooseStartingPlayer(player1.getClass().getSimpleName(), player2.getClass().getSimpleName());
     }
 
     public void findStartingPlayer() {
@@ -38,14 +38,14 @@ public class PlayerOrder {
 
 
         switch (capitalizedChoice) {
-            case "O":
-                playerPositions.add(player2);
+            case "1":
                 playerPositions.add(player1);
+                playerPositions.add(player2);
                 positionsOfPlayers = playerPositions;
                 break;
-            case "Y":
-                playerPositions.add(player1);
+            case "2":
                 playerPositions.add(player2);
+                playerPositions.add(player1);
                 positionsOfPlayers = playerPositions;
                 break;
             default:

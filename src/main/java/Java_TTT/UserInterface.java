@@ -15,7 +15,7 @@ public interface UserInterface {
 
     public void printWelcomeMessage();
 
-    public void chooseStartingPlayer();
+    public void chooseStartingPlayer(String player1, String player2);
 
     public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece, String firstPlayer);
 
