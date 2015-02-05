@@ -57,8 +57,12 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.");
     }
 
-    public void printUserPrompt(String gamePiece) {
-        printMessage("Please choose a move for your " + gamePiece + " by pressing a number for that corresponding space.");
+    public void printUserPrompt() {
+        printMessage("Please choose a move for your game piece by pressing a number for that corresponding space.");
+    }
+
+    public void printChoice(Player player, String choice) {
+        printMessage(getPlayerName(player) + " has chosen space " + choice + "!");
     }
 
     public void printWinner(String gamePiece) {
@@ -108,5 +112,9 @@ public class CommandLineInterface implements UserInterface {
 
     public void printMessage(String string) {
         out.println(string);
+    }
+
+    private String getPlayerName(Player player) {
+        return player.getClass().getSimpleName();
     }
 }

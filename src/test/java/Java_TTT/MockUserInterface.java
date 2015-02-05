@@ -10,6 +10,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     private List<String> nextMoves = new LinkedList<String>();
     private boolean displayGameOptions = false;
     private boolean displayComputerThinking = false;
+    private boolean displayPlayersChoiceMessage = false;
     private boolean displayWelcomePromptCalled = false;
     private boolean displayGamePieceAssignmentCalled = false;
     private boolean displayChooseStartingPlayerCalled = false;
@@ -42,6 +43,10 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     public void chooseGameConfiguration() { displayGameOptions = true;
     }
 
+    public void printChoice(Player player, String choice) {
+        displayPlayersChoiceMessage = true;
+    };
+
     public void printComputerThinking() {
     displayComputerThinking = true;
     };
@@ -54,7 +59,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayStartingPlayerCalled = true;
     }
 
-    public void printUserPrompt(String playerName) {
+    public void printUserPrompt() {
         displayUserPromptCalled = true;
     }
 

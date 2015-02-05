@@ -14,6 +14,8 @@ public class CommandLineInterfaceTest {
     private Scanner input = new Scanner("3");
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
+    private MockUserInterface mockUi = new MockUserInterface(output, input);
+    private Player player1 = new HumanPlayer("X", mockUi);
 
     @Before
     public void setUp() {
@@ -85,8 +87,14 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printUserPromptMessage() {
-        ui.printUserPrompt("X");
-        assertEquals("Please choose a move for your X by pressing a number for that corresponding space.\n", printedToScreen.toString());
+        ui.printUserPrompt();
+        assertEquals("Please choose a move for your game piece by pressing a number for that corresponding space.\n", printedToScreen.toString());
+    }
+
+    @Test
+    public void printMessageAfterUserChoseAMove() {
+        ui.printChoice(player1, "3");
+        assertEquals("HumanPlayer has chosen space 3!\n", printedToScreen.toString());
     }
 
     @Test

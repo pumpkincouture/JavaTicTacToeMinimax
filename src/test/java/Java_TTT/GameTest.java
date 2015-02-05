@@ -34,6 +34,18 @@ public class GameTest {
         return Integer.parseInt(answer);
     }
 
+    private void setCurrentPlayer(Player player) {
+        gameTest.setCurrentPlayer(player);
+    }
+
+    private void switchPlayers() {
+        if (gameTest.getCurrentPlayer() == player1) {
+            setCurrentPlayer(player2);
+        } else {
+            setCurrentPlayer(player1);
+        }
+    }
+
 
     @Before
     public void setUp() {
@@ -66,7 +78,7 @@ public class GameTest {
 
     @Test
     public void displayUserPrompt() {
-        gameTest.printPlayerPrompt(player1.getGamePiece());
+        gameTest.printPlayerPrompt();
         assertEquals(true, mockUi.isUserPromptCalled());
     }
     @Test
@@ -81,11 +93,29 @@ public class GameTest {
         mockUi.addNextMove("PPP");
         mockUi.addNextMove("hehhghntnt");
         mockUi.addNextMove("3");
-        gameTest.getFirstMove(mockUi.captureChoice());
+
+        setCurrentPlayer(player1);
+
+        gameTest.getPlayerChoice(gameTest.getCurrentPlayer(), mockUi.captureChoice());
 
         assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
         fillBoard("3", "X");
         assertEquals(true, getCell("3", "X"));
+    }
+
+    @Test
+    public void testIfCurrentPlayerIsPlayerWithX() {
+        setCurrentPlayer(player1);
+
+        assertEquals("X", gameTest.getCurrentPlayer().getGamePiece());
+    }
+
+    @Test
+    public void switchPlayersAndTestIfPlayerWithOIsSetAsCurrentPlayer() {
+        setCurrentPlayer(player1);
+        switchPlayers();
+
+        assertEquals("O", gameTest.getCurrentPlayer().getGamePiece());
     }
 
     @Test

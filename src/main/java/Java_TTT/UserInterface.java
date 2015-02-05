@@ -11,6 +11,8 @@ public interface UserInterface {
 
     public void printChosenOpponent(String opponentName);
 
+    public void printChoice(Player player, String choice);
+
     public void printComputerThinking();
 
     public void printWelcomeMessage();
@@ -23,7 +25,7 @@ public interface UserInterface {
 
     public void promptForOpponent();
 
-    public void printUserPrompt(String playerName);
+    public void printUserPrompt();
 
     public void printBoard(String[] boardCells);
 
