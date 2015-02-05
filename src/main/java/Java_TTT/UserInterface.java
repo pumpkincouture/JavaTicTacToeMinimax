@@ -19,7 +19,7 @@ public interface UserInterface {
 
     public void chooseStartingPlayer(String player1, String player2);
 
-    public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece, String firstPlayer);
+    public void printGamePieceAssignment(String firstPlayer, String playerOnePiece, String secondPlayer, String playerTwoPiece);
 
     public void printStartingPlayer(String gamePiece);
 
