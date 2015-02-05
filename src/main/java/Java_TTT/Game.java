@@ -61,12 +61,16 @@ public class Game {
         }
     }
 
-    public String getWinnerName(String playerOne, String playerTwo) {
-        return gameScorer.getWinningPlayer(playerOne, playerTwo);
+    public void displayBoard() {
+        userinterface.printBoard(board.getBoardCells());
     }
 
     public void printPlayerPrompt(String gamePiece) {
         userinterface.printUserPrompt(gamePiece);
+    }
+
+    public String getWinnerName(String playerOne, String playerTwo) {
+        return gameScorer.getWinningPlayer(playerOne, playerTwo);
     }
 
     public void printGameWinner(String gamePiece) {
@@ -96,7 +100,7 @@ public class Game {
     }
 
     public void printGamePieces() {
-        userinterface.printGamePieceAssignment(player1.getClass().getSimpleName(), firstPlayerPiece(), player2.getClass().getSimpleName(), secondPlayerPiece());
+        userinterface.printGamePieceAssignment(getPlayerName(player1), firstPlayerPiece(), getPlayerName(player2), secondPlayerPiece());
     }
 
     public void printStartingPlayer() {
@@ -109,23 +113,23 @@ public class Game {
         }
     }
 
-    public boolean isInvalidMove(String move) {
+    private String getPlayerName(Player player) {
+        return player.getClass().getSimpleName();
+    }
+
+    private boolean isInvalidMove(String move) {
         return board.isMoveValid(move) == false;
     }
 
-    public boolean thereIsAWinner(String gamePiece) {
+    private boolean thereIsAWinner(String gamePiece) {
         return gameScorer.isThereAWinner(gamePiece);
     }
 
-    public boolean boardHasOpenSpaces() {
+    private boolean boardHasOpenSpaces() {
         return board.doesBoardHaveOpenSpaces();
     }
 
-    public void displayBoard() {
-        userinterface.printBoard(board.getBoardCells());
-    }
-
-    public void placeMoveOnBoard(String answer, String gamePiece) {
+    private void placeMoveOnBoard(String answer, String gamePiece) {
         board.placeMove(answer, gamePiece);
     }
 }

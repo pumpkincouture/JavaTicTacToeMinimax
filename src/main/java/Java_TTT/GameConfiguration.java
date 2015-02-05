@@ -1,10 +1,15 @@
 package Java_TTT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameConfiguration {
     private CommandLineInterface ui;
     private Board board;
     private Player player1;
     private Player player2;
+    private List<Player> positionsOfPlayers;
+
 
     public GameConfiguration(CommandLineInterface ui, Board board) {
         this.ui = ui;
@@ -19,17 +24,15 @@ public class GameConfiguration {
         return player2;
     }
 
-    public void chooseConfigurationsPrompt() {
-        ui.chooseGameConfiguration();
+    public List<Player> accessFirstAndSecondPlayers() {
+        return positionsOfPlayers;
     }
 
     public void getGameConfigurationChoice() {
         chooseConfigurationsPrompt();
         validateGameConfiguration(captureGameConfigurationChoice());
-    }
-
-    public String captureGameConfigurationChoice() {
-        return ui.captureChoice();
+        chooseStartingPlayerPrompt();
+        validateStartingPlayer(captureGameConfigurationChoice());
     }
 
     public void validateGameConfiguration(String gameConfigurationChoice) {
@@ -55,5 +58,43 @@ public class GameConfiguration {
                 chooseConfigurationsPrompt();
                 validateGameConfiguration(captureGameConfigurationChoice());
         }
+    }
+
+    public void validateStartingPlayer(String startingPlayerChoice) {
+        String capitalizedChoice = startingPlayerChoice.toUpperCase();
+        List<Player> playerPositions = new ArrayList<>();
+
+        switch (capitalizedChoice) {
+            case "1":
+                playerPositions.add(player1);
+                playerPositions.add(player2);
+                positionsOfPlayers = playerPositions;
+                break;
+            case "2":
+                playerPositions.add(player2);
+                playerPositions.add(player1);
+                positionsOfPlayers = playerPositions;
+                break;
+            default:
+                ui.printError(capitalizedChoice);
+                chooseStartingPlayerPrompt();
+                validateStartingPlayer(captureGameConfigurationChoice());
+        }
+    }
+
+    private String captureGameConfigurationChoice() {
+        return ui.captureChoice();
+    }
+
+    private String getPlayerName(Player player) {
+        return player.getClass().getSimpleName();
+    }
+
+    private void chooseConfigurationsPrompt() {
+        ui.chooseGameConfiguration();
+    }
+
+    private void chooseStartingPlayerPrompt() {
+        ui.chooseStartingPlayer(getPlayerName(player1), getPlayerName(player2));
     }
 }

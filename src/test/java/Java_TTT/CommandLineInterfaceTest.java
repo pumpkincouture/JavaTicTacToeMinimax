@@ -21,6 +21,12 @@ public class CommandLineInterfaceTest {
         this.board = new Board(3);
     }
 
+    private String scannerInput(String mockInput) {
+        Scanner input = new Scanner(mockInput);
+        String choice = input.nextLine();
+        return choice;
+    }
+
     @Test
     public void printToScreenTest() {
         ui.printMessage("hello");
@@ -42,7 +48,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printChooseStartingPlayerPrompt() {
         ui.chooseStartingPlayer("ComputerPlayer", "HumanPlayer");
-        assertEquals("Please choose the starting player :ComputerPlayer or HumanPlayer " +
+        assertEquals("Please choose the starting player : ComputerPlayer or HumanPlayer " +
                 "(please enter 1 to indicate ComputerPlayer or 2 to indicate HumanPlayer)\n", printedToScreen.toString());
     }
 
@@ -66,10 +72,9 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void getChosenInputMove() {
-        Scanner input = new Scanner("4\n");
-        String choice = input.nextLine();
+        scannerInput("4\n");
         ui.captureChoice();
-        assertEquals(choice, "4");
+        assertEquals(scannerInput("4\n"), "4");
     }
 
     @Test

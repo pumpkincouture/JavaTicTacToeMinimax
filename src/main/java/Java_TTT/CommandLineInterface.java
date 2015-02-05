@@ -29,7 +29,7 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseStartingPlayer(String player1, String player2) {
-        printMessage("Please choose the starting player :" + player1 + " or " + player2 +
+        printMessage("Please choose the starting player : " + player1 + " or " + player2 +
                      " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
     }
 

@@ -20,12 +20,24 @@ public class GameConfigurationTest {
         gameConfigTest = new GameConfiguration(mockUi, board);
     }
 
+    private void choosePlayerCombinations(String choice) {
+        gameConfigTest.validateGameConfiguration(choice);
+    }
+
+    private String getPlayerName(Player player) {
+        return player.getClass().getSimpleName();
+    }
+
+    private void chooseStartingPlayer(String choice) {
+        gameConfigTest.validateStartingPlayer(choice);
+    }
+
     @Test
     public void capturesUserChoiceForConfigurations() {
         mockUi.addNextMove("a");
         mockUi.addNextMove("1");
 
-        gameConfigTest.validateGameConfiguration(mockUi.captureChoice());
+        choosePlayerCombinations(mockUi.captureChoice());
 
         assertEquals(true, mockUi.areGameConfigOptionsCalled());
         assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
@@ -36,10 +48,10 @@ public class GameConfigurationTest {
         mockUi.addNextMove("ppp");
         mockUi.addNextMove("1");
 
-        gameConfigTest.validateGameConfiguration(mockUi.captureChoice());
+        choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer1().getClass().getSimpleName());
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer2().getClass().getSimpleName());
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.getPlayer1()));
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.getPlayer2()));
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -50,10 +62,10 @@ public class GameConfigurationTest {
         mockUi.addNextMove("9");
         mockUi.addNextMove("2");
 
-        gameConfigTest.validateGameConfiguration(mockUi.captureChoice());
+        choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer1().getClass().getSimpleName());
-        assertEquals("ComputerPlayer", gameConfigTest.getPlayer2().getClass().getSimpleName());
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.getPlayer1()));
+        assertEquals("ComputerPlayer", getPlayerName(gameConfigTest.getPlayer2()));
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -63,10 +75,10 @@ public class GameConfigurationTest {
         mockUi.addNextMove("---");
         mockUi.addNextMove("3");
 
-        gameConfigTest.validateGameConfiguration(mockUi.captureChoice());
+        choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer1().getClass().getSimpleName());
-        assertEquals("AIComputerPlayer", gameConfigTest.getPlayer2().getClass().getSimpleName());
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.getPlayer1()));
+        assertEquals("AIComputerPlayer", getPlayerName(gameConfigTest.getPlayer2()));
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -76,11 +88,79 @@ public class GameConfigurationTest {
         mockUi.addNextMove("---");
         mockUi.addNextMove("4");
 
-        gameConfigTest.validateGameConfiguration(mockUi.captureChoice());
+        choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("ComputerPlayer", gameConfigTest.getPlayer1().getClass().getSimpleName());
-        assertEquals("AIComputerPlayer", gameConfigTest.getPlayer2().getClass().getSimpleName());
+        assertEquals("ComputerPlayer", getPlayerName(gameConfigTest.getPlayer1()));
+        assertEquals("AIComputerPlayer", getPlayerName(gameConfigTest.getPlayer2()));
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
+    }
+
+    @Test
+    public void capturesAndValidatesChoiceUntilValidInputIsReturned() {
+        mockUi.addNextMove("dddd");
+        mockUi.addNextMove("5555");
+        mockUi.addNextMove("1");
+
+        choosePlayerCombinations("2");
+        chooseStartingPlayer(mockUi.captureChoice());
+
+        assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
+        assertEquals(true, mockUi.isStartingPlayerMessageCalled());
+    }
+
+    @Test
+    public void choiceReturnsHumanPlayerAsStartingPlayerAgainstBasicComputerPlayer() {
+        mockUi.addNextMove("1");
+
+        choosePlayerCombinations("2");
+        chooseStartingPlayer(mockUi.captureChoice());
+
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(0)));
+        assertEquals("ComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(1)));
+    }
+
+    @Test
+    public void choiceReturnsBasicComputerAsStartingPlayerAgainstHumanPlayer() {
+        mockUi.addNextMove("2");
+
+        choosePlayerCombinations("2");
+        chooseStartingPlayer(mockUi.captureChoice());
+
+        assertEquals("ComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(0)));
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(1)));
+    }
+
+    @Test
+    public void choiceReturnsAIComputerPlayerAsStartingPlayerAgainstHumanPlayer() {
+        mockUi.addNextMove("2");
+
+        choosePlayerCombinations("3");
+        chooseStartingPlayer(mockUi.captureChoice());
+
+        assertEquals("AIComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(0)));
+        assertEquals("HumanPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(1)));
+    }
+
+    @Test
+    public void choiceReturnsBasicComputerPlayerAsStartingPlayerAgainstAIPlayer() {
+        mockUi.addNextMove("1");
+
+        choosePlayerCombinations("4");
+        chooseStartingPlayer(mockUi.captureChoice());
+
+        assertEquals("ComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(0)));
+        assertEquals("AIComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(1)));
+    }
+
+    @Test
+    public void choiceReturnsAIComputerPlayerAsStartingPlayerAgainstBasicPlayer() {
+        mockUi.addNextMove("2");
+
+        choosePlayerCombinations("4");
+        chooseStartingPlayer(mockUi.captureChoice());
+
+        assertEquals("AIComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(0)));
+        assertEquals("ComputerPlayer", getPlayerName(gameConfigTest.accessFirstAndSecondPlayers().get(1)));
     }
 }
