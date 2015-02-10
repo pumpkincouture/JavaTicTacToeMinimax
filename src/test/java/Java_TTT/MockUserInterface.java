@@ -43,7 +43,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     public void chooseGameConfiguration() { displayGameOptions = true;
     }
 
-    public void printChoice(Player player, String choice) {
+    public void printChoice(PlayerInterface player, String choice) {
         displayPlayersChoiceMessage = true;
     };
 
@@ -51,7 +51,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     displayComputerThinking = true;
     };
 
-    public void printGamePieceAssignment(String firstPlayer, String playerOnePiece, String secondPlayer, String playerTwoPiece) {
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
         displayGamePieceAssignmentCalled = true;
     }
 
@@ -67,7 +67,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayInvalidMoveMessageCalled = true;
     }
 
-    public void printBoard(String[] boardCells) {
+    public void printBoard(Board board) {
         displayBoardCalled = true;
     }
 

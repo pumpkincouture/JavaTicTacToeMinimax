@@ -6,9 +6,9 @@ import java.util.List;
 public class GameConfiguration {
     private CommandLineInterface ui;
     private Board board;
-    private Player player1;
-    private Player player2;
-    private List<Player> positionsOfPlayers;
+    private PlayerInterface player1;
+    private PlayerInterface player2;
+    private List<PlayerInterface> positionsOfPlayers;
 
 
     public GameConfiguration(CommandLineInterface ui, Board board) {
@@ -16,23 +16,23 @@ public class GameConfiguration {
         this.board = board;
     }
 
-    public Player getPlayer1() {
+    public PlayerInterface getPlayer1() {
         return player1;
     }
 
-    public Player getPlayer2() {
+    public PlayerInterface getPlayer2() {
         return player2;
     }
 
-    public List<Player> accessFirstAndSecondPlayers() {
+    public List<PlayerInterface> accessFirstAndSecondPlayers() {
         return positionsOfPlayers;
     }
 
     public void getGameConfigurationChoice() {
-        chooseConfigurationsPrompt();
-        validateGameConfiguration(captureGameConfigurationChoice());
-        chooseStartingPlayerPrompt();
-        validateStartingPlayer(captureGameConfigurationChoice());
+        ui.chooseGameConfiguration();
+        validateGameConfiguration(ui.captureChoice());
+        ui.chooseStartingPlayer(player1.getName(), player2.getName());
+        validateStartingPlayer(ui.captureChoice());
     }
 
     public void validateGameConfiguration(String gameConfigurationChoice) {
@@ -55,14 +55,14 @@ public class GameConfiguration {
                 break;
             default:
                 ui.printError(gameConfigurationChoice);
-                chooseConfigurationsPrompt();
-                validateGameConfiguration(captureGameConfigurationChoice());
+                ui.chooseGameConfiguration();
+                validateGameConfiguration(ui.captureChoice());
         }
     }
 
     public void validateStartingPlayer(String startingPlayerChoice) {
         String capitalizedChoice = startingPlayerChoice.toUpperCase();
-        List<Player> playerPositions = new ArrayList<>();
+        List<PlayerInterface> playerPositions = new ArrayList<>();
 
         switch (capitalizedChoice) {
             case "1":
@@ -77,24 +77,8 @@ public class GameConfiguration {
                 break;
             default:
                 ui.printError(capitalizedChoice);
-                chooseStartingPlayerPrompt();
-                validateStartingPlayer(captureGameConfigurationChoice());
+                ui.chooseStartingPlayer(player1.getName(), player2.getName());
+                validateStartingPlayer(ui.captureChoice());
         }
-    }
-
-    private String captureGameConfigurationChoice() {
-        return ui.captureChoice();
-    }
-
-    private String getPlayerName(Player player) {
-        return player.getClass().getSimpleName();
-    }
-
-    private void chooseConfigurationsPrompt() {
-        ui.chooseGameConfiguration();
-    }
-
-    private void chooseStartingPlayerPrompt() {
-        ui.chooseStartingPlayer(getPlayerName(player1), getPlayerName(player2));
     }
 }

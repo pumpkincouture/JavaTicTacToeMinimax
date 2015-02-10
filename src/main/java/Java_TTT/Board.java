@@ -12,7 +12,7 @@ public class Board {
         fillArray();
     }
 
-    public String[] getBoardCells() {
+    public String[] getCells() {
         return boardCells;
     }
 
@@ -32,7 +32,7 @@ public class Board {
         return validateCells(answer);
     }
 
-    public boolean doesBoardHaveOpenSpaces() {
+    public boolean hasOpenSpaces() {
         return checkForOpenCells();
     }
 

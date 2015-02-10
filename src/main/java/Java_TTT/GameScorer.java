@@ -56,9 +56,9 @@ public class GameScorer {
     private ArrayList<String> getPartOfBoard(int space1, int space2, int space3) {
         ArrayList<String> boardPart = new ArrayList();
 
-        boardPart.add(board.getBoardCells()[space1]);
-        boardPart.add(board.getBoardCells()[space2]);
-        boardPart.add(board.getBoardCells()[space3]);
+        boardPart.add(board.getCells()[space1]);
+        boardPart.add(board.getCells()[space2]);
+        boardPart.add(board.getCells()[space3]);
 
         return boardPart;
     }

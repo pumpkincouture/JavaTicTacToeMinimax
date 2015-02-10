@@ -12,8 +12,12 @@ public class CommandLineInterface implements UserInterface {
         this.in = in;
     }
 
-    public void printBoard(String string) {
+    private void printBoard(String string) {
         out.print(string);
+    }
+
+    public void printMessage(String string) {
+        out.println(string);
     }
 
     public void chooseGameConfiguration() {
@@ -30,7 +34,7 @@ public class CommandLineInterface implements UserInterface {
 
     public void chooseStartingPlayer(String player1, String player2) {
         printMessage("Please choose the starting player : " + player1 + " or " + player2 +
-                     " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
+                " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
     }
 
     public void printChosenOpponent(String opponentName) {
@@ -41,8 +45,8 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Computer is considering a move....");
     }
 
-    public void printGamePieceAssignment(String firstPlayer, String playerOnePiece, String secondPlayer, String playerTwoPiece) {
-        printMessage(firstPlayer +  " will have the " + playerOnePiece + " piece and " + secondPlayer + " will have the " + playerTwoPiece + " piece.");
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
+        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece.");
     }
 
     public void printStartingPlayer(String gamePiece) {
@@ -61,8 +65,8 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Please choose a move for your game piece by pressing a number for that corresponding space.");
     }
 
-    public void printChoice(Player player, String choice) {
-        printMessage(getPlayerName(player) + " has chosen space " + choice + "!");
+    public void printChoice(PlayerInterface player, String choice) {
+        printMessage(player.getName() + " has chosen space " + choice + "!");
     }
 
     public void printWinner(String gamePiece) {
@@ -77,12 +81,12 @@ public class CommandLineInterface implements UserInterface {
         printMessage(choice + " is not available, please try again.");
     }
 
-    public void printBoard(String[] boardCells) {
-        printTopRow(boardCells);
+    public void printBoard(Board board) {
+        printTopRow(board.getCells());
         printLines();
-        printMiddleRow(boardCells);
+        printMiddleRow(board.getCells());
         printLines();
-        printBottomRow(boardCells);
+        printBottomRow(board.getCells());
         printMessage("\n");
     }
 
@@ -108,13 +112,5 @@ public class CommandLineInterface implements UserInterface {
         printBoard("\n");
         printBoard("-------");
         printBoard("\n");
-    }
-
-    public void printMessage(String string) {
-        out.println(string);
-    }
-
-    private String getPlayerName(Player player) {
-        return player.getClass().getSimpleName();
     }
 }

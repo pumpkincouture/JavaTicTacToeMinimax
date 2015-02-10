@@ -45,7 +45,7 @@ public class BoardTest {
     }
 
     private boolean getCell(String answer, String gamePiece) {
-       if (boardTest.getBoardCells()[convertAnswerToInteger(answer) - 1] == gamePiece) {
+       if (boardTest.getCells()[convertAnswerToInteger(answer) - 1] == gamePiece) {
            return true;
        }
         return false;
@@ -77,15 +77,15 @@ public class BoardTest {
 
     @Test
     public void returnBoardCellsAsThreeByThreeArray() {
-        assertEquals("", boardTest.getBoardCells()[4]);
+        assertEquals("", boardTest.getCells()[4]);
     }
 
     @Test
     public void checkSpaceOfBoardCellArray() {
         fillBoard("4", "X");
         fillBoard("5", "O");
-        assertEquals("X", boardTest.getBoardCells()[3]);
-        assertEquals("O", boardTest.getBoardCells()[4]);
+        assertEquals("X", boardTest.getCells()[3]);
+        assertEquals("O", boardTest.getCells()[4]);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class BoardTest {
 
     @Test
     public void checkIfBoardHasOpenSpaces() {
-        assertEquals(true, boardTest.doesBoardHaveOpenSpaces());
+        assertEquals(true, boardTest.hasOpenSpaces());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class BoardTest {
     @Test
     public void checkIfBoardFullWithMockInputs () {
         simulateFilledBoard();
-        assertEquals(false, boardTest.doesBoardHaveOpenSpaces());
+        assertEquals(false, boardTest.hasOpenSpaces());
     }
 
     @Test

@@ -2,7 +2,7 @@ package Java_TTT;
 
 import java.util.*;
 
-public class AIComputerPlayer extends Player {
+public class AIComputerPlayer extends Player implements PlayerInterface{
     private GameScorer gameScorer;
     private int choice;
     private Board board;
@@ -16,7 +16,10 @@ public class AIComputerPlayer extends Player {
         gameScorer = new GameScorer(board);
     }
 
-    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
+
     public String getMove() {
         ui.printComputerThinking();
         if (board.isBoardEmpty()) {

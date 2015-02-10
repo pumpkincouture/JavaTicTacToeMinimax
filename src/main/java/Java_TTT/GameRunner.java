@@ -13,8 +13,8 @@ public class GameRunner {
         GameScorer gameScorer = new GameScorer(board);
         GameConfiguration gameOptions = new GameConfiguration((CommandLineInterface) ui, board);
         gameOptions.getGameConfigurationChoice();
-        Player player1 = gameOptions.accessFirstAndSecondPlayers().get(0);
-        Player player2 = gameOptions.accessFirstAndSecondPlayers().get(1);
+        PlayerInterface player1 = gameOptions.accessFirstAndSecondPlayers().get(0);
+        PlayerInterface player2 = gameOptions.accessFirstAndSecondPlayers().get(1);
 
         Game game = new Game(player1, player2, board, (CommandLineInterface) ui, gameScorer);
         game.startGame();

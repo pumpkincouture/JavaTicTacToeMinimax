@@ -15,7 +15,8 @@ public class CommandLineInterfaceTest {
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private Player player1 = new HumanPlayer("X", mockUi);
+    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
+    private PlayerInterface player2 = new ComputerPlayer("O", board, mockUi);
 
     @Before
     public void setUp() {
@@ -62,8 +63,8 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printGamePieceAssignmentTest() {
-        ui.printGamePieceAssignment("ComputerOpponent", "$", "HumanOpponent", "#");
-        assertEquals("ComputerOpponent will have the $ piece and HumanOpponent will have the # piece.\n", printedToScreen.toString());
+        ui.printGamePieceAssignment(player1, player2);
+        assertEquals("HumanPlayer will have the X piece and ComputerPlayer will have the O piece.\n", printedToScreen.toString());
     }
 
     @Test
@@ -117,7 +118,7 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printBoard() {
-        ui.printBoard(board.getBoardCells());
+        ui.printBoard(board);
         assertEquals(" |  | \n" +
                      "-------\n" +
                      " |  | \n" +
