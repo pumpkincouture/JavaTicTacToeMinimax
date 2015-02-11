@@ -3,13 +3,18 @@ package Java_TTT;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
     private Board boardTest;
-    private Player testPlayer;
+    private PrintStream output = new PrintStream(System.out);
+    private Scanner input = new Scanner(System.in);
+    private MockUserInterface mockUi = new MockUserInterface(output, input);
+    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
 
     private void simulateFilledBoard() {
         fillBoard("9", "X");
@@ -62,7 +67,6 @@ public class BoardTest {
     @Before
     public void setUp() {
         boardTest = new Board(3);
-        testPlayer = new Player("X");
     }
 
     @Test
@@ -127,8 +131,8 @@ public class BoardTest {
 
     @Test
     public void placeMoveOnBoard() {
-        fillBoard("9", testPlayer.getGamePiece());
-        assertEquals(true, getCell("9", testPlayer.getGamePiece()));
+        fillBoard("9", player1.getGamePiece());
+        assertEquals(true, getCell("9", player1.getGamePiece()));
     }
 
     @Test

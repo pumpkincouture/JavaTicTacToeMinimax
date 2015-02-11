@@ -1,6 +1,6 @@
 package Java_TTT;
 
-public class Player {
+abstract class Player {
 
     private String gamePiece;
 
