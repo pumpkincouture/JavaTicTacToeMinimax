@@ -36,7 +36,7 @@ public class Board {
         return checkForOpenCells();
     }
 
-    public boolean isBoardEmpty() {
+    public boolean isEmpty() {
         return getOpenCellLocations().size() == boardCells.length;
     }
 

@@ -22,7 +22,7 @@ public class AIComputerPlayer extends Player implements PlayerInterface{
 
     public String getMove() {
         ui.printComputerThinking();
-        if (board.isBoardEmpty()) {
+        if (board.isEmpty()) {
             return convertChosenIndexToString(findMiddleOfBoard());
         }
         minimax(this.board, 0, this.getGamePiece());
