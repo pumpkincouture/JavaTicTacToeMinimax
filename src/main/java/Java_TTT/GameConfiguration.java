@@ -16,6 +16,7 @@ public class GameConfiguration {
         this.board = board;
     }
 
+
     public PlayerInterface getPlayer1() {
         return player1;
     }

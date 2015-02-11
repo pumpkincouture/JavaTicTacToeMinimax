@@ -16,7 +16,7 @@ public class Game {
         this.gameScorer = gameScorer;
     }
 
-    public void startGame() {
+    public void start() {
         printIntro();
         playGame();
         printGameWinner(gameScorer.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
