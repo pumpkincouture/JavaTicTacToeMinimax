@@ -120,10 +120,10 @@ public class CommandLineInterfaceTest {
     public void printBoard() {
         ui.printBoard(board);
         assertEquals(" |  | \n" +
-                     "-------\n" +
-                     " |  | \n" +
-                     "-------\n" +
-                     " |  | \n" +
-                     "\n", printedToScreen.toString());
+                "-------\n" +
+                " |  | \n" +
+                "-------\n" +
+                " |  | \n" +
+                "\n", printedToScreen.toString());
     }
 }

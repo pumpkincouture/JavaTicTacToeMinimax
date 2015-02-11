@@ -48,7 +48,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     };
 
     public void printComputerThinking() {
-    displayComputerThinking = true;
+        displayComputerThinking = true;
     };
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
