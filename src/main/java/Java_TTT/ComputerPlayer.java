@@ -2,18 +2,24 @@ package Java_TTT;
 
 import java.util.Random;
 
-public class ComputerPlayer extends Player {
+public class ComputerPlayer extends Player implements PlayerInterface {
     private Random randomGenerator;
     private Board board;
+    private CommandLineInterface ui;
 
-    public ComputerPlayer(String gamePiece, Board board) {
+    public ComputerPlayer(String gamePiece, Board board, CommandLineInterface ui) {
         super(gamePiece);
         this.board = board;
+        this.ui = ui;
         randomGenerator = new Random();
     }
 
-    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
+
     public String getMove() {
+        ui.printComputerThinking();
         return convertChosenIndexToString(board);
     }
 

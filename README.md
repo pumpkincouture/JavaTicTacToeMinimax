@@ -1,6 +1,6 @@
 # javaTicTacToeMinimax
 Simple 3 x 3 Board, Human vs. Opponent Tic Tac Toe game, written in Java version 1.8.0_25.
-Opponent can be a Human, Computer, or UnbeatableComputer.
+Player configurations : Human vs Human, Human vs Computer, Human vs AI, Computer vs AI.
 
 ## How to play
 Clone the repository to your computer. Navigate into the ```javaTicTacToeMinimax``` directory via the Terminal. 

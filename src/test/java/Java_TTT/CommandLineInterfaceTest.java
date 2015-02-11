@@ -14,11 +14,20 @@ public class CommandLineInterfaceTest {
     private Scanner input = new Scanner("3");
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
+    private MockUserInterface mockUi = new MockUserInterface(output, input);
+    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
+    private PlayerInterface player2 = new ComputerPlayer("O", board, mockUi);
 
     @Before
     public void setUp() {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
+    }
+
+    private String scannerInput(String mockInput) {
+        Scanner input = new Scanner(mockInput);
+        String choice = input.nextLine();
+        return choice;
     }
 
     @Test
@@ -34,9 +43,16 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
+    public void printComputerThinkingAboutAMove() {
+        ui.printComputerThinking();
+        assertEquals("Computer is considering a move....\n", printedToScreen.toString());
+    }
+
+    @Test
     public void printChooseStartingPlayerPrompt() {
-        ui.chooseStartingPlayer();
-        assertEquals("Please choose the starting player : yourself, or your opponent (please enter 'y' to indicate yourself and 'o' to indicate your opponent\n", printedToScreen.toString());
+        ui.chooseStartingPlayer("ComputerPlayer", "HumanPlayer");
+        assertEquals("Please choose the starting player : ComputerPlayer or HumanPlayer " +
+                "(please enter 1 to indicate ComputerPlayer or 2 to indicate HumanPlayer)\n", printedToScreen.toString());
     }
 
     @Test
@@ -47,8 +63,8 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printGamePieceAssignmentTest() {
-        ui.printGamePieceAssignment("$", "HumanOpponent", "#");
-        assertEquals("Player 1 will have the $ piece and HumanOpponent will have the # piece.\n", printedToScreen.toString());
+        ui.printGamePieceAssignment(player1, player2);
+        assertEquals("HumanPlayer will have the X piece and ComputerPlayer will have the O piece.\n", printedToScreen.toString());
     }
 
     @Test
@@ -59,10 +75,9 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void getChosenInputMove() {
-        Scanner input = new Scanner("4\n");
-        String choice = input.nextLine();
+        scannerInput("4\n");
         ui.captureChoice();
-        assertEquals(choice, "4");
+        assertEquals(scannerInput("4\n"), "4");
     }
 
     @Test
@@ -73,8 +88,14 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printUserPromptMessage() {
-        ui.printUserPrompt("X");
-        assertEquals("Please choose a move for your X by pressing a number for that corresponding space.\n", printedToScreen.toString());
+        ui.printUserPrompt();
+        assertEquals("Please choose a move for your game piece by pressing a number for that corresponding space.\n", printedToScreen.toString());
+    }
+
+    @Test
+    public void printMessageAfterUserChoseAMove() {
+        ui.printChoice(player1, "3");
+        assertEquals("HumanPlayer has chosen space 3!\n", printedToScreen.toString());
     }
 
     @Test
@@ -97,7 +118,7 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printBoard() {
-        ui.printBoard(board.getBoardCells());
+        ui.printBoard(board);
         assertEquals(" |  | \n" +
                      "-------\n" +
                      " |  | \n" +

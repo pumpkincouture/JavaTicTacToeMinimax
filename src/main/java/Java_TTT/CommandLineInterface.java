@@ -12,24 +12,41 @@ public class CommandLineInterface implements UserInterface {
         this.in = in;
     }
 
-    public void printBoard(String string) {
+    private void printBoard(String string) {
         out.print(string);
+    }
+
+    public void printMessage(String string) {
+        out.println(string);
+    }
+
+    public void chooseGameConfiguration() {
+        printMessage("Welcome, please choose your desired game configuration.\n" +
+                "1 : Human vs Human Player \n" +
+                "2 : Human vs Basic Computer Player \n" +
+                "3 : Human vs AI Computer Player \n" +
+                "4 : Basic Computer Player vs AI Computer Player");
     }
 
     public void printWelcomeMessage() {
         printMessage("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!");
     }
 
-    public void chooseStartingPlayer() {
-        printMessage("Please choose the starting player : yourself, or your opponent (please enter 'y' to indicate yourself and 'o' to indicate your opponent)");
+    public void chooseStartingPlayer(String player1, String player2) {
+        printMessage("Please choose the starting player : " + player1 + " or " + player2 +
+                " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
     }
 
     public void printChosenOpponent(String opponentName) {
         printMessage("You've chosen to play against " + opponentName + ".");
     }
 
-    public void printGamePieceAssignment(String playerOnePiece, String opponentName, String playerTwoPiece) {
-        printMessage("Player 1 will have the " + playerOnePiece + " piece and " + opponentName + " will have the " + playerTwoPiece + " piece.");
+    public void printComputerThinking() {
+        printMessage("Computer is considering a move....");
+    }
+
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
+        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece.");
     }
 
     public void printStartingPlayer(String gamePiece) {
@@ -44,8 +61,12 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.");
     }
 
-    public void printUserPrompt(String gamePiece) {
-        printMessage("Please choose a move for your " + gamePiece + " by pressing a number for that corresponding space.");
+    public void printUserPrompt() {
+        printMessage("Please choose a move for your game piece by pressing a number for that corresponding space.");
+    }
+
+    public void printChoice(PlayerInterface player, String choice) {
+        printMessage(player.getName() + " has chosen space " + choice + "!");
     }
 
     public void printWinner(String gamePiece) {
@@ -60,12 +81,12 @@ public class CommandLineInterface implements UserInterface {
         printMessage(choice + " is not available, please try again.");
     }
 
-    public void printBoard(String[] boardCells) {
-        printTopRow(boardCells);
+    public void printBoard(Board board) {
+        printTopRow(board.getCells());
         printLines();
-        printMiddleRow(boardCells);
+        printMiddleRow(board.getCells());
         printLines();
-        printBottomRow(boardCells);
+        printBottomRow(board.getCells());
         printMessage("\n");
     }
 
@@ -91,9 +112,5 @@ public class CommandLineInterface implements UserInterface {
         printBoard("\n");
         printBoard("-------");
         printBoard("\n");
-    }
-
-    public void printMessage(String string) {
-        out.println(string);
     }
 }

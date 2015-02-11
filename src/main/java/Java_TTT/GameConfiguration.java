@@ -1,0 +1,85 @@
+package Java_TTT;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameConfiguration {
+    private CommandLineInterface ui;
+    private Board board;
+    private PlayerInterface player1;
+    private PlayerInterface player2;
+    private List<PlayerInterface> positionsOfPlayers;
+
+
+    public GameConfiguration(CommandLineInterface ui, Board board) {
+        this.ui = ui;
+        this.board = board;
+    }
+
+
+    public PlayerInterface getPlayer1() {
+        return player1;
+    }
+
+    public PlayerInterface getPlayer2() {
+        return player2;
+    }
+
+    public List<PlayerInterface> accessFirstAndSecondPlayers() {
+        return positionsOfPlayers;
+    }
+
+    public void getGameConfigurationChoice() {
+        ui.chooseGameConfiguration();
+        validateGameConfiguration(ui.captureChoice());
+        ui.chooseStartingPlayer(player1.getName(), player2.getName());
+        validateStartingPlayer(ui.captureChoice());
+    }
+
+    public void validateGameConfiguration(String gameConfigurationChoice) {
+        switch(gameConfigurationChoice) {
+            case "1":
+                player1 = new HumanPlayer("X", ui);
+                player2 = new HumanPlayer("O", ui);
+                break;
+            case "2":
+                player1 = new HumanPlayer("X", ui);
+                player2 = new ComputerPlayer("O", board, ui);
+                break;
+            case "3":
+                player1 = new HumanPlayer("X", ui);
+                player2 = new AIComputerPlayer("O", board, ui);
+                break;
+            case "4":
+                player1 = new ComputerPlayer("X", board, ui);
+                player2 = new AIComputerPlayer("O", board, ui);
+                break;
+            default:
+                ui.printError(gameConfigurationChoice);
+                ui.chooseGameConfiguration();
+                validateGameConfiguration(ui.captureChoice());
+        }
+    }
+
+    public void validateStartingPlayer(String startingPlayerChoice) {
+        String capitalizedChoice = startingPlayerChoice.toUpperCase();
+        List<PlayerInterface> playerPositions = new ArrayList<>();
+
+        switch (capitalizedChoice) {
+            case "1":
+                playerPositions.add(player1);
+                playerPositions.add(player2);
+                positionsOfPlayers = playerPositions;
+                break;
+            case "2":
+                playerPositions.add(player2);
+                playerPositions.add(player1);
+                positionsOfPlayers = playerPositions;
+                break;
+            default:
+                ui.printError(capitalizedChoice);
+                ui.chooseStartingPlayer(player1.getName(), player2.getName());
+                validateStartingPlayer(ui.captureChoice());
+        }
+    }
+}

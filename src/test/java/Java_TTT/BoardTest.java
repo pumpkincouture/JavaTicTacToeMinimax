@@ -3,13 +3,18 @@ package Java_TTT;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
     private Board boardTest;
-    private Player testPlayer;
+    private PrintStream output = new PrintStream(System.out);
+    private Scanner input = new Scanner(System.in);
+    private MockUserInterface mockUi = new MockUserInterface(output, input);
+    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
 
     private void simulateFilledBoard() {
         fillBoard("9", "X");
@@ -45,7 +50,7 @@ public class BoardTest {
     }
 
     private boolean getCell(String answer, String gamePiece) {
-       if (boardTest.getBoardCells()[convertAnswerToInteger(answer) - 1] == gamePiece) {
+       if (boardTest.getCells()[convertAnswerToInteger(answer) - 1] == gamePiece) {
            return true;
        }
         return false;
@@ -62,7 +67,6 @@ public class BoardTest {
     @Before
     public void setUp() {
         boardTest = new Board(3);
-        testPlayer = new Player("X");
     }
 
     @Test
@@ -77,15 +81,15 @@ public class BoardTest {
 
     @Test
     public void returnBoardCellsAsThreeByThreeArray() {
-        assertEquals("", boardTest.getBoardCells()[4]);
+        assertEquals("", boardTest.getCells()[4]);
     }
 
     @Test
     public void checkSpaceOfBoardCellArray() {
         fillBoard("4", "X");
         fillBoard("5", "O");
-        assertEquals("X", boardTest.getBoardCells()[3]);
-        assertEquals("O", boardTest.getBoardCells()[4]);
+        assertEquals("X", boardTest.getCells()[3]);
+        assertEquals("O", boardTest.getCells()[4]);
     }
 
     @Test
@@ -111,19 +115,24 @@ public class BoardTest {
 
     @Test
     public void checkIfBoardHasOpenSpaces() {
-        assertEquals(true, boardTest.isBoardOpen());
+        assertEquals(true, boardTest.hasOpenSpaces());
+    }
+
+    @Test
+    public void checkIfBoardCompletelyEmpty() {
+        assertEquals(true, boardTest.isBoardEmpty());
     }
 
     @Test
     public void checkIfBoardFullWithMockInputs () {
         simulateFilledBoard();
-        assertEquals(false, boardTest.isBoardOpen());
+        assertEquals(false, boardTest.hasOpenSpaces());
     }
 
     @Test
     public void placeMoveOnBoard() {
-        fillBoard("9", testPlayer.getGamePiece());
-        assertEquals(true, getCell("9", testPlayer.getGamePiece()));
+        fillBoard("9", player1.getGamePiece());
+        assertEquals(true, getCell("9", player1.getGamePiece()));
     }
 
     @Test

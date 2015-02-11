@@ -1,6 +1,6 @@
 package Java_TTT;
 
-public class Player  {
+abstract class Player {
 
     private String gamePiece;
 
@@ -10,9 +10,5 @@ public class Player  {
 
     public String getGamePiece() {
         return gamePiece;
-    }
-
-    public String getMove() {
-        return "";
     }
 }

@@ -12,7 +12,7 @@ public class Board {
         fillArray();
     }
 
-    public String[] getBoardCells() {
+    public String[] getCells() {
         return boardCells;
     }
 
@@ -32,8 +32,12 @@ public class Board {
         return validateCells(answer);
     }
 
-    public boolean isBoardOpen() {
+    public boolean hasOpenSpaces() {
         return checkForOpenCells();
+    }
+
+    public boolean isBoardEmpty() {
+        return getOpenCellLocations().size() == boardCells.length;
     }
 
     public String[] placeMove(String answer, String gamePiece) {

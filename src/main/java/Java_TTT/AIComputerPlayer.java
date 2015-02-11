@@ -2,19 +2,29 @@ package Java_TTT;
 
 import java.util.*;
 
-public class AIComputerPlayer extends Player {
+public class AIComputerPlayer extends Player implements PlayerInterface{
     private GameScorer gameScorer;
     private int choice;
     private Board board;
+    private CommandLineInterface ui;
 
-    public AIComputerPlayer(String gamePiece, Board board) {
+
+    public AIComputerPlayer(String gamePiece, Board board, CommandLineInterface ui) {
         super(gamePiece);
         this.board = board;
+        this.ui = ui;
         gameScorer = new GameScorer(board);
     }
 
-    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
+
     public String getMove() {
+        ui.printComputerThinking();
+        if (board.isBoardEmpty()) {
+            return convertChosenIndexToString(findMiddleOfBoard());
+        }
         minimax(this.board, 0, this.getGamePiece());
         return convertChosenIndexToString(choice);
     }
@@ -116,5 +126,9 @@ public class AIComputerPlayer extends Player {
 
     private String convertChosenIndexToString(int chosenSpace) {
         return Integer.toString(chosenSpace + 1);
+    }
+
+    private int findMiddleOfBoard() {
+        return board.getCellsSquareRoot(board.getLength()) + 1;
     }
 }

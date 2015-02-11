@@ -8,13 +8,14 @@ import java.util.Scanner;
 public class MockUserInterface extends CommandLineInterface implements UserInterface {
 
     private List<String> nextMoves = new LinkedList<String>();
+    private boolean displayGameOptions = false;
+    private boolean displayComputerThinking = false;
+    private boolean displayPlayersChoiceMessage = false;
     private boolean displayWelcomePromptCalled = false;
     private boolean displayGamePieceAssignmentCalled = false;
     private boolean displayChooseStartingPlayerCalled = false;
     private boolean displayStartingPlayerCalled = false;
     private boolean displayUserPromptCalled = false;
-    private boolean displayOpponentPrompt = false;
-    private boolean displayChosenOpponent = false;
     private boolean displayInvalidMoveMessageCalled = false;
     private boolean displayBoardCalled = false;
     private boolean winnerStringCalled = false;
@@ -35,27 +36,30 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayWelcomePromptCalled = true;
     }
 
-    public void chooseStartingPlayer() {
+    public void chooseStartingPlayer(String player1, String player2) {
         displayChooseStartingPlayerCalled = true;
     }
 
-    public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece) {
-        displayGamePieceAssignmentCalled = true;
+    public void chooseGameConfiguration() { displayGameOptions = true;
     }
 
-    public void printChosenOpponent(String opponentName) {
-        displayChosenOpponent = true;
+    public void printChoice(PlayerInterface player, String choice) {
+        displayPlayersChoiceMessage = true;
+    };
+
+    public void printComputerThinking() {
+    displayComputerThinking = true;
+    };
+
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
+        displayGamePieceAssignmentCalled = true;
     }
 
     public void  printStartingPlayer(String gamePiece) {
         displayStartingPlayerCalled = true;
     }
 
-    public void promptForOpponent() {
-        displayOpponentPrompt = true;
-    }
-
-    public void printUserPrompt(String playerName) {
+    public void printUserPrompt() {
         displayUserPromptCalled = true;
     }
 
@@ -63,7 +67,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayInvalidMoveMessageCalled = true;
     }
 
-    public void printBoard(String[] boardCells) {
+    public void printBoard(Board board) {
         displayBoardCalled = true;
     }
 
@@ -75,6 +79,14 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         catsGameCalled = true;
     }
 
+    public boolean areGameConfigOptionsCalled() {
+        return displayGameOptions;
+    }
+
+    public boolean isComputerThinkingCalled() {
+        return displayComputerThinking;
+    }
+
     public boolean isWelcomeMessageCalled() {
         return displayWelcomePromptCalled;
     }
@@ -83,7 +95,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         return displayGamePieceAssignmentCalled;
     }
 
-    public boolean isChooseStartingPlayerMessafeCalled() {
+    public boolean isStartingPlayerMessageCalled() {
         return displayChooseStartingPlayerCalled;
     }
 
@@ -99,7 +111,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         return displayUserPromptCalled;
     }
 
-    public boolean isDisplayInvalidMoveMessageCalled() {
+    public boolean isDisplayInvalidChoiceMessageCalled() {
         return displayInvalidMoveMessageCalled;
     }
 

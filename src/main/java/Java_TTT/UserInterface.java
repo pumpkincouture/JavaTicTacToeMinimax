@@ -7,21 +7,27 @@ public interface UserInterface {
 
     public String captureChoice();
 
+    public void chooseGameConfiguration();
+
     public void printChosenOpponent(String opponentName);
+
+    public void printChoice(PlayerInterface player, String choice);
+
+    public void printComputerThinking();
 
     public void printWelcomeMessage();
 
-    public void chooseStartingPlayer();
+    public void chooseStartingPlayer(String player1, String player2);
 
-    public void printGamePieceAssignment(String onePiece, String playerOnePiece, String playerTwoPiece);
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2);
 
     public void printStartingPlayer(String gamePiece);
 
     public void promptForOpponent();
 
-    public void printUserPrompt(String playerName);
+    public void printUserPrompt();
 
-    public void printBoard(String[] boardCells);
+    public void printBoard(Board board);
 
     public void printError(String choice);
 
