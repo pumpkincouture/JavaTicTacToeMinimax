@@ -12,7 +12,7 @@ public class CommandLineInterface implements UserInterface {
         this.in = in;
     }
 
-    private void printBoard(String string) {
+    private void printLinesForBoard(String string) {
         out.print(string);
     }
 
@@ -86,35 +86,19 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printBoard(Board board) {
-        printTopRow(board.getCells());
-        printLines();
-        printMiddleRow(board.getCells());
-        printLines();
-        printBottomRow(board.getCells());
-        printMessage("\n");
-    }
-
-    private void printTopRow(String[] boardCells) {
-        printBoard(boardCells[0] + " | ");
-        printBoard(boardCells[1] + " | ");
-        printBoard(boardCells[2]);
-    }
-
-    private void printMiddleRow(String[] boardCells) {
-        printBoard(boardCells[3] + " | ");
-        printBoard(boardCells[4] + " | ");
-        printBoard(boardCells[5]);
-    }
-
-    private void printBottomRow(String[] boardCells) {
-        printBoard(boardCells[6] + " | ");
-        printBoard(boardCells[7] + " | ");
-        printBoard(boardCells[8]);
+        int boardSquareRoot = board.getCellsSquareRoot(board.getLength());
+        for (int i = 0; i < board.getLength(); i++) {
+            if (i % boardSquareRoot == boardSquareRoot - 1 ) {
+                printLines();
+            } else {
+                printLinesForBoard(board.getCells()[i] + " | ");
+            }
+        }
     }
 
     private void printLines() {
-        printBoard("\n");
-        printBoard("-------");
-        printBoard("\n");
+        printLinesForBoard("\n");
+        printLinesForBoard("----------");
+        printLinesForBoard("\n");
     }
 }
