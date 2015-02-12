@@ -37,6 +37,12 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
+    public void printBoardChoicePrompt() {
+        ui.promptForBoardSize();
+        assertEquals("Please pick between 3 and 4 for your board size.\n", printedToScreen.toString());
+    }
+
+    @Test
     public void printWelcomeMessageTest() {
         ui.printWelcomeMessage();
         assertEquals("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!\n", printedToScreen.toString());

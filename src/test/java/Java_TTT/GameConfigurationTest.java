@@ -28,6 +28,10 @@ public class GameConfigurationTest {
         gameConfigTest.validateStartingPlayer(choice);
     }
 
+    private void chooseBoardSize(String choice) {
+        gameConfigTest.validateBoardSizeChoice(choice);
+    }
+
     @Test
     public void capturesUserChoiceForConfigurations() {
         mockUi.addNextMove("a");
@@ -158,5 +162,31 @@ public class GameConfigurationTest {
 
         assertEquals("AIComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
         assertEquals("ComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+    }
+
+    @Test
+    public void validateBoardSizeUntilChoiceIs3() {
+        mockUi.addNextMove("2");
+        mockUi.addNextMove("p");
+        mockUi.addNextMove("3");
+
+        chooseBoardSize(mockUi.captureChoice());
+
+        assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
+        assertEquals(true, mockUi.isBoardSizePromptCalled());
+        assertEquals(3, gameConfigTest.getBoardSize());
+    }
+
+    @Test
+    public void validateBoardSizeUntilChoiceIs4() {
+        mockUi.addNextMove("2");
+        mockUi.addNextMove("p");
+        mockUi.addNextMove("4");
+
+        chooseBoardSize(mockUi.captureChoice());
+
+        assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
+        assertEquals(true, mockUi.isBoardSizePromptCalled());
+        assertEquals(4, gameConfigTest.getBoardSize());
     }
 }

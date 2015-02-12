@@ -11,6 +11,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     private boolean displayGameOptions = false;
     private boolean displayComputerThinking = false;
     private boolean displayPlayersChoiceMessage = false;
+    private boolean displayBoardSizePrompt = false;
     private boolean displayWelcomePromptCalled = false;
     private boolean displayGamePieceAssignmentCalled = false;
     private boolean displayChooseStartingPlayerCalled = false;
@@ -30,6 +31,10 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     public String captureChoice() {
         return nextMoves.remove(0);
+    }
+
+    public void promptForBoardSize() {
+        displayBoardSizePrompt = true;
     }
 
     public void printWelcomeMessage() {
@@ -85,6 +90,10 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     public boolean isComputerThinkingCalled() {
         return displayComputerThinking;
+    }
+
+    public boolean isBoardSizePromptCalled() {
+        return displayBoardSizePrompt;
     }
 
     public boolean isWelcomeMessageCalled() {

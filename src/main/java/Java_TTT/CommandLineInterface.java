@@ -28,6 +28,10 @@ public class CommandLineInterface implements UserInterface {
                 "4 : Basic Computer Player vs AI Computer Player");
     }
 
+    public void promptForBoardSize() {
+        printMessage("Please pick between 3 and 4 for your board size.");
+    }
+
     public void printWelcomeMessage() {
         printMessage("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!");
     }

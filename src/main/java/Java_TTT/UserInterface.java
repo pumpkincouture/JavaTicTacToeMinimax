@@ -11,6 +11,8 @@ public interface UserInterface {
 
     public void printChosenOpponent(String opponentName);
 
+    public void promptForBoardSize();
+
     public void printChoice(PlayerInterface player, String choice);
 
     public void printComputerThinking();

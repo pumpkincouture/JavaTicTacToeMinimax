@@ -49,27 +49,23 @@ public class GameScorerTest {
         gameScorerTest = new GameScorer(board);
         simulateFilled3x3Board();
 
-
         assertEquals(true, gameScorerTest.isThereAWinner("X"));
         assertEquals("X", gameScorerTest.getWinningPlayer("O", "X"));
 
     }
 
     @Test
-    public void checkEntire4x4BoardForWinWithX() {
+    public void checkEntire4x4BoardForWinWithO() {
         board = new Board(4);
         gameScorerTest = new GameScorer(board);
         simulateFilled4x4Board();
 
-        System.out.println(gameScorerTest.getFirstRowOfBoard());
-        System.out.println(gameScorerTest.getSecondRowOfBoard());
-        System.out.println(gameScorerTest.getThirdRowOfBoard());
         assertEquals(true, gameScorerTest.isThereAWinner("O"));
         assertEquals("O", gameScorerTest.getWinningPlayer("O", "X"));
     }
 
     @Test
-    public void checkEntireBoardForWinWithO() {
+    public void checkEntire3x3BoardForWinWithO() {
         board = new Board(3);
         gameScorerTest = new GameScorer(board);
         simulateFilled3x3Board();
@@ -78,7 +74,16 @@ public class GameScorerTest {
     }
 
     @Test
-    public void checkBoardForWinInScenarioTwo() {
+    public void checkEntire4x4BoardForWinWithX() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        simulateFilled3x3Board();
+
+        assertEquals(false, gameScorerTest.isThereAWinner("X"));
+    }
+
+    @Test
+    public void check3x3BoardForWinInScenarioTwo() {
         board = new Board(3);
         gameScorerTest = new GameScorer(board);
         fillBoard("1", "X");
@@ -90,7 +95,21 @@ public class GameScorerTest {
     }
 
     @Test
-    public void checkBoardForWinScenarioThree() {
+    public void check4x4BoardForWinInScenarioTwo() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("3", "X");
+        fillBoard("7", "X");
+        fillBoard("11", "X");
+        fillBoard("15", "X");
+
+
+        assertEquals(true, gameScorerTest.isThereAWinner("X"));
+        assertEquals("X", gameScorerTest.getWinningPlayer("O", "X"));
+    }
+
+    @Test
+    public void check3x3BoardForWinScenarioThree() {
         board = new Board(3);
         gameScorerTest = new GameScorer(board);
         fillBoard("3", "O");
@@ -102,7 +121,21 @@ public class GameScorerTest {
     }
 
     @Test
-    public void checkBoardForWinScenarioFour() {
+    public void check4x4BoardForWinScenarioThree() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("4", "O");
+        fillBoard("7", "O");
+        fillBoard("10", "O");
+        fillBoard("13", "O");
+
+
+        assertEquals(true, gameScorerTest.isThereAWinner("O"));
+        assertEquals("O", gameScorerTest.getWinningPlayer("X", "O"));
+    }
+
+    @Test
+    public void check3x3BoardForCatsGameScenarioFour() {
         board = new Board(3);
         gameScorerTest = new GameScorer(board);
         fillBoard("1", "X");
@@ -110,31 +143,70 @@ public class GameScorerTest {
         fillBoard("3", "O");
         fillBoard("4", "O");
         fillBoard("5", "X");
-        fillBoard("6", "");
+        fillBoard("6", "X");
         fillBoard("7", "X");
         fillBoard("8", "O");
         fillBoard("9", "O");
 
         assertEquals(false, gameScorerTest.isThereAWinner("X"));
         assertEquals(false, gameScorerTest.isThereAWinner("O"));
-        assertEquals("", gameScorerTest.getWinningPlayer("X", "O"));
-
     }
 
     @Test
-    public void checkEmptyIshBoardForWin() {
-        board = new Board(3);
+    public void check4x4BoardFoCatsGameScenarioFour() {
+        board = new Board(4);
         gameScorerTest = new GameScorer(board);
         fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("3", "O");
+        fillBoard("4", "O");
+        fillBoard("5", "X");
+        fillBoard("6", "X");
+        fillBoard("7", "X");
+        fillBoard("8", "O");
+        fillBoard("9", "O");
+        fillBoard("10", "O");
+        fillBoard("11", "X");
+        fillBoard("12", "X");
+        fillBoard("13", "X");
+        fillBoard("14", "O");
+        fillBoard("15", "O");
+        fillBoard("16", "O");
 
+        assertEquals(false, gameScorerTest.isThereAWinner("X"));
         assertEquals(false, gameScorerTest.isThereAWinner("O"));
     }
 
     @Test
-    public void checkIfGameOver() {
+    public void checkEmpty3x3IshBoardForWin() {
+        board = new Board(3);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("1", "X");
+        assertEquals(false, gameScorerTest.isThereAWinner("O"));
+    }
+
+    @Test
+    public void checkEmpty4x4IshBoardForWin() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("15", "X");
+        assertEquals(false, gameScorerTest.isThereAWinner("O"));
+    }
+
+    @Test
+    public void checkIfGameOverOn3x3Board() {
         board = new Board(3);
         gameScorerTest = new GameScorer(board);
         simulateFilled3x3Board();
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfGameOverOn4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        simulateFilled4x4Board();
 
         assertEquals(true, gameScorerTest.isGameOver("X", "O"));
     }

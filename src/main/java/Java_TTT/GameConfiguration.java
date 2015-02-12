@@ -9,6 +9,7 @@ public class GameConfiguration {
     private PlayerInterface player1;
     private PlayerInterface player2;
     private List<PlayerInterface> positionsOfPlayers;
+    private int boardSize;
 
 
     public GameConfiguration(CommandLineInterface ui, Board board) {
@@ -29,11 +30,17 @@ public class GameConfiguration {
         return positionsOfPlayers;
     }
 
+    public int getBoardSize() {
+        return boardSize;
+    }
+
     public void getGameConfigurationChoice() {
         ui.chooseGameConfiguration();
         validateGameConfiguration(ui.captureChoice());
         ui.chooseStartingPlayer(player1.getName(), player2.getName());
         validateStartingPlayer(ui.captureChoice());
+        ui.promptForBoardSize();
+        validateBoardSizeChoice(ui.captureChoice());
     }
 
     public void validateGameConfiguration(String gameConfigurationChoice) {
@@ -81,5 +88,24 @@ public class GameConfiguration {
                 ui.chooseStartingPlayer(player1.getName(), player2.getName());
                 validateStartingPlayer(ui.captureChoice());
         }
+    }
+
+    public void validateBoardSizeChoice(String boardSizeChoice) {
+        switch(boardSizeChoice) {
+            case "3":
+                boardSize = convertAnswerToInteger(boardSizeChoice);
+                break;
+            case "4":
+                boardSize = convertAnswerToInteger(boardSizeChoice);
+                break;
+            default:
+                ui.printError(boardSizeChoice);
+                ui.promptForBoardSize();
+                validateBoardSizeChoice(ui.captureChoice());
+        }
+    }
+
+    private int convertAnswerToInteger(String answer) {
+        return Integer.parseInt(answer);
     }
 }
