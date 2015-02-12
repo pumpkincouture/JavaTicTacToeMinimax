@@ -52,7 +52,7 @@ public class Game {
     }
 
     public void printIntro() {
-        userinterface.printWelcomeMessage();
+        userinterface.printWelcomeMessage(board.getCellsSquareRoot(board.getLength()));
         userinterface.printGamePieceAssignment(player1, player2);
         userinterface.printStartingPlayer(player1.getGamePiece());
         userinterface.printUserPrompt();

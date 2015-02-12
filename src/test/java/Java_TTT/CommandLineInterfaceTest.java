@@ -44,7 +44,7 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printWelcomeMessageTest() {
-        ui.printWelcomeMessage();
+        ui.printWelcomeMessage(3);
         assertEquals("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!\n", printedToScreen.toString());
     }
 

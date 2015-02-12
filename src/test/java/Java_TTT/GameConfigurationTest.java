@@ -17,7 +17,7 @@ public class GameConfigurationTest {
 
     @Before
     public void setUp() {
-        gameConfigTest = new GameConfiguration(mockUi, board);
+        gameConfigTest = new GameConfiguration(mockUi);
     }
 
     private void choosePlayerCombinations(String choice) {

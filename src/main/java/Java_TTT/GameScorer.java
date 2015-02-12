@@ -23,7 +23,6 @@ public class GameScorer {
     }
 
     public String getWinningPlayer(String playerOne, String playerTwo) {
-        System.out.println(board.getLength());
         String noWinner = "";
         for (ArrayList<String> boardPart: getMatrix()) {
             if (checkBoardForWin(playerOne, boardPart) == board.getCellsSquareRoot(board.getLength())) {
@@ -196,7 +195,7 @@ public class GameScorer {
         } else {
             column.add(board.getCells()[0]);
             column.add(board.getCells()[squareRoot]);
-            column.add(board.getCells()[board.getLength() - squareDoubled]);
+            column.add(board.getCells()[board.getLength() - squareRoot]);
         }
         return column;
     }
@@ -214,7 +213,7 @@ public class GameScorer {
         } else {
             column.add(board.getCells()[1]);
             column.add(board.getCells()[squareRoot + 1]);
-            column.add(board.getCells()[board.getLength() - (squareDoubled + 1)]);
+            column.add(board.getCells()[board.getLength() - (squareRoot - 1)]);
         }
 
         return column;

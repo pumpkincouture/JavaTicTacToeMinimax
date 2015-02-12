@@ -37,7 +37,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayBoardSizePrompt = true;
     }
 
-    public void printWelcomeMessage() {
+    public void printWelcomeMessage(int boardSize) {
         displayWelcomePromptCalled = true;
     }
 

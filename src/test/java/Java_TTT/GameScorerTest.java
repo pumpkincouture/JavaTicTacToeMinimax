@@ -153,7 +153,7 @@ public class GameScorerTest {
     }
 
     @Test
-    public void check4x4BoardFoCatsGameScenarioFour() {
+    public void check4x4BoardForCatsGameScenarioFour() {
         board = new Board(4);
         gameScorerTest = new GameScorer(board);
         fillBoard("1", "X");

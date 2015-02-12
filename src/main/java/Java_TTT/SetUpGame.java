@@ -13,7 +13,6 @@ public class SetUpGame {
     private PlayerInterface player1;
     private PlayerInterface player2;
     private Game game;
-    private int boardSize;
 
     public void startGame() {
         setUpAllObjects();
@@ -23,7 +22,7 @@ public class SetUpGame {
     public void setUpAllObjects() {
         setUpCommandLine();
         setUpGameConfiguration();
-        setUpBoard();
+        setUpGameScorer();
         getGame();
     }
 
@@ -34,15 +33,14 @@ public class SetUpGame {
     }
 
     private void setUpGameConfiguration() {
-        gameOptions = new GameConfiguration((CommandLineInterface) ui, board);
+        gameOptions = new GameConfiguration((CommandLineInterface) ui);
         gameOptions.getGameConfigurationChoice();
+        board = gameOptions.getBoard();
         player1 = gameOptions.accessFirstAndSecondPlayers().get(0);
         player2 = gameOptions.accessFirstAndSecondPlayers().get(1);
-        boardSize = gameOptions.getBoardSize();
     }
 
-    private void setUpBoard() {
-        board = new Board(boardSize);
+    private void setUpGameScorer() {
         gameScorer = new GameScorer(board);
     }
 

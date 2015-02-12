@@ -12,11 +12,9 @@ public class GameConfiguration {
     private int boardSize;
 
 
-    public GameConfiguration(CommandLineInterface ui, Board board) {
+    public GameConfiguration(CommandLineInterface ui) {
         this.ui = ui;
-        this.board = board;
     }
-
 
     public PlayerInterface getPlayer1() {
         return player1;
@@ -24,6 +22,10 @@ public class GameConfiguration {
 
     public PlayerInterface getPlayer2() {
         return player2;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     public List<PlayerInterface> accessFirstAndSecondPlayers() {
@@ -35,15 +37,31 @@ public class GameConfiguration {
     }
 
     public void getGameConfigurationChoice() {
+        ui.promptForBoardSize();
+        validateBoardSizeChoice(ui.captureChoice());
         ui.chooseGameConfiguration();
         validateGameConfiguration(ui.captureChoice());
         ui.chooseStartingPlayer(player1.getName(), player2.getName());
         validateStartingPlayer(ui.captureChoice());
-        ui.promptForBoardSize();
-        validateBoardSizeChoice(ui.captureChoice());
+    }
+
+    public void validateBoardSizeChoice(String boardSizeChoice) {
+        switch(boardSizeChoice) {
+            case "3":
+                boardSize = convertAnswerToInteger(boardSizeChoice);
+                break;
+            case "4":
+                boardSize = convertAnswerToInteger(boardSizeChoice);
+                break;
+            default:
+                ui.printError(boardSizeChoice);
+                ui.promptForBoardSize();
+                validateBoardSizeChoice(ui.captureChoice());
+        }
     }
 
     public void validateGameConfiguration(String gameConfigurationChoice) {
+        board = new Board(boardSize);
         switch(gameConfigurationChoice) {
             case "1":
                 player1 = new HumanPlayer("X", ui);
@@ -87,21 +105,6 @@ public class GameConfiguration {
                 ui.printError(capitalizedChoice);
                 ui.chooseStartingPlayer(player1.getName(), player2.getName());
                 validateStartingPlayer(ui.captureChoice());
-        }
-    }
-
-    public void validateBoardSizeChoice(String boardSizeChoice) {
-        switch(boardSizeChoice) {
-            case "3":
-                boardSize = convertAnswerToInteger(boardSizeChoice);
-                break;
-            case "4":
-                boardSize = convertAnswerToInteger(boardSizeChoice);
-                break;
-            default:
-                ui.printError(boardSizeChoice);
-                ui.promptForBoardSize();
-                validateBoardSizeChoice(ui.captureChoice());
         }
     }
 

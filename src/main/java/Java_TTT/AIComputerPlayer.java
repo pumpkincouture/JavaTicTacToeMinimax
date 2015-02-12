@@ -37,7 +37,6 @@ public class AIComputerPlayer extends Player implements PlayerInterface{
         if (isGameOver(board)) {
             return getScores(board, depth);
         }
-
         for (Integer openSpace: board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(openSpace), gamePiece);
             scores.add(minimax(board, depth, switchPlayers(board, gamePiece)));

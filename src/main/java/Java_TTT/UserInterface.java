@@ -17,7 +17,7 @@ public interface UserInterface {
 
     public void printComputerThinking();
 
-    public void printWelcomeMessage();
+    public void printWelcomeMessage(int boardSize);
 
     public void chooseStartingPlayer(String player1, String player2);
 

@@ -32,8 +32,8 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Please pick between 3 and 4 for your board size.");
     }
 
-    public void printWelcomeMessage() {
-        printMessage("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!");
+    public void printWelcomeMessage(int boardSize) {
+        printMessage("Welcome to Tic Tac Toe! The first player to get " + boardSize + " in a row wins!");
     }
 
     public void chooseStartingPlayer(String player1, String player2) {
