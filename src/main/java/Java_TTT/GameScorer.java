@@ -9,17 +9,13 @@ public class GameScorer {
         this.board = board;
     }
 
-    public int getBoardSquareRoot() {
-        return board.getCellsSquareRoot(board.getLength());
-    }
-
     public boolean isGameOver(String playerOne, String playerTwo) {
         return !getWinningPlayer(playerOne, playerTwo).isEmpty() || board.getOpenSpaces().isEmpty();
     }
 
     public boolean isThereAWinner (String gamePiece) {
-        for (ArrayList<String> boardPart: createBoardMatrix()) {
-            if (checkBoardForWin(gamePiece, boardPart) == getBoardSquareRoot()) {
+        for (ArrayList<String> boardPart: create3x3BoardMatrix()) {
+            if (checkBoardForWin(gamePiece, boardPart) == board.getCellsSquareRoot(board.getLength())) {
                 return true;
             }
         }
@@ -28,20 +24,21 @@ public class GameScorer {
 
     public String getWinningPlayer(String playerOne, String playerTwo) {
         String noWinner = "";
-        for (ArrayList<String> boardPart: createBoardMatrix()) {
-            if (checkBoardForWin(playerOne, boardPart) == getBoardSquareRoot()) {
+        for (ArrayList<String> boardPart: create3x3BoardMatrix()) {
+            if (checkBoardForWin(playerOne, boardPart) == board.getCellsSquareRoot(board.getLength())) {
                 return playerOne;
-            } else if (checkBoardForWin(playerTwo, boardPart) == getBoardSquareRoot()) {
+            } else if (checkBoardForWin(playerTwo, boardPart) == board.getCellsSquareRoot(board.getLength())) {
                 return playerTwo;
             }
         }
         return noWinner;
     }
 
-
-    private ArrayList<ArrayList<String>> createBoardMatrix () {
+    private ArrayList<ArrayList<String>> create3x3BoardMatrix() {
         ArrayList<ArrayList<String>> boardMatrix = new ArrayList();
-        boardMatrix.add(getPartOfBoard(0, 1, 2));
+
+//        boardMatrix.add(getPartOfBoard(0, 1, 2));
+        boardMatrix.add(getFirstRowOfBoard());
         boardMatrix.add(getPartOfBoard(3, 4, 5));
         boardMatrix.add(getPartOfBoard(6, 7, 8));
         boardMatrix.add(getPartOfBoard(0, 4, 8));
@@ -53,7 +50,42 @@ public class GameScorer {
         return boardMatrix;
     }
 
-    private ArrayList<String> getPartOfBoard(int space1, int space2, int space3) {
+
+    public ArrayList<String> getFirstRowOfBoard() {
+        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        ArrayList<String> firstRow = new ArrayList();
+        firstRow.add(board.getCells()[0]);
+        firstRow.add(board.getCells()[squareRoot]);
+        firstRow.add(board.getCells()[squareRoot * 2]);
+        firstRow.add(board.getCells()[squareRoot * 3]);
+
+        return firstRow;
+    }
+
+    public ArrayList<String> getSecondRowOfBoard() {
+        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        ArrayList<String> secondRow = new ArrayList();
+        secondRow.add(board.getCells()[1]);
+        secondRow.add(board.getCells()[squareRoot + 1]);
+        secondRow.add(board.getCells()[squareRoot * 2 + 1]);
+        secondRow.add(board.getCells()[squareRoot * 3 + 1]);
+
+        return secondRow;
+    }
+
+
+    public ArrayList<String> getThirdRowOfBoard() {
+        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        ArrayList<String> thirdRow = new ArrayList();
+        thirdRow.add(board.getCells()[1]);
+        thirdRow.add(board.getCells()[squareRoot + 1]);
+        thirdRow.add(board.getCells()[squareRoot * 2 + 1]);
+        thirdRow.add(board.getCells()[squareRoot * 3 + 1]);
+
+        return thirdRow;
+    }
+
+    public ArrayList<String> getPartOfBoard(int space1, int space2, int space3) {
         ArrayList<String> boardPart = new ArrayList();
 
         boardPart.add(board.getCells()[space1]);
@@ -66,8 +98,10 @@ public class GameScorer {
     private int checkBoardForWin(String gamePiece, ArrayList<String> boardPart) {
         int inARow = 0;
 
-        if (boardPart.get(0) == gamePiece && boardPart.get(1) == gamePiece && boardPart.get(2) == gamePiece) {
-            inARow = 3 ;
+        for (int i=0; i < boardPart.size(); i++ ) {
+            if (boardPart.get(i) == gamePiece) {
+                inARow += 1;
+            }
         }
         return inARow;
     }
