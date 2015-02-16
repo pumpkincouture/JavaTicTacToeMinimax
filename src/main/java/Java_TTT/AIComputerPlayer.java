@@ -22,7 +22,7 @@ public class AIComputerPlayer extends Player implements PlayerInterface{
 
     public String getMove() {
         ui.printComputerThinking();
-        if (board.isBoardEmpty()) {
+        if (board.isEmpty()) {
             return convertChosenIndexToString(findMiddleOfBoard());
         }
         minimax(this.board, 0, this.getGamePiece());
@@ -37,7 +37,6 @@ public class AIComputerPlayer extends Player implements PlayerInterface{
         if (isGameOver(board)) {
             return getScores(board, depth);
         }
-
         for (Integer openSpace: board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(openSpace), gamePiece);
             scores.add(minimax(board, depth, switchPlayers(board, gamePiece)));

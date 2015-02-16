@@ -21,8 +21,8 @@ public class SetUpGame {
 
     public void setUpAllObjects() {
         setUpCommandLine();
-        setUpBoard();
         setUpGameConfiguration();
+        setUpGameScorer();
         getGame();
     }
 
@@ -32,16 +32,16 @@ public class SetUpGame {
         ui = new CommandLineInterface(output, input);
     }
 
-    private void setUpBoard() {
-        board = new Board(3);
-        gameScorer = new GameScorer(board);
-    }
-
     private void setUpGameConfiguration() {
-        gameOptions = new GameConfiguration((CommandLineInterface) ui, board);
+        gameOptions = new GameConfiguration((CommandLineInterface) ui);
         gameOptions.getGameConfigurationChoice();
+        board = gameOptions.getBoard();
         player1 = gameOptions.accessFirstAndSecondPlayers().get(0);
         player2 = gameOptions.accessFirstAndSecondPlayers().get(1);
+    }
+
+    private void setUpGameScorer() {
+        gameScorer = new GameScorer(board);
     }
 
     private void getGame() {

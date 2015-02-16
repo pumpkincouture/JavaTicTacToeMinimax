@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="Java_TTT.BoardTest" time="0.034" errors="0" skipped="0">
+<testsuite tests="24" failures="0" name="Java_TTT.BoardTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
-    <property name="java.vm.version" value="25.25-b02"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.31-b07"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
@@ -15,44 +15,44 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/sylwia/Desktop/Java_TTT"/>
-    <property name="java.runtime.version" value="1.8.0_25-b17"/>
+    <property name="user.dir" value="/Users/test/code/javaTicTacToeMinimax"/>
+    <property name="java.runtime.version" value="1.8.0_31-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="java.io.tmpdir" value="/var/folders/mm/xv9m85y152d9y3s7pvrgljg40000gn/T/"/>
+    <property name="java.io.tmpdir" value="/var/folders/_p/kx692vyn33d06915sdvy0bz80000gn/T/"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/usr/local/apache-maven/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.2.5/libexec/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/sylwia/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.library.path" value="/Users/test/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.9.5"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="user.home" value="/Users/sylwia"/>
+    <property name="user.home" value="/Users/test"/>
     <property name="user.timezone" value="America/Chicago"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="sylwia"/>
-    <property name="java.class.path" value="/usr/local/apache-maven/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="user.name" value="test"/>
+    <property name="java.class.path" value="/usr/local/Cellar/maven/3.2.5/libexec/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_25"/>
-    <property name="java.ext.dirs" value="/Users/sylwia/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
-    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/classes"/>
+    <property name="java.version" value="1.8.0_31"/>
+    <property name="java.ext.dirs" value="/Users/test/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/usr/local/apache-maven"/>
+    <property name="maven.home" value="/usr/local/Cellar/maven/3.2.5/libexec"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -61,19 +61,28 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Java_TTT.BoardTest" name="placeMoveOnBoard" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardFullWithMockInputs" time="0.016"/>
-  <testcase classname="Java_TTT.BoardTest" name="getOpponentGamePieceIfOpponentHasX" time="0.013"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkTakenSpaceOn3x3" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkTakenSpaceOn4x4" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getLengthOf3x3Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkSpaceOfBoardCell4x4Array" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardFullWithMockInputs" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getOpponentGamePieceIfOpponentHasX" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkIfSymbolIsValid" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="placeMoveOn3x3Board" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="returnBoardCellsAsThreeByThreeArray" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getOccupiedSpacesOn3x3Board" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkIfBoardHasOpenSpaces" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="getOccupiedSpaces" time="0.005"/>
-  <testcase classname="Java_TTT.BoardTest" name="getLengthOfBoard" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="getEmptySpaces" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkBoardSquareRoot" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkTakenSpace" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getEmptySpacesOn3x3Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getLengthOf4x4Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="placeMoveOn4x4Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkBoardSquareRootOf3x3" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkBoardSquareRootOf4x4" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkSpaceOfBoardCell3x3Array" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardCompletelyEmpty" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getOccupiedSpacesOn4x4Board" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="getOpponentGamePieceIfOpponentHasMadeNoMoves" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkIfSevenIsValid" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkIfVIsValid" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkSpaceOfBoardCellArray" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getEmptySpacesOn4x4Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="returnBoardCellsAsFourByFourArray" time="0"/>
 </testsuite>
