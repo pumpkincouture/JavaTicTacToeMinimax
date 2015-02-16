@@ -84,19 +84,24 @@ public class CommandLineInterface implements UserInterface {
 
     public void printBoard(Board board) {
         int boardSquareRoot = board.getCellsSquareRoot(board.getLength());
-        for (int i = 0; i < board.getLength(); i++) {
-            if (i % boardSquareRoot == boardSquareRoot - 1 ) {
-                printLinesForBoard(board.getCells()[i]);
-                printLines();
-            } else {
-                printLinesForBoard(board.getCells()[i] + " | ");
+        int boardLength = board.getLength();
+        String boardToDisplay = boardRows(boardSquareRoot);
+
+        for (int i=0; i < boardLength; i++) {
+            boardToDisplay += "|  " + board.getCells()[i] + " ";
+            if (i % boardSquareRoot == boardSquareRoot - 1) {
+                boardToDisplay += "|" + boardRows(boardSquareRoot);
             }
         }
+        printLinesForBoard(boardToDisplay);
     }
 
-    private void printLines() {
-        printLinesForBoard("\n");
-        printLinesForBoard("----------");
-        printLinesForBoard("\n");
+    private String boardRows(int squareRoot) {
+            String rowsToDisplay = "\n";
+            for(int i=0; i<squareRoot; i++) {
+                rowsToDisplay += "----";
+            }
+            rowsToDisplay += "\n";
+            return rowsToDisplay;
     }
 }
