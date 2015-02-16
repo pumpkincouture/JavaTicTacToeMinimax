@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="24" failures="0" name="Java_TTT.BoardTest" time="0.006" errors="0" skipped="0">
+<testsuite tests="24" failures="0" name="Java_TTT.BoardTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
@@ -61,24 +61,24 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Java_TTT.BoardTest" name="checkTakenSpaceOn3x3" time="0.001"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkTakenSpaceOn3x3" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkTakenSpaceOn4x4" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="getLengthOf3x3Board" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkSpaceOfBoardCell4x4Array" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkIfBoardFullWithMockInputs" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="getOpponentGamePieceIfOpponentHasX" time="0.001"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkIfSymbolIsValid" time="0.001"/>
-  <testcase classname="Java_TTT.BoardTest" name="placeMoveOn3x3Board" time="0.001"/>
-  <testcase classname="Java_TTT.BoardTest" name="returnBoardCellsAsThreeByThreeArray" time="0.001"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkIfSymbolIsValid" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="placeMoveOn3x3Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="returnBoardCellsAsThreeByThreeArray" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="getOccupiedSpacesOn3x3Board" time="0.001"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardHasOpenSpaces" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardHasOpenSpaces" time="0.001"/>
   <testcase classname="Java_TTT.BoardTest" name="getEmptySpacesOn3x3Board" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="getLengthOf4x4Board" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="getLengthOf4x4Board" time="0.001"/>
   <testcase classname="Java_TTT.BoardTest" name="placeMoveOn4x4Board" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkBoardSquareRootOf3x3" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkBoardSquareRootOf4x4" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkSpaceOfBoardCell3x3Array" time="0"/>
-  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardCompletelyEmpty" time="0"/>
+  <testcase classname="Java_TTT.BoardTest" name="checkIfBoardCompletelyEmpty" time="0.001"/>
   <testcase classname="Java_TTT.BoardTest" name="getOccupiedSpacesOn4x4Board" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="getOpponentGamePieceIfOpponentHasMadeNoMoves" time="0"/>
   <testcase classname="Java_TTT.BoardTest" name="checkIfSevenIsValid" time="0"/>

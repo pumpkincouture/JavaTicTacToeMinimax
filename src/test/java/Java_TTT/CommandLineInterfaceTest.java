@@ -19,6 +19,10 @@ public class CommandLineInterfaceTest {
     private PlayerInterface player2 = new Computer("O", board, mockUi);
 
 
+    private void fillBoard(String choice, String gamePiece) {
+        board.placeMove(choice, gamePiece);
+    }
+
     private String scannerInput(String mockInput) {
         Scanner input = new Scanner(mockInput);
         String choice = input.nextLine();
@@ -119,36 +123,59 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
-    public void print3x3Board() {
+    public void printEmpty3x3Board() {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
         ui.printBoard(board);
         assertEquals("\n" +
                      "------------\n" +
-                     "|   |   |   |\n" +
+                     "|  |  |  |\n" +
                      "------------\n" +
-                     "|   |   |   |\n" +
+                     "|  |  |  |\n" +
                      "------------\n" +
-                     "|   |   |   |\n" +
+                     "|  |  |  |\n" +
                      "------------\n"
                      , printedToScreen.toString());
     }
 
     @Test
-    public void print4x4Board() {
+    public void printEmpty4x4Board() {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(4);
         ui.printBoard(board);
         assertEquals("\n" +
                      "----------------\n" +
-                     "|   |   |   |   |\n" +
+                     "|  |  |  |  |\n" +
                      "----------------\n" +
-                     "|   |   |   |   |\n" +
+                     "|  |  |  |  |\n" +
                      "----------------\n" +
-                     "|   |   |   |   |\n" +
+                     "|  |  |  |  |\n" +
                      "----------------\n" +
-                     "|   |   |   |   |\n" +
+                     "|  |  |  |  |\n" +
                      "----------------\n"
                      , printedToScreen.toString());
+    }
+
+    @Test
+    public void printBoardWithSomeInputs() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
+        fillBoard("1", "O");
+        fillBoard("2", "X");
+        fillBoard("3", "X");
+        fillBoard("5", "O");
+        fillBoard("6", "X");
+        fillBoard("8", "O");
+        fillBoard("9", "X");
+        ui.printBoard(board);
+        assertEquals("\n" +
+                "------------\n" +
+                "| O | X | X |\n" +
+                "------------\n" +
+                "|  | O | X |\n" +
+                "------------\n" +
+                "|  | O | X |\n" +
+                "------------\n"
+                , printedToScreen.toString());
     }
 }

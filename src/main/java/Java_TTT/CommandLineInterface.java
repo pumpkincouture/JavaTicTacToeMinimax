@@ -88,7 +88,7 @@ public class CommandLineInterface implements UserInterface {
         String boardToDisplay = boardRows(boardSquareRoot);
 
         for (int i=0; i < boardLength; i++) {
-            boardToDisplay += "|  " + board.getCells()[i] + " ";
+            boardToDisplay += "| " + board.getCells()[i] + " ";
             if (i % boardSquareRoot == boardSquareRoot - 1) {
                 boardToDisplay += "|" + boardRows(boardSquareRoot);
             }

@@ -61,16 +61,16 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="checkThatPlayer1IsBasicComputerAndPlayer2IsAI" time="0.001"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsAIComputerPlayerAsStartingPlayerAgainstBasicPlayer" time="0.002"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsBasicComputerAsStartingPlayerAgainstHumanPlayer" time="0.001"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="checkThatPlayer1IsBasicComputerAndPlayer2IsAI" time="0.002"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsAIComputerPlayerAsStartingPlayerAgainstBasicPlayer" time="0.001"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsBasicComputerAsStartingPlayerAgainstHumanPlayer" time="0"/>
   <testcase classname="Java_TTT.GameConfigurationTest" name="checkThatPlayer1IsHumanAndPlayer2IsAI" time="0"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsAIComputerPlayerAsStartingPlayerAgainstHumanPlayer" time="0.001"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsAIComputerPlayerAsStartingPlayerAgainstHumanPlayer" time="0"/>
   <testcase classname="Java_TTT.GameConfigurationTest" name="validateBoardSizeUntilChoiceIs3" time="0"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="validateBoardSizeUntilChoiceIs4" time="0"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsHumanPlayerAsStartingPlayerAgainstBasicComputerPlayer" time="0"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="capturesAndValidatesChoiceUntilValidInputIsReturned" time="0.001"/>
-  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsBasicComputerPlayerAsStartingPlayerAgainstAIPlayer" time="0"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="validateBoardSizeUntilChoiceIs4" time="0.001"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsHumanPlayerAsStartingPlayerAgainstBasicComputerPlayer" time="0.001"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="capturesAndValidatesChoiceUntilValidInputIsReturned" time="0"/>
+  <testcase classname="Java_TTT.GameConfigurationTest" name="choiceReturnsBasicComputerPlayerAsStartingPlayerAgainstAIPlayer" time="0.001"/>
   <testcase classname="Java_TTT.GameConfigurationTest" name="checkThatPlayer1IsHumanAndPlayer2IsHuman" time="0"/>
   <testcase classname="Java_TTT.GameConfigurationTest" name="checkThatPlayer1IsHumanAndPlayer2IsBasicComputer" time="0"/>
   <testcase classname="Java_TTT.GameConfigurationTest" name="capturesUserChoiceForConfigurations" time="0"/>
