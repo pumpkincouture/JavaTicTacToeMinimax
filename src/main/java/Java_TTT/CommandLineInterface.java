@@ -89,6 +89,7 @@ public class CommandLineInterface implements UserInterface {
         int boardSquareRoot = board.getCellsSquareRoot(board.getLength());
         for (int i = 0; i < board.getLength(); i++) {
             if (i % boardSquareRoot == boardSquareRoot - 1 ) {
+                printLinesForBoard(board.getCells()[i]);
                 printLines();
             } else {
                 printLinesForBoard(board.getCells()[i] + " | ");

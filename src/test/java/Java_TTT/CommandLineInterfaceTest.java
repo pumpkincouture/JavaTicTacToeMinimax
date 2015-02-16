@@ -122,15 +122,15 @@ public class CommandLineInterfaceTest {
         assertEquals("hhhhhh is not available, please try again.\n", printedToScreen.toString());
     }
 
-//
-//    @Test
-//    public void printBoard() {
-//        ui.printBoard(board);
-//        assertEquals(" |  | \n" +
-//                "-------\n" +
-//                " |  | \n" +
-//                "-------\n" +
-//                " |  | \n" +
-//                "\n", printedToScreen.toString());
-//    }
+    @Test
+    public void printBoard() {
+        ui.printBoard(board);
+        assertEquals(" |  | \n" +
+                "----------\n" +
+                " |  | \n" +
+                "----------\n" +
+                " |  | \n" +
+                "----------\n"
+                , printedToScreen.toString());
+    }
 }
