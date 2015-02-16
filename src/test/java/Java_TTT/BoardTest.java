@@ -13,7 +13,7 @@ public class BoardTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
+    private PlayerInterface player1 = new Human("X", mockUi);
 
     private void simulateFilledBoard() {
         fillBoard("9", "X");

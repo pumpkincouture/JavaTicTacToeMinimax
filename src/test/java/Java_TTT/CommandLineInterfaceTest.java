@@ -15,8 +15,8 @@ public class CommandLineInterfaceTest {
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
-    private PlayerInterface player2 = new ComputerPlayer("O", board, mockUi);
+    private PlayerInterface player1 = new Human("X", mockUi);
+    private PlayerInterface player2 = new Computer("O", board, mockUi);
 
     @Before
     public void setUp() {
@@ -31,15 +31,19 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
-    public void printToScreenTest() {
-        ui.printMessage("hello");
-        assertEquals("hello\n", printedToScreen.toString());
-    }
-
-    @Test
     public void printBoardChoicePrompt() {
         ui.promptForBoardSize();
         assertEquals("Please pick between 3 and 4 for your board size.\n", printedToScreen.toString());
+    }
+
+    @Test
+    public void printOptionsForPlayerConfiguration() {
+        ui.chooseGameConfiguration();
+        assertEquals("Welcome, please choose your desired player configuration.\n" +
+                "1 : Human vs Human\n" +
+                "2 : Human vs Computer\n" +
+                "3 : Human vs AI\n" +
+                "4 : Computer vs AI\n", printedToScreen.toString());
     }
 
     @Test
@@ -56,27 +60,14 @@ public class CommandLineInterfaceTest {
 
     @Test
     public void printChooseStartingPlayerPrompt() {
-        ui.chooseStartingPlayer("ComputerPlayer", "HumanPlayer");
-        assertEquals("Please choose the starting player : ComputerPlayer or HumanPlayer " +
-                "(please enter 1 to indicate ComputerPlayer or 2 to indicate HumanPlayer)\n", printedToScreen.toString());
-    }
-
-    @Test
-    public void printChosenOpponentTest() {
-        ui.printChosenOpponent("ComputerOpponent");
-        assertEquals("You've chosen to play against ComputerOpponent.\n", printedToScreen.toString());
+        ui.chooseStartingPlayer("Computer", "Human");
+        assertEquals("Please choose the starting player : enter 1 for Computer or 2 for Human\n", printedToScreen.toString());
     }
 
     @Test
     public void printGamePieceAssignmentTest() {
         ui.printGamePieceAssignment(player1, player2);
-        assertEquals("HumanPlayer will have the X piece and ComputerPlayer will have the O piece.\n", printedToScreen.toString());
-    }
-
-    @Test
-    public void printStartingPlayerMessage() {
-        ui.printStartingPlayer("X");
-        assertEquals("Player with X will start.\n", printedToScreen.toString());
+        assertEquals("Human will have the X piece and Computer will have the O piece. X will start.\n", printedToScreen.toString());
     }
 
     @Test
@@ -87,21 +78,9 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
-    public void printPromptForOpponentMessage() {
-        ui.promptForOpponent();
-        assertEquals("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.\n", printedToScreen.toString());
-    }
-
-    @Test
-    public void printUserPromptMessage() {
-        ui.printUserPrompt();
-        assertEquals("Please choose a move for your game piece by pressing a number for that corresponding space.\n", printedToScreen.toString());
-    }
-
-    @Test
     public void printMessageAfterUserChoseAMove() {
         ui.printChoice(player1, "3");
-        assertEquals("HumanPlayer has chosen space 3!\n", printedToScreen.toString());
+        assertEquals("Human has chosen space 3\n", printedToScreen.toString());
     }
 
     @Test

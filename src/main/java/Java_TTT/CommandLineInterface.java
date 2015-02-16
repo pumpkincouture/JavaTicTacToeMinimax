@@ -21,11 +21,11 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseGameConfiguration() {
-        printMessage("Welcome, please choose your desired game configuration.\n" +
-                "1 : Human vs Human Player \n" +
-                "2 : Human vs Basic Computer Player \n" +
-                "3 : Human vs AI Computer Player \n" +
-                "4 : Basic Computer Player vs AI Computer Player");
+        printMessage("Welcome, please choose your desired player configuration.\n" +
+                "1 : Human vs Human\n" +
+                "2 : Human vs Computer\n" +
+                "3 : Human vs AI\n" +
+                "4 : Computer vs AI");
     }
 
     public void promptForBoardSize() {
@@ -37,12 +37,7 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseStartingPlayer(String player1, String player2) {
-        printMessage("Please choose the starting player : " + player1 + " or " + player2 +
-                " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
-    }
-
-    public void printChosenOpponent(String opponentName) {
-        printMessage("You've chosen to play against " + opponentName + ".");
+        printMessage("Please choose the starting player : enter 1 for " + player1 + " or 2 for " + player2);
     }
 
     public void printComputerThinking() {
@@ -50,27 +45,15 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
-        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece.");
-    }
-
-    public void printStartingPlayer(String gamePiece) {
-        printMessage("Player with " + gamePiece + " will start.");
+        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece. " + player1.getGamePiece() + " will start.");
     }
 
     public String captureChoice() {
         return in.nextLine();
     }
 
-    public void promptForOpponent() {
-        printMessage("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.");
-    }
-
-    public void printUserPrompt() {
-        printMessage("Please choose a move for your game piece by pressing a number for that corresponding space.");
-    }
-
     public void printChoice(PlayerInterface player, String choice) {
-        printMessage(player.getName() + " has chosen space " + choice + "!");
+        printMessage(player.getName() + " has chosen space " + choice);
     }
 
     public void printWinner(String gamePiece) {

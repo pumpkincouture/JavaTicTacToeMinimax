@@ -1,6 +1,5 @@
 package Java_TTT;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -15,8 +14,8 @@ public class GameTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
-    private PlayerInterface player2 = new HumanPlayer("O", mockUi);
+    private PlayerInterface player1 = new Human("X", mockUi);
+    private PlayerInterface player2 = new Human("O", mockUi);
     private GameScorer gameScorer;
 
     private void fillBoard(String choice, String gamePiece) {

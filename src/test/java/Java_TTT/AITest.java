@@ -1,6 +1,5 @@
 package Java_TTT;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -8,8 +7,8 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class AIComputerTest {
-    private AIComputerPlayer aiComputerTest;
+public class AITest {
+    private AI aiComputerTest;
     private Board board;
     PrintStream output = new PrintStream(System.out);
     Scanner input = new Scanner(System.in);
@@ -23,7 +22,7 @@ public class AIComputerTest {
     @Test
     public void returnsBlockIfCompCannotWinInNextMove() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("4", "O");
@@ -38,7 +37,7 @@ public class AIComputerTest {
     @Test
     public void returnsWinForItselfRatherThanBlockingOpponentFromWinning() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
         fillBoard("3", "O");
         fillBoard("5", "O");
@@ -53,7 +52,7 @@ public class AIComputerTest {
     @Test
     public void returnsWinForItself() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "O");
@@ -68,7 +67,7 @@ public class AIComputerTest {
     @Test
     public void returnsWinningMoveIfFiveSpacesLeft() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
         fillBoard("2", "O");
         fillBoard("4", "X");
@@ -80,7 +79,7 @@ public class AIComputerTest {
     @Test
     public void returnsWinningMoveAndBlocksOpponent() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "O");
         fillBoard("3", "X");
         fillBoard("4", "X");
@@ -94,7 +93,7 @@ public class AIComputerTest {
     @Test
     public void returnsWinningSpotWhenThereAreSixSpotsOnTheBoard() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "O");
         fillBoard("3", "O");
         fillBoard("5", "X");
@@ -105,7 +104,7 @@ public class AIComputerTest {
     @Test
     public void returnsBestMoveAfterOpponentPlacesFirstMove() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
 
         assertEquals("5", aiComputerTest.getMove());
@@ -114,7 +113,7 @@ public class AIComputerTest {
     @Test
     public void returnsBlockingMove() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
         fillBoard("7", "O");
         fillBoard("5", "X");
@@ -125,7 +124,7 @@ public class AIComputerTest {
     @Test
     public void returnsBlockForOpponent() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("9", "X");
         fillBoard("1", "O");
         fillBoard("8", "X");
@@ -136,7 +135,7 @@ public class AIComputerTest {
     @Test
     public void picksMiddleSpaceIfBoardEmpty() {
         board = new Board(3);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
 
         assertEquals("5", aiComputerTest.getMove());
         assertEquals(true, mockUi.isComputerThinkingCalled());
@@ -145,7 +144,7 @@ public class AIComputerTest {
     @Test
     public void makesMoveOn4x4BoardToWin() {
         board = new Board(4);
-        aiComputerTest = new AIComputerPlayer("O", board, mockUi);
+        aiComputerTest = new AI("O", board, mockUi);
         fillBoard("1", "X");
         fillBoard("3", "O");
         fillBoard("7", "O");

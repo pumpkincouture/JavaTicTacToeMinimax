@@ -2,14 +2,14 @@ package Java_TTT;
 
 import java.util.*;
 
-public class AIComputerPlayer extends Player implements PlayerInterface{
+public class AI extends Player implements PlayerInterface{
     private GameScorer gameScorer;
     private int choice;
     private Board board;
     private CommandLineInterface ui;
 
 
-    public AIComputerPlayer(String gamePiece, Board board, CommandLineInterface ui) {
+    public AI(String gamePiece, Board board, CommandLineInterface ui) {
         super(gamePiece);
         this.board = board;
         this.ui = ui;

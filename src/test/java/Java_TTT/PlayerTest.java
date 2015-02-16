@@ -16,7 +16,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-        testPlayer = new HumanPlayer("X", mockUi);
+        testPlayer = new Human("X", mockUi);
     }
 
     @Test

@@ -9,8 +9,6 @@ public interface UserInterface {
 
     public void chooseGameConfiguration();
 
-    public void printChosenOpponent(String opponentName);
-
     public void promptForBoardSize();
 
     public void printChoice(PlayerInterface player, String choice);
@@ -22,12 +20,6 @@ public interface UserInterface {
     public void chooseStartingPlayer(String player1, String player2);
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2);
-
-    public void printStartingPlayer(String gamePiece);
-
-    public void promptForOpponent();
-
-    public void printUserPrompt();
 
     public void printBoard(Board board);
 

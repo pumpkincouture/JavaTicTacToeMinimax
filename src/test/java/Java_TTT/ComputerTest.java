@@ -1,6 +1,5 @@
 package Java_TTT;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -8,8 +7,8 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class ComputerPlayerTest {
-    private ComputerPlayer computerPlayerTest;
+public class ComputerTest {
+    private Computer computerPlayerTest;
     private Board board;
     PrintStream output = new PrintStream(System.out);
     Scanner input = new Scanner(System.in);
@@ -47,14 +46,14 @@ public class ComputerPlayerTest {
     @Test
     public void getsGamePiece() {
         board = new Board(3);
-        computerPlayerTest = new ComputerPlayer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board, mockUi);
         assertEquals("Z", computerPlayerTest.getGamePiece());
     }
 
     @Test
     public void getOpenSpace() {
         board = new Board(3);
-        computerPlayerTest = new ComputerPlayer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board, mockUi);
 
         simulateFilledBoard();
         fillBoard("8", "X");
@@ -70,7 +69,7 @@ public class ComputerPlayerTest {
     @Test
     public void getOpenSpaceOn4x4Board() {
         board = new Board(4);
-        computerPlayerTest = new ComputerPlayer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board, mockUi);
 
         simulateFilled4x4Board();
         fillBoard("6", "O");
@@ -83,7 +82,7 @@ public class ComputerPlayerTest {
     @Test
     public void getOpenSpaceScenarioTwo() {
         board = new Board(3);
-        computerPlayerTest = new ComputerPlayer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board, mockUi);
 
         simulateFilledBoard();
         fillBoard("8", "X");
@@ -98,7 +97,7 @@ public class ComputerPlayerTest {
     @Test
     public void getOpenSpaceScenarioTwoOn4x4Board() {
         board = new Board(4);
-        computerPlayerTest = new ComputerPlayer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board, mockUi);
 
         simulateFilled4x4Board();
         fillBoard("1", "O");
