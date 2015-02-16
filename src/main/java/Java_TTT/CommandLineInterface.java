@@ -1,15 +1,16 @@
 package Java_TTT;
 
+import java.io.Console;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public class CommandLineInterface implements UserInterface {
     private PrintStream out;
-    private Scanner in;
+    private Scanner scannerIn;
 
     public CommandLineInterface(PrintStream out, Scanner in) {
         this.out = out;
-        this.in = in;
+        this.scannerIn = in;
     }
 
     private void printLinesForBoard(String string) {
@@ -49,7 +50,20 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public String captureChoice() {
-        return in.nextLine();
+        Console cnsl = null;
+        String hiddenInput = "";
+        try {
+            cnsl = System.console();
+
+            if (cnsl != null) {
+                char[] input = cnsl.readPassword();
+                hiddenInput = new String(input);
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return hiddenInput;
     }
 
     public void printChoice(PlayerInterface player, String choice) {

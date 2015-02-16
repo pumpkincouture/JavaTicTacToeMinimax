@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="11" failures="0" name="Java_TTT.AIComputerTest" time="58.781" errors="0" skipped="0">
+<testsuite tests="11" failures="0" name="Java_TTT.AITest" time="14.856" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
@@ -61,15 +61,15 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsWinningSpotWhenThereAreSixSpotsOnTheBoard" time="0.666"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsBlockIfCompCannotWinInNextMove" time="0.016"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsBestMoveAfterOpponentPlacesFirstMove" time="9.177"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsWinningMoveIfFiveSpacesLeft" time="0.016"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="makesMoveOn4x4BoardToWin" time="48.888"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsBlockingMove" time="0.007"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="picksMiddleSpaceIfBoardEmpty" time="0"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsBlockForOpponent" time="0.011"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsWinForItselfRatherThanBlockingOpponentFromWinning" time="0"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsWinningMoveAndBlocksOpponent" time="0"/>
-  <testcase classname="Java_TTT.AIComputerTest" name="returnsWinForItself" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinningSpotWhenThereAreSixSpotsOnTheBoard" time="0.062"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBlockIfCompCannotWinInNextMove" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBestMoveAfterOpponentPlacesFirstMove" time="0.769"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinningMoveIfFiveSpacesLeft" time="0.001"/>
+  <testcase classname="Java_TTT.AITest" name="makesMoveOn4x4BoardToWin" time="14.016"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBlockingMove" time="0.004"/>
+  <testcase classname="Java_TTT.AITest" name="picksMiddleSpaceIfBoardEmpty" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBlockForOpponent" time="0.003"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinForItselfRatherThanBlockingOpponentFromWinning" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinningMoveAndBlocksOpponent" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinForItself" time="0.001"/>
 </testsuite>

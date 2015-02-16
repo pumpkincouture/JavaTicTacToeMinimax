@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -20,16 +21,16 @@ public class GameConfigurationTest {
         gameConfigTest = new GameConfiguration(mockUi);
     }
 
-    private void choosePlayerCombinations(String choice) {
-        gameConfigTest.validateGameConfiguration(choice);
+    private void choosePlayerCombinations(String playerComboChoice) {
+        gameConfigTest.validateGameConfiguration(playerComboChoice);
     }
 
-    private void chooseStartingPlayer(String choice) {
-        gameConfigTest.validateStartingPlayer(choice);
+    private void chooseStartingPlayer(String startingPlayerChoice) {
+        gameConfigTest.validateStartingPlayer(startingPlayerChoice);
     }
 
-    private void chooseBoardSize(String choice) {
-        gameConfigTest.validateBoardSizeChoice(choice);
+    private void chooseBoardSize(String boardSizeChoice) {
+        gameConfigTest.validateBoardSizeChoice(boardSizeChoice);
     }
 
     @Test
@@ -50,8 +51,8 @@ public class GameConfigurationTest {
 
         choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer1().getName());
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer2().getName());
+        assertEquals("Human", gameConfigTest.getPlayer1().getName());
+        assertEquals("Human", gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -64,8 +65,8 @@ public class GameConfigurationTest {
 
         choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer1().getName());
-        assertEquals("ComputerPlayer",gameConfigTest.getPlayer2().getName());
+        assertEquals("Human", gameConfigTest.getPlayer1().getName());
+        assertEquals("Computer",gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -77,8 +78,8 @@ public class GameConfigurationTest {
 
         choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.getPlayer1().getName());
-        assertEquals("AIComputerPlayer", gameConfigTest.getPlayer2().getName());
+        assertEquals("Human", gameConfigTest.getPlayer1().getName());
+        assertEquals("AI", gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -90,8 +91,8 @@ public class GameConfigurationTest {
 
         choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("ComputerPlayer", gameConfigTest.getPlayer1().getName());
-        assertEquals("AIComputerPlayer", gameConfigTest.getPlayer2().getName());
+        assertEquals("Computer", gameConfigTest.getPlayer1().getName());
+        assertEquals("AI", gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -116,8 +117,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("2");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("HumanPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("ComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("Human", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test
@@ -127,8 +128,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("2");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("ComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("HumanPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("Human", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test
@@ -138,8 +139,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("3");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("AIComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("HumanPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("AI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("Human", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test
@@ -149,8 +150,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("4");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("ComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("AIComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("AI", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test
@@ -160,8 +161,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("4");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("AIComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("ComputerPlayer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("AI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test

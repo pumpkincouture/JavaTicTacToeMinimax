@@ -52,8 +52,6 @@ public class GameTest {
         gameTest = new Game(player1, player2, board, mockUi, gameScorer);
         gameTest.printIntro();
         assertEquals(true, mockUi.isWelcomeMessageCalled());
-        assertEquals(true, mockUi.isUserPromptCalled());
-        assertEquals(true, mockUi.isStartingPlayerCalled());
         assertEquals(true, mockUi.isGamePieceMessageCalled());
     }
 

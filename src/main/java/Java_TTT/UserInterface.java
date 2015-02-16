@@ -1,6 +1,5 @@
 package Java_TTT;
 
-
 public interface UserInterface {
 
     public void printMessage(String string);
