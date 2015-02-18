@@ -22,47 +22,45 @@ public class AI extends Player implements PlayerInterface{
 
     public String getMove() {
         ui.printComputerThinking();
-//        if (board.isEmpty()) {
-//            return convertChosenIndexToString(findMiddleOfBoard());
-//        }
-        minimax(this.board, 0, this.getGamePiece());
+        minimax(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE);
         return convertChosenIndexToString(choice);
     }
 
-    private int minimax(Board board, int depth, String gamePiece) {
+    private int minimax(Board board, int depth, String gamePiece, int minValue, int maxValue) {
         List<Integer> scores = new ArrayList();
         List<Integer> moves = new ArrayList();
-        depth += 1;
-
-        if (isGameOver(board) || depth == 9) {
+        List<Integer> possibleMoves = new ArrayList();
+        if (isGameOver(board) || depth == 6) {
             return getScores(board, depth);
         }
-        for (Integer openSpace: board.getOpenSpaces()) {
+
+        for (Integer openSpace : board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(openSpace), gamePiece);
-            scores.add(minimax(board, depth, switchPlayers(board, gamePiece)));
+            int score = minimax(board, depth + 1,switchPlayers(board, gamePiece) , minValue, maxValue);
+            scores.add(score);
             moves.add(openSpace);
             board.clearBoard(openSpace);
+
+            if (gamePiece == this.getGamePiece()) {
+                int maxScoreIndex = maxIndex(scores);
+                possibleMoves.add(moves.get(maxScoreIndex));
+                if (score > minValue) minValue = score;
+            } else {
+                if (score < maxValue) maxValue = score;
+            }
+
+            if (maxValue <= minValue) break;
         }
 
-        if (gamePiece == this.getGamePiece()) {
-            int max_score = maxIndex(scores);
-            choice = moves.get(max_score);
-            return scores.get(max_score);
+        if (gamePiece != this.getGamePiece()) {
+            return maxValue;
         }
-
-        else {
-            int min_score = minIndex(scores);
-            choice = moves.get(min_score);
-            return scores.get(min_score);
-        }
+        choice = Collections.max(possibleMoves);
+        return minValue;
     }
 
     private static int getMaxValue(List<Integer> scoresList) {
         return Collections.max(scoresList);
-    }
-
-    private static Integer getMinValue(List<Integer> scoreslist) {
-        return Collections.min(scoreslist);
     }
 
     private static Integer maxIndex(List<Integer> list) {
@@ -76,18 +74,7 @@ public class AI extends Player implements PlayerInterface{
             return index.get(0);
     }
 
-    private static Integer minIndex(List<Integer> list) {
-        List<Integer> index = new ArrayList();
-        int min = getMinValue(list);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) == min) {
-                index.add(i);
-            }
-        }
-        return index.get(0);
-    }
-
-    private int getScores(Board board, int depth) {
+    public int getScores(Board board, int depth) {
         if (isComputerWinner(board)) {
             return 10 - depth;
         } else if (isOpponentWinner(board)) {
@@ -123,9 +110,5 @@ public class AI extends Player implements PlayerInterface{
 
     private String convertChosenIndexToString(int chosenSpace) {
         return Integer.toString(chosenSpace + 1);
-    }
-
-    private int findMiddleOfBoard() {
-        return board.getCellsSquareRoot(board.getLength()) + 1;
     }
 }

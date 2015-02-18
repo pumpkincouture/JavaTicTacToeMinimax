@@ -139,29 +139,63 @@ public class AITest {
         board = new Board(3);
         aiComputerTest = new AI("O", board, mockUi);
 
-        assertEquals("5", aiComputerTest.getMove());
+        assertEquals("1", aiComputerTest.getMove());
         assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 
-//    @Test
-//    public void makesMoveOn4x4BoardToWin() {
-//        board = new Board(4);
-//        aiComputerTest = new AI("O", board, mockUi);
-//        fillBoard("1", "X");
-//        fillBoard("3", "O");
-//        fillBoard("7", "O");
-//        fillBoard("9", "X");
-//        fillBoard("13", "X");
-//        fillBoard("15", "O");
-//
-//        assertEquals("11", aiComputerTest.getMove());
-//    }
+    @Test
+    public void AIWinsIfBoardHasThreeInARow() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "O");
+        fillBoard("2", "O");
+        fillBoard("3", "O");
+        fillBoard("4", "X");
 
-//    @Test
-//    public void picksFirstMoveOn4x4Board() {
-//        board = new Board(4);
-//        aiComputerTest = new AI("O", board, mockUi);
-//
-//        assertEquals("1", aiComputerTest.getMove());
-//    }
+        assertEquals(10, aiComputerTest.getScores(board, 0));
+    }
+
+    @Test
+    public void testIfForCatsGame() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        assertEquals(0, aiComputerTest.getScores(board, 0));
+    }
+
+
+    @Test
+    public void XWinsIfBoardHasThreeInARow() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+
+        assertEquals(-10, aiComputerTest.getScores(board, 0));
+    }
+
+
+    @Test
+    public void makesMoveOn4x4BoardToWin() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("3", "O");
+        fillBoard("7", "O");
+        fillBoard("9", "X");
+        fillBoard("13", "X");
+        fillBoard("15", "O");
+
+        assertEquals("11", aiComputerTest.getMove());
+    }
+
+    @Test
+    public void picksFirstMoveOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        assertEquals("1", aiComputerTest.getMove());
+    }
 }
