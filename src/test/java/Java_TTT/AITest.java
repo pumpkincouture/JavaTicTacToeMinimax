@@ -3,6 +3,8 @@ package Java_TTT;
 import org.junit.Test;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -141,17 +143,25 @@ public class AITest {
         assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 
-    @Test
-    public void makesMoveOn4x4BoardToWin() {
-        board = new Board(4);
-        aiComputerTest = new AI("O", board, mockUi);
-        fillBoard("1", "X");
-        fillBoard("3", "O");
-        fillBoard("7", "O");
-        fillBoard("9", "X");
-        fillBoard("13", "X");
-        fillBoard("15", "O");
+//    @Test
+//    public void makesMoveOn4x4BoardToWin() {
+//        board = new Board(4);
+//        aiComputerTest = new AI("O", board, mockUi);
+//        fillBoard("1", "X");
+//        fillBoard("3", "O");
+//        fillBoard("7", "O");
+//        fillBoard("9", "X");
+//        fillBoard("13", "X");
+//        fillBoard("15", "O");
+//
+//        assertEquals("11", aiComputerTest.getMove());
+//    }
 
-        assertEquals("11", aiComputerTest.getMove());
-    }
+//    @Test
+//    public void picksFirstMoveOn4x4Board() {
+//        board = new Board(4);
+//        aiComputerTest = new AI("O", board, mockUi);
+//
+//        assertEquals("1", aiComputerTest.getMove());
+//    }
 }
