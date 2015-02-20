@@ -156,7 +156,7 @@ public class AITest {
     }
 
     @Test
-    public void testIfForCatsGame() {
+    public void testForCatsGame() {
         board = new Board(3);
         aiComputerTest = new AI("O", board, mockUi);
 
@@ -197,5 +197,18 @@ public class AITest {
         aiComputerTest = new AI("O", board, mockUi);
 
         assertEquals("1", aiComputerTest.getMove());
+    }
+
+
+    @Test
+    public void returnsWinningMoveOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "O");
+        fillBoard("4", "X");
+        fillBoard("5", "O");
+
+        assertEquals("3", aiComputerTest.getMove());
     }
 }
