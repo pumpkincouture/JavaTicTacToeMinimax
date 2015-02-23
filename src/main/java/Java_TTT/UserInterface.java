@@ -1,6 +1,5 @@
 package Java_TTT;
 
-
 public interface UserInterface {
 
     public void printMessage(String string);
@@ -8,8 +7,6 @@ public interface UserInterface {
     public String captureChoice();
 
     public void chooseGameConfiguration();
-
-    public void printChosenOpponent(String opponentName);
 
     public void promptForBoardSize();
 
@@ -22,12 +19,6 @@ public interface UserInterface {
     public void chooseStartingPlayer(String player1, String player2);
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2);
-
-    public void printStartingPlayer(String gamePiece);
-
-    public void promptForOpponent();
-
-    public void printUserPrompt();
 
     public void printBoard(Board board);
 

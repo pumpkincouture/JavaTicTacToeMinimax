@@ -64,20 +64,20 @@ public class GameConfiguration {
         board = new Board(boardSize);
         switch(gameConfigurationChoice) {
             case "1":
-                player1 = new HumanPlayer("X", ui);
-                player2 = new HumanPlayer("O", ui);
+                player1 = new Human("X", ui);
+                player2 = new Human("O", ui);
                 break;
             case "2":
-                player1 = new HumanPlayer("X", ui);
-                player2 = new ComputerPlayer("O", board, ui);
+                player1 = new Human("X", ui);
+                player2 = new Computer("O", board, ui);
                 break;
             case "3":
-                player1 = new HumanPlayer("X", ui);
-                player2 = new AIComputerPlayer("O", board, ui);
+                player1 = new Human("X", ui);
+                player2 = new AI("O", board, ui);
                 break;
             case "4":
-                player1 = new ComputerPlayer("X", board, ui);
-                player2 = new AIComputerPlayer("O", board, ui);
+                player1 = new Computer("X", board, ui);
+                player2 = new AI("O", board, ui);
                 break;
             default:
                 ui.printError(gameConfigurationChoice);

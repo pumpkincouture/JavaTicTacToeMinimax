@@ -15,13 +15,12 @@ public class CommandLineInterfaceTest {
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1 = new HumanPlayer("X", mockUi);
-    private PlayerInterface player2 = new ComputerPlayer("O", board, mockUi);
+    private PlayerInterface player1 = new Human("X", mockUi);
+    private PlayerInterface player2 = new Computer("O", board, mockUi);
 
-    @Before
-    public void setUp() {
-        this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+
+    private void fillBoard(String choice, String gamePiece) {
+        board.placeMove(choice, gamePiece);
     }
 
     private String scannerInput(String mockInput) {
@@ -31,106 +30,152 @@ public class CommandLineInterfaceTest {
     }
 
     @Test
-    public void printToScreenTest() {
-        ui.printMessage("hello");
-        assertEquals("hello\n", printedToScreen.toString());
-    }
-
-    @Test
     public void printBoardChoicePrompt() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.promptForBoardSize();
         assertEquals("Please pick between 3 and 4 for your board size.\n", printedToScreen.toString());
     }
 
     @Test
+    public void printOptionsForPlayerConfiguration() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
+        ui.chooseGameConfiguration();
+        assertEquals("Welcome, please choose your desired player configuration.\n" +
+                "1 : Human vs Human\n" +
+                "2 : Human vs Computer\n" +
+                "3 : Human vs AI\n" +
+                "4 : Computer vs AI\n", printedToScreen.toString());
+    }
+
+    @Test
     public void printWelcomeMessageTest() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printWelcomeMessage(3);
         assertEquals("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!\n", printedToScreen.toString());
     }
 
     @Test
     public void printComputerThinkingAboutAMove() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printComputerThinking();
         assertEquals("Computer is considering a move....\n", printedToScreen.toString());
     }
 
     @Test
     public void printChooseStartingPlayerPrompt() {
-        ui.chooseStartingPlayer("ComputerPlayer", "HumanPlayer");
-        assertEquals("Please choose the starting player : ComputerPlayer or HumanPlayer " +
-                "(please enter 1 to indicate ComputerPlayer or 2 to indicate HumanPlayer)\n", printedToScreen.toString());
-    }
-
-    @Test
-    public void printChosenOpponentTest() {
-        ui.printChosenOpponent("ComputerOpponent");
-        assertEquals("You've chosen to play against ComputerOpponent.\n", printedToScreen.toString());
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
+        ui.chooseStartingPlayer("Computer", "Human");
+        assertEquals("Please choose the starting player : enter 1 for Computer or 2 for Human\n", printedToScreen.toString());
     }
 
     @Test
     public void printGamePieceAssignmentTest() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printGamePieceAssignment(player1, player2);
-        assertEquals("HumanPlayer will have the X piece and ComputerPlayer will have the O piece.\n", printedToScreen.toString());
-    }
-
-    @Test
-    public void printStartingPlayerMessage() {
-        ui.printStartingPlayer("X");
-        assertEquals("Player with X will start.\n", printedToScreen.toString());
+        assertEquals("Human will have the X piece and Computer will have the O piece. X will start.\n", printedToScreen.toString());
     }
 
     @Test
     public void getChosenInputMove() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         scannerInput("4\n");
         ui.captureChoice();
         assertEquals(scannerInput("4\n"), "4");
     }
 
     @Test
-    public void printPromptForOpponentMessage() {
-        ui.promptForOpponent();
-        assertEquals("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.\n", printedToScreen.toString());
-    }
-
-    @Test
-    public void printUserPromptMessage() {
-        ui.printUserPrompt();
-        assertEquals("Please choose a move for your game piece by pressing a number for that corresponding space.\n", printedToScreen.toString());
-    }
-
-    @Test
     public void printMessageAfterUserChoseAMove() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printChoice(player1, "3");
-        assertEquals("HumanPlayer has chosen space 3!\n", printedToScreen.toString());
+        assertEquals("Human has chosen space 3\n", printedToScreen.toString());
     }
 
     @Test
     public void printWinnerMessage() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printWinner("O");
         assertEquals("O wins!\n", printedToScreen.toString());
     }
 
     @Test
     public void printCatsGameMessage() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printCatsGame();
         assertEquals("Cat's game!\n", printedToScreen.toString());
     }
 
     @Test
     public void printErrorMessage() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printError("hhhhhh");
         assertEquals("hhhhhh is not available, please try again.\n", printedToScreen.toString());
     }
 
     @Test
-    public void printBoard() {
+    public void printEmpty3x3Board() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
         ui.printBoard(board);
-        assertEquals(" |  | \n" +
-                "----------\n" +
-                " |  | \n" +
-                "----------\n" +
-                " |  | \n" +
-                "----------\n"
+        assertEquals("\n" +
+                     "------------\n" +
+                     "|  |  |  |\n" +
+                     "------------\n" +
+                     "|  |  |  |\n" +
+                     "------------\n" +
+                     "|  |  |  |\n" +
+                     "------------\n"
+                     , printedToScreen.toString());
+    }
+
+    @Test
+    public void printEmpty4x4Board() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(4);
+        ui.printBoard(board);
+        assertEquals("\n" +
+                     "----------------\n" +
+                     "|  |  |  |  |\n" +
+                     "----------------\n" +
+                     "|  |  |  |  |\n" +
+                     "----------------\n" +
+                     "|  |  |  |  |\n" +
+                     "----------------\n" +
+                     "|  |  |  |  |\n" +
+                     "----------------\n"
+                     , printedToScreen.toString());
+    }
+
+    @Test
+    public void printBoardWithSomeInputs() {
+        this.ui = new CommandLineInterface(output, input);
+        this.board = new Board(3);
+        fillBoard("1", "O");
+        fillBoard("2", "X");
+        fillBoard("3", "X");
+        fillBoard("5", "O");
+        fillBoard("6", "X");
+        fillBoard("8", "O");
+        fillBoard("9", "X");
+        ui.printBoard(board);
+        assertEquals("\n" +
+                "------------\n" +
+                "| O | X | X |\n" +
+                "------------\n" +
+                "|  | O | X |\n" +
+                "------------\n" +
+                "|  | O | X |\n" +
+                "------------\n"
                 , printedToScreen.toString());
     }
 }

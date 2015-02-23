@@ -1,9 +1,9 @@
 package Java_TTT;
 
-public class HumanPlayer extends Player implements PlayerInterface {
+public class Human extends Player implements PlayerInterface {
     private CommandLineInterface ui;
 
-    public HumanPlayer(String gamePiece, CommandLineInterface ui) {
+    public Human(String gamePiece, CommandLineInterface ui) {
         super(gamePiece);
         this.ui = ui;
     }

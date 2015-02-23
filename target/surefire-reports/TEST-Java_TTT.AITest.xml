@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="Java_TTT.HumanOpponentTest" time="0" errors="0" skipped="0">
+<testsuite tests="15" failures="0" name="Java_TTT.AITest" time="0.576" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
@@ -61,6 +61,19 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Java_TTT.HumanOpponentTest" name="getHumanPlayerGamePiece" time="0"/>
-  <testcase classname="Java_TTT.HumanOpponentTest" name="getHumanPlayerMove" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinningSpotWhenThereAreSixSpotsOnTheBoard" time="0.018"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBlockIfCompCannotWinInNextMove" time="0.002"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBestMoveAfterOpponentPlacesFirstMove" time="0.092"/>
+  <testcase classname="Java_TTT.AITest" name="AIWinsIfBoardHasThreeInARow" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="picksFirstMoveOn4x4Board" time="0.357"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinningMoveIfFiveSpacesLeft" time="0.001"/>
+  <testcase classname="Java_TTT.AITest" name="makesMoveOn4x4BoardToWin" time="0.071"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBlockingMove" time="0.007"/>
+  <testcase classname="Java_TTT.AITest" name="picksMiddleSpaceIfBoardEmpty" time="0.022"/>
+  <testcase classname="Java_TTT.AITest" name="testIfForCatsGame" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsBlockForOpponent" time="0.005"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinForItselfRatherThanBlockingOpponentFromWinning" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinningMoveAndBlocksOpponent" time="0"/>
+  <testcase classname="Java_TTT.AITest" name="returnsWinForItself" time="0.001"/>
+  <testcase classname="Java_TTT.AITest" name="XWinsIfBoardHasThreeInARow" time="0"/>
 </testsuite>

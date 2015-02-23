@@ -1,15 +1,16 @@
 package Java_TTT;
 
+import java.io.Console;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public class CommandLineInterface implements UserInterface {
     private PrintStream out;
-    private Scanner in;
+    private Scanner scannerIn;
 
     public CommandLineInterface(PrintStream out, Scanner in) {
         this.out = out;
-        this.in = in;
+        this.scannerIn = in;
     }
 
     private void printLinesForBoard(String string) {
@@ -21,11 +22,11 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseGameConfiguration() {
-        printMessage("Welcome, please choose your desired game configuration.\n" +
-                "1 : Human vs Human Player \n" +
-                "2 : Human vs Basic Computer Player \n" +
-                "3 : Human vs AI Computer Player \n" +
-                "4 : Basic Computer Player vs AI Computer Player");
+        printMessage("Welcome, please choose your desired player configuration.\n" +
+                "1 : Human vs Human\n" +
+                "2 : Human vs Computer\n" +
+                "3 : Human vs AI\n" +
+                "4 : Computer vs AI");
     }
 
     public void promptForBoardSize() {
@@ -37,12 +38,7 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseStartingPlayer(String player1, String player2) {
-        printMessage("Please choose the starting player : " + player1 + " or " + player2 +
-                " (please enter 1 to indicate " + player1 + " or 2 to indicate " + player2 + ")");
-    }
-
-    public void printChosenOpponent(String opponentName) {
-        printMessage("You've chosen to play against " + opponentName + ".");
+        printMessage("Please choose the starting player : enter 1 for " + player1 + " or 2 for " + player2);
     }
 
     public void printComputerThinking() {
@@ -50,27 +46,28 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
-        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece.");
-    }
-
-    public void printStartingPlayer(String gamePiece) {
-        printMessage("Player with " + gamePiece + " will start.");
+        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece. " + player1.getGamePiece() + " will start.");
     }
 
     public String captureChoice() {
-        return in.nextLine();
-    }
+        Console cnsl = null;
+        String hiddenInput = "";
+        try {
+            cnsl = System.console();
 
-    public void promptForOpponent() {
-        printMessage("Please choose your opponent : press 'h' for human, 'c' for computer, or 'i' for AI computer.");
-    }
-
-    public void printUserPrompt() {
-        printMessage("Please choose a move for your game piece by pressing a number for that corresponding space.");
+            if (cnsl != null) {
+                char[] input = cnsl.readPassword();
+                hiddenInput = new String(input);
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return hiddenInput;
     }
 
     public void printChoice(PlayerInterface player, String choice) {
-        printMessage(player.getName() + " has chosen space " + choice + "!");
+        printMessage(player.getName() + " has chosen space " + choice);
     }
 
     public void printWinner(String gamePiece) {
@@ -87,19 +84,24 @@ public class CommandLineInterface implements UserInterface {
 
     public void printBoard(Board board) {
         int boardSquareRoot = board.getCellsSquareRoot(board.getLength());
-        for (int i = 0; i < board.getLength(); i++) {
-            if (i % boardSquareRoot == boardSquareRoot - 1 ) {
-                printLinesForBoard(board.getCells()[i]);
-                printLines();
-            } else {
-                printLinesForBoard(board.getCells()[i] + " | ");
+        int boardLength = board.getLength();
+        String boardToDisplay = boardRows(boardSquareRoot);
+
+        for (int i=0; i < boardLength; i++) {
+            boardToDisplay += "| " + board.getCells()[i] + " ";
+            if (i % boardSquareRoot == boardSquareRoot - 1) {
+                boardToDisplay += "|" + boardRows(boardSquareRoot);
             }
         }
+        printLinesForBoard(boardToDisplay);
     }
 
-    private void printLines() {
-        printLinesForBoard("\n");
-        printLinesForBoard("----------");
-        printLinesForBoard("\n");
+    private String boardRows(int squareRoot) {
+            String rowsToDisplay = "\n";
+            for(int i=0; i<squareRoot; i++) {
+                rowsToDisplay += "----";
+            }
+            rowsToDisplay += "\n";
+            return rowsToDisplay;
     }
 }

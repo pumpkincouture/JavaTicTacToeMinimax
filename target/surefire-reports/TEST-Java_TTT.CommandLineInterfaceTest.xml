@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="16" failures="0" name="Java_TTT.CommandLineInterfaceTest" time="0.018" errors="0" skipped="0">
+<testsuite tests="14" failures="0" name="Java_TTT.CommandLineInterfaceTest" time="0.007" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
@@ -64,17 +64,15 @@
   <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printWelcomeMessageTest" time="0"/>
   <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printChooseStartingPlayerPrompt" time="0"/>
   <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printCatsGameMessage" time="0.001"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printPromptForOpponentMessage" time="0"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printEmpty3x3Board" time="0"/>
   <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printMessageAfterUserChoseAMove" time="0.001"/>
   <testcase classname="Java_TTT.CommandLineInterfaceTest" name="getChosenInputMove" time="0.002"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printBoardWithSomeInputs" time="0"/>
   <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printWinnerMessage" time="0"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printStartingPlayerMessage" time="0"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printBoard" time="0.01"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printErrorMessage" time="0.001"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printUserPromptMessage" time="0"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printBoardChoicePrompt" time="0.001"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printToScreenTest" time="0"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printChosenOpponentTest" time="0"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printComputerThinkingAboutAMove" time="0"/>
-  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printGamePieceAssignmentTest" time="0.002"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printErrorMessage" time="0"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printEmpty4x4Board" time="0"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printOptionsForPlayerConfiguration" time="0.001"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printBoardChoicePrompt" time="0"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printComputerThinkingAboutAMove" time="0.001"/>
+  <testcase classname="Java_TTT.CommandLineInterfaceTest" name="printGamePieceAssignmentTest" time="0.001"/>
 </testsuite>

@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class HumanOpponentTest {
-    private HumanPlayer humanPlayerTest;
+public class HumanTest {
+    private Human humanPlayerTest;
     private MockUserInterface mockUI;
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class HumanOpponentTest {
     @Before
     public void setUp() {
         mockUI =  new MockUserInterface(output, input);
-        humanPlayerTest = new HumanPlayer("X", mockUI);
+        humanPlayerTest = new Human("X", mockUI);
     }
 
     @Test

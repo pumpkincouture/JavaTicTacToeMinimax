@@ -2,12 +2,12 @@ package Java_TTT;
 
 import java.util.Random;
 
-public class ComputerPlayer extends Player implements PlayerInterface {
+public class Computer extends Player implements PlayerInterface {
     private Random randomGenerator;
     private Board board;
     private CommandLineInterface ui;
 
-    public ComputerPlayer(String gamePiece, Board board, CommandLineInterface ui) {
+    public Computer(String gamePiece, Board board, CommandLineInterface ui) {
         super(gamePiece);
         this.board = board;
         this.ui = ui;
