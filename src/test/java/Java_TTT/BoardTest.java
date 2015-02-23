@@ -118,13 +118,13 @@ public class BoardTest {
     @Test
     public void returnBoardCellsAsThreeByThreeArray() {
         boardTest = new Board(3);
-        assertEquals("", boardTest.getCells()[4]);
+        assertEquals("*", boardTest.getCells()[4]);
     }
 
     @Test
     public void returnBoardCellsAsFourByFourArray() {
         boardTest = new Board(4);
-        assertEquals("", boardTest.getCells()[15]);
+        assertEquals("*", boardTest.getCells()[15]);
     }
 
     @Test

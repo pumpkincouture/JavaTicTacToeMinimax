@@ -64,6 +64,6 @@
   <testcase classname="Java_TTT.ComputerTest" name="getOpenSpaceOn4x4Board" time="0"/>
   <testcase classname="Java_TTT.ComputerTest" name="getsGamePiece" time="0"/>
   <testcase classname="Java_TTT.ComputerTest" name="getOpenSpaceScenarioTwoOn4x4Board" time="0"/>
-  <testcase classname="Java_TTT.ComputerTest" name="getOpenSpaceScenarioTwo" time="0"/>
-  <testcase classname="Java_TTT.ComputerTest" name="getOpenSpace" time="0.001"/>
+  <testcase classname="Java_TTT.ComputerTest" name="getOpenSpaceScenarioTwo" time="0.001"/>
+  <testcase classname="Java_TTT.ComputerTest" name="getOpenSpace" time="0"/>
 </testsuite>

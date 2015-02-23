@@ -17,20 +17,24 @@ public class CommandLineInterface implements UserInterface {
         out.print(string);
     }
 
+    public void printWithoutLineBreak(String string) {
+        out.print(string);
+    }
     public void printMessage(String string) {
         out.println(string);
     }
 
     public void chooseGameConfiguration() {
-        printMessage("Welcome, please choose your desired player configuration.\n" +
+        printWithoutLineBreak("Welcome, please choose your desired player configuration.\n" +
                 "1 : Human vs Human\n" +
-                "2 : Human vs Computer\n" +
-                "3 : Human vs AI\n" +
-                "4 : Computer vs AI");
+                "2 : Human vs Simple AI\n" +
+                "3 : Human vs Hard AI\n" +
+                "4 : Simple AI vs Hard AI\n" +
+                "Configuration choice: ");
     }
 
     public void promptForBoardSize() {
-        printMessage("Please pick between 3 and 4 for your board size.");
+       printWithoutLineBreak("Please pick your board size: (3, 4) ");
     }
 
     public void printWelcomeMessage(int boardSize) {
@@ -38,7 +42,7 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseStartingPlayer(String player1, String player2) {
-        printMessage("Please choose the starting player : enter 1 for " + player1 + " or 2 for " + player2);
+        printWithoutLineBreak("Please choose the starting player: (1 for " + player1 + ", 2 for " + player2 + ") ");
     }
 
     public void printComputerThinking() {
@@ -46,24 +50,11 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
-        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece. " + player1.getGamePiece() + " will start.");
+        printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece. " + player1.getGamePiece() + " will start. Please indicate your chosen space with a number.");
     }
 
     public String captureChoice() {
-        Console cnsl = null;
-        String hiddenInput = "";
-        try {
-            cnsl = System.console();
-
-            if (cnsl != null) {
-                char[] input = cnsl.readPassword();
-                hiddenInput = new String(input);
-            }
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
-        return hiddenInput;
+        return scannerIn.next();
     }
 
     public void printChoice(PlayerInterface player, String choice) {

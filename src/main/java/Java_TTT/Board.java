@@ -46,7 +46,7 @@ public class Board {
     }
 
     public void clearBoard(int index) {
-        boardCells[index] = "";
+        boardCells[index] = "*";
     }
 
     public int getLength() {
@@ -65,7 +65,7 @@ public class Board {
     }
 
     private void fillArray() {
-        Arrays.fill(boardCells, "");
+        Arrays.fill(boardCells, "*");
     }
 
     private void findCorrectArraySpace(String answer, String gamePiece) {
@@ -81,7 +81,7 @@ public class Board {
     }
 
     private boolean validateCells(String answer) {
-        if (checkIfMoveIsInteger(answer) && getSpaceValue(answer).isEmpty()) {
+        if (checkIfMoveIsInteger(answer) && getSpaceValue(answer).contains("*")) {
             return true;
         }
         return false;
@@ -98,7 +98,7 @@ public class Board {
 
     private boolean checkForOpenCells() {
         for (String space: boardCells) {
-            if (space.isEmpty()) {
+            if (space == "*") {
                 return true;
             }
         }
@@ -108,7 +108,7 @@ public class Board {
     private ArrayList<Integer> getOccupiedCellLocations() {
         ArrayList<Integer> openCells = new ArrayList();
         for (int i = 0; i < boardCells.length; i++)
-            if (!boardCells[i].isEmpty()) {
+            if (!boardCells[i].contains("*")) {
                 openCells.add(i);
             }
         return openCells;
@@ -117,7 +117,7 @@ public class Board {
     private ArrayList<Integer> getOpenCellLocations() {
         ArrayList<Integer> openCells = new ArrayList();
         for (int i =0; i < boardCells.length; i++)
-            if (boardCells[i].isEmpty()) {
+            if (boardCells[i].contains("*")) {
                 openCells.add(i);
             }
         return openCells;
@@ -125,7 +125,7 @@ public class Board {
 
     private String findOpponentPiece(String gamePiece) {
         for (String space: boardCells) {
-            if (!space.isEmpty()) {
+            if (!space.contains("*")) {
                 if (space != gamePiece) {
                     return space;
                 }

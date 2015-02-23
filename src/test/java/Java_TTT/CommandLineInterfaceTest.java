@@ -34,7 +34,7 @@ public class CommandLineInterfaceTest {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
         ui.promptForBoardSize();
-        assertEquals("Please pick between 3 and 4 for your board size.\n", printedToScreen.toString());
+        assertEquals("Please pick your board size: (3, 4) ", printedToScreen.toString());
     }
 
     @Test
@@ -44,9 +44,10 @@ public class CommandLineInterfaceTest {
         ui.chooseGameConfiguration();
         assertEquals("Welcome, please choose your desired player configuration.\n" +
                 "1 : Human vs Human\n" +
-                "2 : Human vs Computer\n" +
-                "3 : Human vs AI\n" +
-                "4 : Computer vs AI\n", printedToScreen.toString());
+                "2 : Human vs Simple AI\n" +
+                "3 : Human vs Hard AI\n" +
+                "4 : Simple AI vs Hard AI\n" +
+                "Configuration choice: ", printedToScreen.toString());
     }
 
     @Test
@@ -70,7 +71,7 @@ public class CommandLineInterfaceTest {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
         ui.chooseStartingPlayer("Computer", "Human");
-        assertEquals("Please choose the starting player : enter 1 for Computer or 2 for Human\n", printedToScreen.toString());
+        assertEquals("Please choose the starting player: (1 for Computer, 2 for Human) ", printedToScreen.toString());
     }
 
     @Test
@@ -78,7 +79,7 @@ public class CommandLineInterfaceTest {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
         ui.printGamePieceAssignment(player1, player2);
-        assertEquals("Human will have the X piece and Computer will have the O piece. X will start.\n", printedToScreen.toString());
+        assertEquals("Human will have the X piece and Computer will have the O piece. X will start. Please indicate your chosen space with a number.\n", printedToScreen.toString());
     }
 
     @Test
@@ -129,11 +130,11 @@ public class CommandLineInterfaceTest {
         ui.printBoard(board);
         assertEquals("\n" +
                      "------------\n" +
-                     "|  |  |  |\n" +
+                     "| * | * | * |\n" +
                      "------------\n" +
-                     "|  |  |  |\n" +
+                     "| * | * | * |\n" +
                      "------------\n" +
-                     "|  |  |  |\n" +
+                     "| * | * | * |\n" +
                      "------------\n"
                      , printedToScreen.toString());
     }
@@ -145,13 +146,13 @@ public class CommandLineInterfaceTest {
         ui.printBoard(board);
         assertEquals("\n" +
                      "----------------\n" +
-                     "|  |  |  |  |\n" +
+                     "| * | * | * | * |\n" +
                      "----------------\n" +
-                     "|  |  |  |  |\n" +
+                     "| * | * | * | * |\n" +
                      "----------------\n" +
-                     "|  |  |  |  |\n" +
+                     "| * | * | * | * |\n" +
                      "----------------\n" +
-                     "|  |  |  |  |\n" +
+                     "| * | * | * | * |\n" +
                      "----------------\n"
                      , printedToScreen.toString());
     }
@@ -172,9 +173,9 @@ public class CommandLineInterfaceTest {
                 "------------\n" +
                 "| O | X | X |\n" +
                 "------------\n" +
-                "|  | O | X |\n" +
+                "| * | O | X |\n" +
                 "------------\n" +
-                "|  | O | X |\n" +
+                "| * | O | X |\n" +
                 "------------\n"
                 , printedToScreen.toString());
     }
