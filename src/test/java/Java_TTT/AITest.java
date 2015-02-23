@@ -199,6 +199,22 @@ public class AITest {
         assertEquals("1", aiComputerTest.getMove());
     }
 
+    @Test
+    public void benchMarkTestFor3x3Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("3", "O");
+        fillBoard("7", "O");
+        fillBoard("9", "X");
+        fillBoard("13", "X");
+        fillBoard("15", "O");
+        long start = System.currentTimeMillis();
+        aiComputerTest.getMove();
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime);
+        assertEquals("11", aiComputerTest.getMove());
+    }
 
     @Test
     public void returnsWinningMoveOn4x4Board() {
