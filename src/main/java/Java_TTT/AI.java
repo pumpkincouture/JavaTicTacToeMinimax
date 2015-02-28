@@ -29,6 +29,7 @@ public class AI extends Player implements PlayerInterface{
     private int minimax(Board board, int depth, String gamePiece, int minValue, int maxValue) {
         List<Integer> scores = new ArrayList();
         List<Integer> moves = new ArrayList();
+        int max;
         List<Integer> possibleMoves = new ArrayList();
         if (isGameOver(board) || depth == 6) {
             return getScores(board, depth);
@@ -36,7 +37,7 @@ public class AI extends Player implements PlayerInterface{
 
         for (Integer openSpace : board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(openSpace), gamePiece);
-            int score = minimax(board, depth + 1,switchPlayers(board, gamePiece) , minValue, maxValue);
+            int score = (minimax(board, depth + 1, switchPlayers(board, gamePiece) , minValue, maxValue));
             scores.add(score);
             moves.add(openSpace);
             board.clearBoard(openSpace);
@@ -45,6 +46,7 @@ public class AI extends Player implements PlayerInterface{
                 int maxScoreIndex = maxIndex(scores);
                 possibleMoves.add(moves.get(maxScoreIndex));
                 if (score > minValue) minValue = score;
+
             } else {
                 if (score < maxValue) maxValue = score;
             }

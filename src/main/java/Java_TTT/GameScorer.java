@@ -208,7 +208,7 @@ public class GameScorer {
         if (board.getCells().length > 9) {
             column.add(board.getCells()[1]);
             column.add(board.getCells()[squareRoot + 1]);
-            column.add(board.getCells()[board.getLength() - (squareDoubled + 1)]);
+            column.add(board.getCells()[board.getLength() - (squareRoot + 3)]);
             column.add(board.getCells()[board.getLength() - (squareRoot - 1)]);
         } else {
             column.add(board.getCells()[1]);

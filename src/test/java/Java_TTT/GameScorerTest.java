@@ -203,6 +203,102 @@ public class GameScorerTest {
     }
 
     @Test
+    public void checkIfOWonInRow1On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("1", "O");
+        fillBoard("2", "O");
+        fillBoard("3", "O");
+        fillBoard("4", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInRow2On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("5", "O");
+        fillBoard("6", "O");
+        fillBoard("7", "O");
+        fillBoard("8", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInRow3On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("9", "O");
+        fillBoard("10", "O");
+        fillBoard("11", "O");
+        fillBoard("12", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInRow4On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("13", "O");
+        fillBoard("14", "O");
+        fillBoard("15", "O");
+        fillBoard("16", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInColumn1On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("1", "O");
+        fillBoard("5", "O");
+        fillBoard("9", "O");
+        fillBoard("13", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInColumn2On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("2", "O");
+        fillBoard("6", "O");
+        fillBoard("10", "O");
+        fillBoard("14", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInColumn3On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("3", "O");
+        fillBoard("7", "O");
+        fillBoard("11", "O");
+        fillBoard("15", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
+    public void checkIfOWonInColumn4On4x4Board() {
+        board = new Board(4);
+        gameScorerTest = new GameScorer(board);
+        fillBoard("4", "O");
+        fillBoard("8", "O");
+        fillBoard("12", "O");
+        fillBoard("16", "O");
+
+        assertEquals(true, gameScorerTest.isGameOver("X", "O"));
+    }
+
+    @Test
     public void checkIfGameOverOn4x4Board() {
         board = new Board(4);
         gameScorerTest = new GameScorer(board);

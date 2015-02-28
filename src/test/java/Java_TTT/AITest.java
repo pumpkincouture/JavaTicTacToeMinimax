@@ -1,10 +1,7 @@
 package Java_TTT;
 
 import org.junit.Test;
-
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -19,7 +16,6 @@ public class AITest {
     private void fillBoard(String choice, String gamePiece) {
         board.placeMove(choice, gamePiece);
     }
-
 
     @Test
     public void returnsBlockIfCompCannotWinInNextMove() {
@@ -135,7 +131,7 @@ public class AITest {
     }
 
     @Test
-    public void picksMiddleSpaceIfBoardEmpty() {
+    public void picksASpaceIfBoardEmpty() {
         board = new Board(3);
         aiComputerTest = new AI("O", board, mockUi);
 
@@ -176,6 +172,112 @@ public class AITest {
         assertEquals(-10, aiComputerTest.getScores(board, 0));
     }
 
+    @Test
+    public void XWinsIfBoardHas4InARow() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("3", "X");
+        fillBoard("4", "X");
+
+        assertEquals(-10, aiComputerTest.getScores(board, 0));
+    }
+
+    @Test
+    public void OWinsIfBoardHas4InARow() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("2", "O");
+        fillBoard("6", "O");
+        fillBoard("10", "O");
+        fillBoard("14", "O");
+
+        assertEquals(10, aiComputerTest.getScores(board, 0));
+    }
+
+    @Test
+    public void picksFirstMoveOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        assertEquals("1", aiComputerTest.getMove());
+    }
+
+    @Test
+    public void picksThirdMoveOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "O");
+        fillBoard("5", "X");
+        fillBoard("3", "O");
+        fillBoard("9", "X");
+
+        assertEquals("13", aiComputerTest.getMove());
+    }
+    @Test
+    public void getsMoveToBlockOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("5", "O");
+        fillBoard("3", "X");
+
+        assertEquals("4", aiComputerTest.getMove());
+    }
+
+    @Test
+    public void picksWinningMoveOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("6", "X");
+        fillBoard("11", "O");
+
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+        fillBoard("8", "O");
+        fillBoard("7", "X");
+        fillBoard("5", "X");
+        fillBoard("12", "O");
+        fillBoard("9", "X");
+
+        assertEquals("16", aiComputerTest.getMove());
+    }
+
+    @Test
+    public void makesMoveToWinInNextMoveOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("3", "X");
+
+        fillBoard("5", "O");
+        fillBoard("6", "O");
+        fillBoard("7", "O");
+
+        assertEquals("8", aiComputerTest.getMove());
+    }
+
+
+    @Test
+    public void blocksOpponentWinOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+
+        fillBoard("5", "X");
+        fillBoard("7", "X");
+        fillBoard("8", "X");
+
+        assertEquals("6", aiComputerTest.getMove());
+    }
 
     @Test
     public void makesMoveOn4x4BoardToWin() {
@@ -192,39 +294,35 @@ public class AITest {
     }
 
     @Test
-    public void picksFirstMoveOn4x4Board() {
+    public void returnsWinForItselfOn4x4Board() {
         board = new Board(4);
         aiComputerTest = new AI("O", board, mockUi);
 
-        assertEquals("1", aiComputerTest.getMove());
-    }
-
-    @Test
-    public void benchMarkTestFor3x3Board() {
-        board = new Board(4);
-        aiComputerTest = new AI("O", board, mockUi);
-        fillBoard("1", "X");
-        fillBoard("3", "O");
-        fillBoard("7", "O");
-        fillBoard("9", "X");
-        fillBoard("13", "X");
-        fillBoard("15", "O");
-        long start = System.currentTimeMillis();
-        aiComputerTest.getMove();
-        long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime);
-        assertEquals("11", aiComputerTest.getMove());
-    }
-
-    @Test
-    public void returnsWinningMoveOn4x4Board() {
-        board = new Board(4);
-        aiComputerTest = new AI("O", board, mockUi);
-        fillBoard("1", "X");
+        fillBoard("1", "O");
         fillBoard("2", "O");
-        fillBoard("4", "X");
-        fillBoard("5", "O");
+        fillBoard("6", "O");
+        fillBoard("10","O");
+        fillBoard("16", "X");
 
-        assertEquals("3", aiComputerTest.getMove());
+        assertEquals("14", aiComputerTest.getMove());
     }
+//
+//    @Test
+//    public void benchMarkTestFor4x4Board() {
+//        board = new Board(4);
+//        aiComputerTest = new AI("O", board, mockUi);
+//        fillBoard("1", "X");
+//        fillBoard("3", "O");
+//        fillBoard("7", "O");
+//        fillBoard("9", "X");
+//        fillBoard("13", "X");
+//        fillBoard("15", "O");
+//        long start = System.nanoTime();
+////        long start = System.currentTimeMillis();
+//        aiComputerTest.getMove();
+//        long elapsedTime = System.nanoTime() - start;
+////        long elapsedTime = System.currentTimeMillis() - start;
+//        aiComputerTest.getMove();
+//        assertEquals(212, elapsedTime);
+//    }
 }
