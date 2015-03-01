@@ -46,14 +46,14 @@ public class ComputerTest {
     @Test
     public void getsGamePiece() {
         board = new Board(3);
-        computerPlayerTest = new Computer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board);
         assertEquals("Z", computerPlayerTest.getGamePiece());
     }
 
     @Test
     public void getOpenSpace() {
         board = new Board(3);
-        computerPlayerTest = new Computer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board);
 
         simulateFilledBoard();
         fillBoard("8", "X");
@@ -69,7 +69,7 @@ public class ComputerTest {
     @Test
     public void getOpenSpaceOn4x4Board() {
         board = new Board(4);
-        computerPlayerTest = new Computer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board);
 
         simulateFilled4x4Board();
         fillBoard("6", "O");
@@ -82,7 +82,7 @@ public class ComputerTest {
     @Test
     public void getOpenSpaceScenarioTwo() {
         board = new Board(3);
-        computerPlayerTest = new Computer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board);
 
         simulateFilledBoard();
         fillBoard("8", "X");
@@ -97,7 +97,7 @@ public class ComputerTest {
     @Test
     public void getOpenSpaceScenarioTwoOn4x4Board() {
         board = new Board(4);
-        computerPlayerTest = new Computer("Z", board, mockUi);
+        computerPlayerTest = new Computer("Z", board);
 
         simulateFilled4x4Board();
         fillBoard("1", "O");

@@ -20,8 +20,8 @@ public class AIIntegrationTest {
     @Test
     public void gameWithTwoAIsFor4x4Board() {
         board = new Board(4);
-        player1 = new AI("X", board, mockUi);
-        player2 = new AI("O", board, mockUi);
+        player1 = new AI("X", board);
+        player2 = new AI("O", board);
         gameScorer = new GameScorer(board);
         game = new Game(player1, player2, board, mockUi, gameScorer);
         int gameCounter = 0;
@@ -40,8 +40,8 @@ public class AIIntegrationTest {
     @Test
     public void gameWithTwoAIsFor3x3Board() {
         board = new Board(3);
-        player1 = new AI("X", board, mockUi);
-        player2 = new AI("O", board, mockUi);
+        player1 = new AI("X", board);
+        player2 = new AI("O", board);
         gameScorer = new GameScorer(board);
         game = new Game(player1, player2, board, mockUi, gameScorer);
         int gameCounter = 0;

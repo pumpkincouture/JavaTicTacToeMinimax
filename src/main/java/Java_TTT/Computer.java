@@ -5,12 +5,10 @@ import java.util.Random;
 public class Computer extends Player implements PlayerInterface {
     private Random randomGenerator;
     private Board board;
-    private CommandLineInterface ui;
 
-    public Computer(String gamePiece, Board board, CommandLineInterface ui) {
+    public Computer(String gamePiece, Board board) {
         super(gamePiece);
         this.board = board;
-        this.ui = ui;
         randomGenerator = new Random();
     }
 
@@ -19,7 +17,6 @@ public class Computer extends Player implements PlayerInterface {
     }
 
     public String getMove() {
-        ui.printComputerThinking();
         return convertChosenIndexToString(board);
     }
 

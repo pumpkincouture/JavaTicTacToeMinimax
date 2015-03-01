@@ -1,6 +1,5 @@
 package Java_TTT;
 
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +15,7 @@ public class CommandLineInterfaceTest {
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
     private PlayerInterface player1 = new Human("X", mockUi);
-    private PlayerInterface player2 = new Computer("O", board, mockUi);
+    private PlayerInterface player2 = new Computer("O", board);
 
 
     private void fillBoard(String choice, String gamePiece) {
