@@ -69,15 +69,15 @@ public class GameConfiguration {
                 break;
             case "2":
                 player1 = new Human("X", ui);
-                player2 = new Computer("O", board);
+                player2 = new SimpleAI("O", board);
                 break;
             case "3":
                 player1 = new Human("X", ui);
-                player2 = new AI("O", board);
+                player2 = new HardAI("O", board);
                 break;
             case "4":
-                player1 = new Computer("X", board);
-                player2 = new AI("O", board);
+                player1 = new SimpleAI("X", board);
+                player2 = new HardAI("O", board);
                 break;
             default:
                 ui.printError(gameConfigurationChoice);

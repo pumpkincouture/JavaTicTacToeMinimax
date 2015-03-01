@@ -1,6 +1,5 @@
 package Java_TTT;
 
-import java.io.Console;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -27,14 +26,14 @@ public class CommandLineInterface implements UserInterface {
     public void chooseGameConfiguration() {
         printWithoutLineBreak("Welcome, please choose your desired player configuration.\n" +
                 "1 : Human vs Human\n" +
-                "2 : Human vs Simple AI\n" +
-                "3 : Human vs Hard AI\n" +
-                "4 : Simple AI vs Hard AI\n" +
+                "2 : Human vs SimpleAI\n" +
+                "3 : Human vs HardAI\n" +
+                "4 : SimpleAI vs HardAI\n" +
                 "Configuration choice: ");
     }
 
     public void promptForBoardSize() {
-       printWithoutLineBreak("Please pick your board size: (3, 4) ");
+       printWithoutLineBreak("Please pick your board size (3, 4): ");
     }
 
     public void printWelcomeMessage(int boardSize) {
@@ -42,11 +41,7 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void chooseStartingPlayer(String player1, String player2) {
-        printWithoutLineBreak("Please choose the starting player: (1 for " + player1 + ", 2 for " + player2 + ") ");
-    }
-
-    public void printComputerThinking() {
-        printMessage("Computer is considering a move....");
+        printWithoutLineBreak("Please choose the starting player (1 for " + player1 + ", 2 for " + player2 + "): ");
     }
 
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
@@ -58,7 +53,8 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printChoice(PlayerInterface player, String choice) {
-        printMessage(player.getName() + " has chosen space " + choice);
+//        System.out.println();
+        printMessage(player.getName() + " has chosen space " + choice + ".");
     }
 
     public void printWinner(String gamePiece) {

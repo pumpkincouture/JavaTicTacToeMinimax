@@ -2,13 +2,13 @@ package Java_TTT;
 
 import java.util.*;
 
-public class AI extends Player implements PlayerInterface{
+public class HardAI extends Player implements PlayerInterface{
     private GameScorer gameScorer;
     private int choice;
     private Board board;
 
 
-    public AI(String gamePiece, Board board) {
+    public HardAI(String gamePiece, Board board) {
         super(gamePiece);
         this.board = board;
         gameScorer = new GameScorer(board);

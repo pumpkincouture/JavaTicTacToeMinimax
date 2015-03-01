@@ -2,18 +2,11 @@ package Java_TTT;
 
 import org.junit.Test;
 
-import java.io.PrintStream;
-import java.util.Scanner;
-
 import static org.junit.Assert.assertEquals;
 
-public class ComputerTest {
-    private Computer computerPlayerTest;
+public class SimpleAITest {
+    private SimpleAI computerPlayerTest;
     private Board board;
-    PrintStream output = new PrintStream(System.out);
-    Scanner input = new Scanner(System.in);
-    private MockUserInterface mockUi = new MockUserInterface(output, input);
-
 
     private void simulateFilledBoard() {
         fillBoard("4", "O");
@@ -46,14 +39,14 @@ public class ComputerTest {
     @Test
     public void getsGamePiece() {
         board = new Board(3);
-        computerPlayerTest = new Computer("Z", board);
+        computerPlayerTest = new SimpleAI("Z", board);
         assertEquals("Z", computerPlayerTest.getGamePiece());
     }
 
     @Test
     public void getOpenSpace() {
         board = new Board(3);
-        computerPlayerTest = new Computer("Z", board);
+        computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilledBoard();
         fillBoard("8", "X");
@@ -62,27 +55,23 @@ public class ComputerTest {
         fillBoard("5", "X");
 
         assertEquals("9", computerPlayerTest.getMove());
-        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
-
 
     @Test
     public void getOpenSpaceOn4x4Board() {
         board = new Board(4);
-        computerPlayerTest = new Computer("Z", board);
+        computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilled4x4Board();
         fillBoard("6", "O");
 
         assertEquals("1", computerPlayerTest.getMove());
-        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
-
 
     @Test
     public void getOpenSpaceScenarioTwo() {
         board = new Board(3);
-        computerPlayerTest = new Computer("Z", board);
+        computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilledBoard();
         fillBoard("8", "X");
@@ -91,18 +80,16 @@ public class ComputerTest {
         fillBoard("5", "X");
 
         assertEquals("6", computerPlayerTest.getMove());
-        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 
     @Test
     public void getOpenSpaceScenarioTwoOn4x4Board() {
         board = new Board(4);
-        computerPlayerTest = new Computer("Z", board);
+        computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilled4x4Board();
         fillBoard("1", "O");
 
         assertEquals("6", computerPlayerTest.getMove());
-        assertEquals(true, mockUi.isComputerThinkingCalled());
     }
 }

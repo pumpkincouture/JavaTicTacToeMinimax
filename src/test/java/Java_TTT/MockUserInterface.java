@@ -9,7 +9,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     private List<String> nextMoves = new LinkedList<String>();
     private boolean displayGameOptions = false;
-    private boolean displayComputerThinking = false;
     private boolean displayPlayersChoiceMessage = false;
     private boolean displayBoardSizePrompt = false;
     private boolean displayWelcomePromptCalled = false;
@@ -24,7 +23,8 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         super(out, in);
     }
 
-    public void addNextMove(String move) {nextMoves.add(move);
+    public void addNextMove(String move) {
+        nextMoves.add(move);
     }
 
     public String captureChoice() {
@@ -50,10 +50,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayPlayersChoiceMessage = true;
     }
 
-    public void printComputerThinking() {
-        displayComputerThinking = true;
-    }
-
     public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
         displayGamePieceAssignmentCalled = true;
     }
@@ -76,10 +72,6 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
 
     public boolean areGameConfigOptionsCalled() {
         return displayGameOptions;
-    }
-
-    public boolean isComputerThinkingCalled() {
-        return displayComputerThinking;
     }
 
     public boolean isBoardSizePromptCalled() {
