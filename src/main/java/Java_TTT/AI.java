@@ -31,7 +31,7 @@ public class AI extends Player implements PlayerInterface{
         List<Integer> moves = new ArrayList();
         int max;
         List<Integer> possibleMoves = new ArrayList();
-        if (isGameOver(board) || depth == 6) {
+        if (isGameOver(board) || depth == 9) {
             return getScores(board, depth);
         }
 

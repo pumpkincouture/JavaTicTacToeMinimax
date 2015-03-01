@@ -24,9 +24,14 @@ public class AIIntegrationTest {
         player2 = new AI("O", board, mockUi);
         gameScorer = new GameScorer(board);
         game = new Game(player1, player2, board, mockUi, gameScorer);
+        int gameCounter = 0;
 
+        for (int i = 0; i < 1000; i++) {
+            gameCounter +=1;
+            game.start();
+        }
 
-        game.start();
+        assertEquals(1000, gameCounter);
         assertEquals(false, gameScorer.isThereAWinner("X"));
         assertEquals(false, gameScorer.isThereAWinner("O"));
         assertEquals(true, gameScorer.isGameOver("X", "O"));

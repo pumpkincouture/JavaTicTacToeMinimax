@@ -216,6 +216,7 @@ public class AITest {
 
         assertEquals("13", aiComputerTest.getMove());
     }
+
     @Test
     public void getsMoveToBlockOn4x4Board() {
         board = new Board(4);
@@ -306,6 +307,21 @@ public class AITest {
 
         assertEquals("14", aiComputerTest.getMove());
     }
+
+    @Test
+    public void picksMoveAgainstOpponentOn4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+        fillBoard("7", "X");
+        fillBoard("1", "O");
+        fillBoard("11","X");
+
+        assertEquals("15", aiComputerTest.getMove());
+    }
+
 //
 //    @Test
 //    public void benchMarkTestFor4x4Board() {
