@@ -20,24 +20,28 @@ public class AI extends Player implements PlayerInterface{
         return this.getClass().getSimpleName();
     }
 
+    public int getChoice() {
+        return choice;
+    }
+
     public String getMove() {
         ui.printComputerThinking();
-        minimax(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE);
+        makeCalculation(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
         return convertChosenIndexToString(choice);
     }
 
-    private int minimax(Board board, int depth, String gamePiece, int minValue, int maxValue) {
+    public int makeCalculation(Board board, int depth, String gamePiece, int minValue, int maxValue, int endingDepth) {
         List<Integer> scores = new ArrayList();
         List<Integer> moves = new ArrayList();
         int max;
         List<Integer> possibleMoves = new ArrayList();
-        if (isGameOver(board) || depth == 9) {
+        if (isGameOver(board) || depth == endingDepth) {
             return getScores(board, depth);
         }
 
         for (Integer openSpace : board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(openSpace), gamePiece);
-            int score = (minimax(board, depth + 1, switchPlayers(board, gamePiece) , minValue, maxValue));
+            int score = (makeCalculation(board, depth + 1, switchPlayers(board, gamePiece), minValue, maxValue, endingDepth));
             scores.add(score);
             moves.add(openSpace);
             board.clearBoard(openSpace);

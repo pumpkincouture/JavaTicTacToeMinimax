@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class AITest {
     private AI aiComputerTest;
@@ -322,23 +323,136 @@ public class AITest {
         assertEquals("15", aiComputerTest.getMove());
     }
 
-//
-//    @Test
-//    public void benchMarkTestFor4x4Board() {
-//        board = new Board(4);
-//        aiComputerTest = new AI("O", board, mockUi);
-//        fillBoard("1", "X");
-//        fillBoard("3", "O");
-//        fillBoard("7", "O");
-//        fillBoard("9", "X");
-//        fillBoard("13", "X");
-//        fillBoard("15", "O");
-//        long start = System.nanoTime();
-////        long start = System.currentTimeMillis();
-//        aiComputerTest.getMove();
-//        long elapsedTime = System.nanoTime() - start;
-////        long elapsedTime = System.currentTimeMillis() - start;
-//        aiComputerTest.getMove();
-//        assertEquals(212, elapsedTime);
-//    }
+    @Test
+    public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioOne() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        fillBoard("1", "X");
+        fillBoard("2", "X");
+        fillBoard("5", "O");
+        fillBoard("3", "X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 6.");
+
+        assertEquals(3, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioTwo() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+        fillBoard("7", "X");
+        fillBoard("1", "O");
+        fillBoard("11","X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 6.");
+
+        assertEquals(14, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth6On3x3BoardReturnsCorrectMove() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+        fillBoard("7", "O");
+        fillBoard("5", "X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 6.");
+
+        assertEquals(8, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth6On3x3BoardReturnsMiddleSpace() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 6.");
+
+        assertEquals(4, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth5On4x4Board() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+        fillBoard("7", "X");
+        fillBoard("1", "O");
+        fillBoard("11","X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 5);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 5.");
+
+        assertEquals(14, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth5On3x3BoardDoesNotReturnMiddleSpace() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 5);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 5.");
+
+        assertNotEquals(4, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth4On4x4BoardGetsCorrectMove() {
+        board = new Board(4);
+        aiComputerTest = new AI("O", board, mockUi);
+
+        fillBoard("3", "X");
+        fillBoard("4", "O");
+        fillBoard("7", "X");
+        fillBoard("1", "O");
+        fillBoard("11","X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 4);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 4.");
+
+        assertEquals(14, aiComputerTest.getChoice());
+    }
+
+    @Test
+    public void benchmarkTestForDepth4On3x3BoardDoesNotReturnMiddleSpace() {
+        board = new Board(3);
+        aiComputerTest = new AI("O", board, mockUi);
+        fillBoard("1", "X");
+
+        long start = System.currentTimeMillis();
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 4);
+        long elapsedTime = System.currentTimeMillis() - start;
+        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 4.");
+
+        assertNotEquals(4, aiComputerTest.getChoice());
+    }
 }
