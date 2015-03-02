@@ -2,17 +2,15 @@ package Java_TTT;
 
 import java.util.*;
 
-public class AI extends Player implements PlayerInterface{
+public class HardAI extends Player implements PlayerInterface{
     private GameScorer gameScorer;
     private int choice;
     private Board board;
-    private CommandLineInterface ui;
 
 
-    public AI(String gamePiece, Board board, CommandLineInterface ui) {
+    public HardAI(String gamePiece, Board board) {
         super(gamePiece);
         this.board = board;
-        this.ui = ui;
         gameScorer = new GameScorer(board);
     }
 
@@ -20,33 +18,35 @@ public class AI extends Player implements PlayerInterface{
         return this.getClass().getSimpleName();
     }
 
+    public int getChoice() {
+        return choice;
+    }
+
     public String getMove() {
-        ui.printComputerThinking();
-        minimax(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE);
+        makeCalculation(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
         return convertChosenIndexToString(choice);
     }
 
-    private int minimax(Board board, int depth, String gamePiece, int minValue, int maxValue) {
-        List<Integer> scores = new ArrayList();
-        List<Integer> moves = new ArrayList();
-        List<Integer> possibleMoves = new ArrayList();
-        if (isGameOver(board) || depth == 6) {
+    public int makeCalculation(Board board, int depth, String gamePiece, int minValue, int maxValue, int endingDepth) {
+        ArrayList<Branch> movesList = new ArrayList();
+        int maxAmount = 0;
+
+        if (isGameOver(board) || depth == endingDepth) {
             return getScores(board, depth);
         }
 
-        for (Integer openSpace : board.getOpenSpaces()) {
-            board.placeMove(convertChosenIndexToString(openSpace), gamePiece);
-            int score = minimax(board, depth + 1,switchPlayers(board, gamePiece) , minValue, maxValue);
-            scores.add(score);
-            moves.add(openSpace);
-            board.clearBoard(openSpace);
+        for (Integer move : board.getOpenSpaces()) {
+            board.placeMove(convertChosenIndexToString(move), gamePiece);
+            int score = (makeCalculation(board, depth + 1, switchPlayers(board, gamePiece), minValue, maxValue, endingDepth));
+            Branch branch = new Branch(score, move);
+            board.clearBoard(move);
 
             if (gamePiece == this.getGamePiece()) {
-                int maxScoreIndex = maxIndex(scores);
-                possibleMoves.add(moves.get(maxScoreIndex));
-                if (score > minValue) minValue = score;
+                movesList.add(branch);
+                if (branch.getScore() > minValue) minValue = branch.getScore();
+
             } else {
-                if (score < maxValue) maxValue = score;
+                if (branch.getScore() < maxValue) maxValue = branch.getScore();
             }
 
             if (maxValue <= minValue) break;
@@ -54,24 +54,20 @@ public class AI extends Player implements PlayerInterface{
 
         if (gamePiece != this.getGamePiece()) {
             return maxValue;
+
         }
-        choice = Collections.max(possibleMoves);
+        choice = getBestBranch(movesList).getMove();
         return minValue;
     }
 
-    private static int getMaxValue(List<Integer> scoresList) {
-        return Collections.max(scoresList);
-    }
-
-    private static Integer maxIndex(List<Integer> list) {
-        List<Integer> index = new ArrayList();
-        int max =  getMaxValue(list);
-            for (int i = 0; i < list.size(); i++) {
-                if(list.get(i) == max) {
-                    index.add(i);
-                }
+    private Branch getBestBranch(ArrayList<Branch> movesList) {
+        Optional<Branch> branches = movesList.stream().max(new Comparator<Branch>() {
+            @Override
+            public int compare(Branch o1, Branch o2) {
+                return o1.getScore() - o2.getScore();
             }
-            return index.get(0);
+        });
+        return branches.get();
     }
 
     public int getScores(Board board, int depth) {

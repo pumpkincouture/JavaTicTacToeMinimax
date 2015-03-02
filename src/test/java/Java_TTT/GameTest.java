@@ -172,8 +172,6 @@ public class GameTest {
         assertEquals(true, mockUi.isWinnerStringCalled());
     }
 
-
-
     @Test
     public void testForCatsGameOn3x3Board() {
         board = new Board(3);

@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 public class GameConfigurationTest {
     private GameConfiguration gameConfigTest;
     private PrintStream output = new PrintStream(System.out);
-    private Board board = new Board(3);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
 
@@ -66,7 +64,7 @@ public class GameConfigurationTest {
         choosePlayerCombinations(mockUi.captureChoice());
 
         assertEquals("Human", gameConfigTest.getPlayer1().getName());
-        assertEquals("Computer",gameConfigTest.getPlayer2().getName());
+        assertEquals("SimpleAI",gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -79,7 +77,7 @@ public class GameConfigurationTest {
         choosePlayerCombinations(mockUi.captureChoice());
 
         assertEquals("Human", gameConfigTest.getPlayer1().getName());
-        assertEquals("AI", gameConfigTest.getPlayer2().getName());
+        assertEquals("HardAI", gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -91,8 +89,8 @@ public class GameConfigurationTest {
 
         choosePlayerCombinations(mockUi.captureChoice());
 
-        assertEquals("Computer", gameConfigTest.getPlayer1().getName());
-        assertEquals("AI", gameConfigTest.getPlayer2().getName());
+        assertEquals("SimpleAI", gameConfigTest.getPlayer1().getName());
+        assertEquals("HardAI", gameConfigTest.getPlayer2().getName());
         assertEquals("X", gameConfigTest.getPlayer1().getGamePiece());
         assertEquals("O", gameConfigTest.getPlayer2().getGamePiece());
     }
@@ -118,7 +116,7 @@ public class GameConfigurationTest {
         chooseStartingPlayer(mockUi.captureChoice());
 
         assertEquals("Human", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("SimpleAI", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test
@@ -128,7 +126,7 @@ public class GameConfigurationTest {
         choosePlayerCombinations("2");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("SimpleAI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
         assertEquals("Human", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
@@ -139,7 +137,7 @@ public class GameConfigurationTest {
         choosePlayerCombinations("3");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("AI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("HardAI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
         assertEquals("Human", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
@@ -150,8 +148,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("4");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("AI", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("SimpleAI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("HardAI", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test
@@ -161,8 +159,8 @@ public class GameConfigurationTest {
         choosePlayerCombinations("4");
         chooseStartingPlayer(mockUi.captureChoice());
 
-        assertEquals("AI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("Computer", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("HardAI", gameConfigTest.accessFirstAndSecondPlayers().get(0).getName());
+        assertEquals("SimpleAI", gameConfigTest.accessFirstAndSecondPlayers().get(1).getName());
     }
 
     @Test

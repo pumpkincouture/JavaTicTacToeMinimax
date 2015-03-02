@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="11" failures="0" name="Java_TTT.GameTest" time="0.019" errors="0" skipped="0">
+<testsuite tests="11" failures="0" name="Java_TTT.GameTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
@@ -61,15 +61,15 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="Java_TTT.GameTest" name="promptUntilMoveValidOn3x3Board" time="0.001"/>
-  <testcase classname="Java_TTT.GameTest" name="displayWelcomeMessage" time="0.001"/>
+  <testcase classname="Java_TTT.GameTest" name="promptUntilMoveValidOn3x3Board" time="0.005"/>
+  <testcase classname="Java_TTT.GameTest" name="displayWelcomeMessage" time="0"/>
   <testcase classname="Java_TTT.GameTest" name="testForCatsGameOn3x3Board" time="0"/>
   <testcase classname="Java_TTT.GameTest" name="testForWinnerScenarioTwo3x3" time="0"/>
   <testcase classname="Java_TTT.GameTest" name="promptUntilMoveValidOn4x4Board" time="0"/>
-  <testcase classname="Java_TTT.GameTest" name="getInitialBoardDisplay" time="0.001"/>
-  <testcase classname="Java_TTT.GameTest" name="testForWinnerOn3x3Board" time="0.002"/>
-  <testcase classname="Java_TTT.GameTest" name="switchPlayersAndTestIfPlayerWithOIsSetAsCurrentPlayer" time="0.014"/>
-  <testcase classname="Java_TTT.GameTest" name="check4x4BoardForCatsGameScenarioFour" time="0"/>
+  <testcase classname="Java_TTT.GameTest" name="getInitialBoardDisplay" time="0.002"/>
+  <testcase classname="Java_TTT.GameTest" name="testForWinnerOn3x3Board" time="0"/>
+  <testcase classname="Java_TTT.GameTest" name="switchPlayersAndTestIfPlayerWithOIsSetAsCurrentPlayer" time="0"/>
+  <testcase classname="Java_TTT.GameTest" name="check4x4BoardForCatsGameScenarioFour" time="0.001"/>
   <testcase classname="Java_TTT.GameTest" name="testForWinner" time="0"/>
   <testcase classname="Java_TTT.GameTest" name="testIfCurrentPlayerIsPlayerWithX" time="0"/>
 </testsuite>
