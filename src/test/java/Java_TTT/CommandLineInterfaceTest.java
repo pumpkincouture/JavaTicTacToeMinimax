@@ -1,5 +1,11 @@
 package Java_TTT;
 
+import Java_TTT.boards.Board;
+import Java_TTT.participants.GameParticipants;
+import Java_TTT.participants.Human;
+import Java_TTT.participants.SimpleAI;
+import Java_TTT.ui.CommandLineInterface;
+import Java_TTT.ui.UserInterface;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +20,8 @@ public class CommandLineInterfaceTest {
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1 = new Human("X", mockUi);
-    private PlayerInterface player2 = new SimpleAI("O", board);
+    private GameParticipants player1 = new Human("X", mockUi);
+    private GameParticipants player2 = new SimpleAI("O", board);
 
 
     private void fillBoard(String choice, String gamePiece) {

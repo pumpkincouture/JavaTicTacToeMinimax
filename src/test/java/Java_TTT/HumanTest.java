@@ -1,5 +1,6 @@
 package Java_TTT;
 
+import Java_TTT.participants.Human;
 import org.junit.Before;
 import org.junit.Test;
 

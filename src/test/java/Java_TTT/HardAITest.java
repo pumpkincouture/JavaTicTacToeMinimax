@@ -1,5 +1,10 @@
 package Java_TTT;
 
+import Java_TTT.boards.Board;
+import Java_TTT.participants.HardAI;
+import Java_TTT.rules.BoardRules;
+import Java_TTT.rules.FourByFourBoardRules;
+import Java_TTT.rules.ThreeByThreeBoardRules;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -7,6 +12,7 @@ import static org.junit.Assert.assertNotEquals;
 public class HardAITest {
     private HardAI aiComputerTest;
     private Board board;
+    private BoardRules boardRules;
 
     private void fillBoard(String choice, String gamePiece) {
         board.placeMove(choice, gamePiece);
@@ -15,7 +21,8 @@ public class HardAITest {
     @Test
     public void returnsBlockIfCompCannotWinInNextMove() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("4", "O");
@@ -30,7 +37,8 @@ public class HardAITest {
     @Test
     public void returnsWinForItselfRatherThanBlockingOpponentFromWinning() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("3", "O");
         fillBoard("5", "O");
@@ -45,7 +53,8 @@ public class HardAITest {
     @Test
     public void returnsWinForItself() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "O");
@@ -60,7 +69,8 @@ public class HardAITest {
     @Test
     public void returnsWinningMoveIfFiveSpacesLeft() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "O");
         fillBoard("4", "X");
@@ -72,7 +82,8 @@ public class HardAITest {
     @Test
     public void returnsWinningMoveAndBlocksOpponent() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "O");
         fillBoard("3", "X");
         fillBoard("4", "X");
@@ -86,7 +97,8 @@ public class HardAITest {
     @Test
     public void returnsWinningSpotWhenThereAreSixSpotsOnTheBoard() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "O");
         fillBoard("3", "O");
         fillBoard("5", "X");
@@ -97,7 +109,8 @@ public class HardAITest {
     @Test
     public void returnsBestMoveAfterOpponentPlacesFirstMove() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
 
         assertEquals("5", aiComputerTest.getMove());
@@ -106,7 +119,8 @@ public class HardAITest {
     @Test
     public void returnsBlockingMove() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("7", "O");
         fillBoard("5", "X");
@@ -117,7 +131,8 @@ public class HardAITest {
     @Test
     public void returnsBlockForOpponent() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("9", "X");
         fillBoard("1", "O");
         fillBoard("8", "X");
@@ -128,7 +143,8 @@ public class HardAITest {
     @Test
     public void picksASpaceIfBoardEmpty() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         assertEquals("1", aiComputerTest.getMove());
     }
@@ -136,7 +152,8 @@ public class HardAITest {
     @Test
     public void AIWinsIfBoardHasThreeInARow() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "O");
         fillBoard("2", "O");
         fillBoard("3", "O");
@@ -148,7 +165,8 @@ public class HardAITest {
     @Test
     public void testForCatsGame() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         assertEquals(0, aiComputerTest.getScores(board, 0));
     }
@@ -157,7 +175,8 @@ public class HardAITest {
     @Test
     public void XWinsIfBoardHasThreeInARow() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "X");
@@ -169,7 +188,8 @@ public class HardAITest {
     @Test
     public void XWinsIfBoardHas4InARow() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "X");
@@ -181,7 +201,8 @@ public class HardAITest {
     @Test
     public void OWinsIfBoardHas4InARow() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("2", "O");
         fillBoard("6", "O");
         fillBoard("10", "O");
@@ -193,7 +214,8 @@ public class HardAITest {
     @Test
     public void picksFirstMoveOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         assertEquals("1", aiComputerTest.getMove());
     }
@@ -201,7 +223,8 @@ public class HardAITest {
     @Test
     public void picksThirdMoveOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "O");
         fillBoard("5", "X");
@@ -214,7 +237,8 @@ public class HardAITest {
     @Test
     public void getsMoveToBlockOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("5", "O");
@@ -226,7 +250,8 @@ public class HardAITest {
     @Test
     public void picksWinningMoveOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("6", "X");
         fillBoard("11", "O");
@@ -245,7 +270,8 @@ public class HardAITest {
     @Test
     public void makesMoveToWinInNextMoveOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "X");
@@ -261,7 +287,8 @@ public class HardAITest {
     @Test
     public void blocksOpponentWinOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "X");
@@ -277,7 +304,8 @@ public class HardAITest {
     @Test
     public void makesMoveOn4x4BoardToWin() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("3", "O");
         fillBoard("7", "O");
@@ -291,7 +319,8 @@ public class HardAITest {
     @Test
     public void returnsWinForItselfOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         fillBoard("1", "O");
         fillBoard("2", "O");
@@ -305,7 +334,8 @@ public class HardAITest {
     @Test
     public void picksMoveAgainstOpponentOn4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         fillBoard("3", "X");
         fillBoard("4", "O");
@@ -319,7 +349,8 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioOne() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         fillBoard("1", "X");
         fillBoard("2", "X");
@@ -329,7 +360,7 @@ public class HardAITest {
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 6.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 6.");
 
         assertEquals(3, aiComputerTest.getChoice());
     }
@@ -337,7 +368,8 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioTwo() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         fillBoard("3", "X");
         fillBoard("4", "O");
@@ -348,7 +380,7 @@ public class HardAITest {
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 6.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 6.");
 
         assertEquals(14, aiComputerTest.getChoice());
     }
@@ -356,7 +388,8 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On3x3BoardReturnsCorrectMove() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
         fillBoard("7", "O");
         fillBoard("5", "X");
@@ -364,7 +397,7 @@ public class HardAITest {
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 6.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 6.");
 
         assertEquals(8, aiComputerTest.getChoice());
     }
@@ -372,13 +405,14 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On3x3BoardReturnsMiddleSpace() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 6.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 6.");
 
         assertEquals(4, aiComputerTest.getChoice());
     }
@@ -386,7 +420,8 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth5On4x4Board() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         fillBoard("3", "X");
         fillBoard("4", "O");
@@ -397,7 +432,7 @@ public class HardAITest {
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 5);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 5.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 5.");
 
         assertEquals(14, aiComputerTest.getChoice());
     }
@@ -405,13 +440,14 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth5On3x3BoardDoesNotReturnMiddleSpace() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 5);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 5.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 5.");
 
         assertNotEquals(4, aiComputerTest.getChoice());
     }
@@ -419,7 +455,8 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth4On4x4BoardGetsCorrectMove() {
         board = new Board(4);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new FourByFourBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
 
         fillBoard("3", "X");
         fillBoard("4", "O");
@@ -430,7 +467,7 @@ public class HardAITest {
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 4);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 4x4 to get correct move, stopping at depth 4.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 4.");
 
         assertEquals(14, aiComputerTest.getChoice());
     }
@@ -438,13 +475,14 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth4On3x3BoardDoesNotReturnMiddleSpace() {
         board = new Board(3);
-        aiComputerTest = new HardAI("O", board);
+        boardRules = new ThreeByThreeBoardRules(board);
+        aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 4);
         long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for computer on 3x3 to get move, stopping at depth 4.");
+        System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 4.");
 
         assertNotEquals(4, aiComputerTest.getChoice());
     }

@@ -1,5 +1,12 @@
 package Java_TTT;
 
+import Java_TTT.boards.Board;
+import Java_TTT.games.Game;
+import Java_TTT.participants.GameParticipants;
+import Java_TTT.participants.Human;
+import Java_TTT.rules.BoardRules;
+import Java_TTT.rules.FourByFourBoardRules;
+import Java_TTT.rules.ThreeByThreeBoardRules;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -14,9 +21,9 @@ public class GameTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1 = new Human("X", mockUi);
-    private PlayerInterface player2 = new Human("O", mockUi);
-    private GameScorer gameScorer;
+    private GameParticipants player1 = new Human("X", mockUi);
+    private GameParticipants player2 = new Human("O", mockUi);
+    private BoardRules boardRules;
 
     private void fillBoard(String choice, String gamePiece) {
         board.placeMove(choice, gamePiece);
@@ -33,7 +40,7 @@ public class GameTest {
         return Integer.parseInt(answer);
     }
 
-    private void setCurrentPlayer(PlayerInterface player) {
+    private void setCurrentPlayer(GameParticipants player) {
         gameTest.setCurrentPlayer(player);
     }
 
@@ -48,8 +55,8 @@ public class GameTest {
     @Test
     public void displayWelcomeMessage() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         gameTest.printIntro();
         assertEquals(true, mockUi.isWelcomeMessageCalled());
         assertEquals(true, mockUi.isGamePieceMessageCalled());
@@ -58,8 +65,8 @@ public class GameTest {
     @Test
     public void getInitialBoardDisplay() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.printBoard(board);
         assertEquals(true, mockUi.isDisplayBoardCalled());
     }
@@ -67,8 +74,8 @@ public class GameTest {
     @Test
     public void promptUntilMoveValidOn3x3Board() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("PPP");
         mockUi.addNextMove("hehhghntnt");
         mockUi.addNextMove("3");
@@ -85,8 +92,8 @@ public class GameTest {
     @Test
     public void promptUntilMoveValidOn4x4Board() {
         board = new Board(4);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new FourByFourBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("hhhhhhhhh");
         mockUi.addNextMove("ACDC");
         mockUi.addNextMove("15");
@@ -103,8 +110,8 @@ public class GameTest {
     @Test
     public void testIfCurrentPlayerIsPlayerWithX() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         setCurrentPlayer(player1);
 
         assertEquals("X", gameTest.getCurrentPlayer().getGamePiece());
@@ -113,8 +120,8 @@ public class GameTest {
     @Test
     public void switchPlayersAndTestIfPlayerWithOIsSetAsCurrentPlayer() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         setCurrentPlayer(player1);
         switchPlayers();
 
@@ -124,8 +131,8 @@ public class GameTest {
     @Test
     public void testForWinnerOn3x3Board() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("1");
         mockUi.addNextMove("2");
         mockUi.addNextMove("3");
@@ -134,31 +141,31 @@ public class GameTest {
             fillBoard(mockUi.captureChoice(), player2.getGamePiece());
         }
 
-        gameTest.printGameWinner(gameScorer.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
+        gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(true, mockUi.isWinnerStringCalled());
     }
 
     @Test
     public void testForWinnerScenarioTwo3x3() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         fillBoard("1", "X");
         fillBoard("2", "O");
         fillBoard("3", "O");
         fillBoard("5", "O");
         fillBoard("7", "X");
 
-        gameTest.printGameWinner(gameScorer.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
+        gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(false, mockUi.isWinnerStringCalled());
     }
 
 
     @Test
     public void testForWinner() {
-        board = new Board(4);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        board = new Board(3);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("1");
         mockUi.addNextMove("2");
         mockUi.addNextMove("3");
@@ -168,15 +175,15 @@ public class GameTest {
             fillBoard(mockUi.captureChoice(), player2.getGamePiece());
         }
 
-        gameTest.printGameWinner(gameScorer.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
+        gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(true, mockUi.isWinnerStringCalled());
     }
 
     @Test
     public void testForCatsGameOn3x3Board() {
         board = new Board(3);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "O");
@@ -188,15 +195,15 @@ public class GameTest {
         fillBoard("9", "O");
 
 
-        gameTest.printGameWinner(gameScorer.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
+        gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(true, mockUi.isCatsGameCalled());
     }
 
     @Test
     public void check4x4BoardForCatsGameScenarioFour() {
         board = new Board(4);
-        gameScorer = new GameScorer(board);
-        gameTest = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new FourByFourBoardRules(board);
+        gameTest = new Game(player1, player2, board, mockUi, boardRules);
         fillBoard("1", "X");
         fillBoard("2", "X");
         fillBoard("3", "O");
@@ -214,7 +221,7 @@ public class GameTest {
         fillBoard("15", "O");
         fillBoard("16", "O");
 
-        gameTest.printGameWinner(gameScorer.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
+        gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(true, mockUi.isCatsGameCalled());
     }
 }

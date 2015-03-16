@@ -1,5 +1,7 @@
 package Java_TTT;
 
+import Java_TTT.participants.GameParticipants;
+import Java_TTT.participants.Human;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,7 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 
 public class PlayerTest {
-    private PlayerInterface testPlayer;
+    private GameParticipants testPlayer;
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);

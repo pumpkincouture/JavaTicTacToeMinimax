@@ -1,7 +1,6 @@
 package Java_TTT;
 
-import java.io.*;
-import java.util.Scanner;
+import Java_TTT.games.setup.SetUpGame;
 
 public class GameRunner {
 

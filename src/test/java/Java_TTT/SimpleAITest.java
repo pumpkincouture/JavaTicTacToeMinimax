@@ -1,5 +1,7 @@
 package Java_TTT;
 
+import Java_TTT.boards.Board;
+import Java_TTT.participants.SimpleAI;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

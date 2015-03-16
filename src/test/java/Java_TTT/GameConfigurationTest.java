@@ -1,5 +1,6 @@
 package Java_TTT;
 
+import Java_TTT.games.setup.GameConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 

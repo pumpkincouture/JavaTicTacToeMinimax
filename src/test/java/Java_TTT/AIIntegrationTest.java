@@ -1,5 +1,12 @@
 package Java_TTT;
 
+import Java_TTT.boards.Board;
+import Java_TTT.games.Game;
+import Java_TTT.participants.GameParticipants;
+import Java_TTT.participants.HardAI;
+import Java_TTT.rules.BoardRules;
+import Java_TTT.rules.FourByFourBoardRules;
+import Java_TTT.rules.ThreeByThreeBoardRules;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -12,18 +19,18 @@ public class AIIntegrationTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private PlayerInterface player1;
-    private PlayerInterface player2;
-    private GameScorer gameScorer;
+    private GameParticipants player1;
+    private GameParticipants player2;
+    private BoardRules boardRules;
     private Game game;
 
     @Test
     public void gameWithTwoAIsFor4x4Board() {
         board = new Board(4);
-        player1 = new HardAI("X", board);
-        player2 = new HardAI("O", board);
-        gameScorer = new GameScorer(board);
-        game = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new FourByFourBoardRules(board);
+        player1 = new HardAI("X", boardRules, board);
+        player2 = new HardAI("O", boardRules, board);
+        game = new Game(player1, player2, board, mockUi, boardRules);
         int gameCounter = 0;
 
         for (int i = 0; i < 1000; i++) {
@@ -32,18 +39,18 @@ public class AIIntegrationTest {
         }
 
         assertEquals(1000, gameCounter);
-        assertEquals(false, gameScorer.isThereAWinner("X"));
-        assertEquals(false, gameScorer.isThereAWinner("O"));
-        assertEquals(true, gameScorer.isGameOver("X", "O"));
+        assertEquals(false, boardRules.isThereAWinner("X"));
+        assertEquals(false, boardRules.isThereAWinner("O"));
+        assertEquals(true, boardRules.isGameOver("X", "O"));
     }
 
     @Test
     public void gameWithTwoAIsFor3x3Board() {
         board = new Board(3);
-        player1 = new HardAI("X", board);
-        player2 = new HardAI("O", board);
-        gameScorer = new GameScorer(board);
-        game = new Game(player1, player2, board, mockUi, gameScorer);
+        boardRules = new ThreeByThreeBoardRules(board);
+        player1 = new HardAI("X", boardRules, board);
+        player2 = new HardAI("O", boardRules, board);
+        game = new Game(player1, player2, board, mockUi, boardRules);
         int gameCounter = 0;
 
         for (int i = 0; i < 1000; i++) {
@@ -52,8 +59,8 @@ public class AIIntegrationTest {
         }
 
         assertEquals(1000, gameCounter);
-        assertEquals(false, gameScorer.isThereAWinner("X"));
-        assertEquals(false, gameScorer.isThereAWinner("O"));
-        assertEquals(true, gameScorer.isGameOver("X", "O"));
+        assertEquals(false, boardRules.isThereAWinner("X"));
+        assertEquals(false, boardRules.isThereAWinner("O"));
+        assertEquals(true, boardRules.isGameOver("X", "O"));
     }
 }
