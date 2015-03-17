@@ -6,6 +6,9 @@ import Java_TTT.rules.TTTBoardRules;
 import Java_TTT.rules.ThreeByThreeBoardRules;
 import Java_TTT.ui.CommandLineInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoardSetUp implements Configurable {
     private CommandLineInterface ui;
     private TTTBoardRules boardRules;
@@ -17,9 +20,17 @@ public class BoardSetUp implements Configurable {
     }
 
     @Override
-    public void getConfiguration() {
+    public void getConfigurationChoice() {
         ui.promptForBoardSize();
         validateBoardSizeChoice(ui.captureChoice());
+    }
+
+    @Override
+    public List<Object> getDesiredGameOptions() {
+        List<Object> boardOptions = new ArrayList<>();
+        boardOptions.add(getBoardRules());
+        boardOptions.add(getBoard());
+        return boardOptions;
     }
 
     public void validateBoardSizeChoice(String boardSizeChoice) {

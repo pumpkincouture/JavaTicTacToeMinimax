@@ -1,7 +1,6 @@
 package Java_TTT.games.setup;
 
 import Java_TTT.ui.MockUserInterface;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -15,17 +14,13 @@ public class BoardSetUpTest {
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUI = new MockUserInterface(output, input);
 
-    @Before
-    public void setUp() {
-        boardConfigurationTest = new BoardSetUp(mockUI);
-    }
-
     private void chooseBoardSize(String boardSizeChoice) {
         boardConfigurationTest.validateBoardSizeChoice(boardSizeChoice);
     }
 
     @Test
     public void validateBoardSizeUntilChoiceIs3() {
+        boardConfigurationTest = new BoardSetUp(mockUI);
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");
         mockUI.addNextMove("3");
@@ -41,6 +36,7 @@ public class BoardSetUpTest {
 
     @Test
     public void validateBoardSizeUntilChoiceIs4() {
+        boardConfigurationTest = new BoardSetUp(mockUI);
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");
         mockUI.addNextMove("4");
@@ -52,5 +48,19 @@ public class BoardSetUpTest {
         assertEquals(4, boardConfigurationTest.getBoardSize());
         assertEquals("FourByFourBoardRules", boardConfigurationTest.getBoardRules().getClass().getSimpleName());
         assertEquals(16, boardConfigurationTest.getBoard().getLength());
+    }
+
+    @Test
+    public void getBoardOptionsList() {
+        Configurable boardConfig = new BoardSetUp(mockUI);
+
+        mockUI.addNextMove("2");
+        mockUI.addNextMove("p");
+        mockUI.addNextMove("4");
+
+        boardConfig.getConfigurationChoice();
+
+        assertEquals("FourByFourBoardRules", boardConfig.getDesiredGameOptions().get(0).getClass().getSimpleName());
+        assertEquals("Board", boardConfig.getDesiredGameOptions().get(1).getClass().getSimpleName());
     }
 }

@@ -17,7 +17,7 @@ public class ParticipantSetUp implements Configurable {
     private GameParticipants player2;
     private Board board;
     private TTTBoardRules boardRules;
-    private List<GameParticipants> positionsOfPlayers;
+    private List<Object> positionsOfPlayers;
 
     public ParticipantSetUp(CommandLineInterface ui, TTTBoardRules boardRules, Board board) {
         this.ui = ui;
@@ -26,11 +26,16 @@ public class ParticipantSetUp implements Configurable {
     }
 
     @Override
-    public void getConfiguration() {
+    public void getConfigurationChoice() {
         ui.chooseGameConfiguration();
         validatePlayerConfiguration(ui.captureChoice());
         ui.chooseStartingPlayer(player1.getName(), player2.getName());
         validateStartingPlayer(ui.captureChoice());
+    }
+
+    @Override
+    public List<Object> getDesiredGameOptions() {
+        return accessFirstAndSecondPlayers();
     }
 
     public void validatePlayerConfiguration(String gameConfigurationChoice) {
@@ -60,7 +65,7 @@ public class ParticipantSetUp implements Configurable {
 
     public void validateStartingPlayer(String startingPlayerChoice) {
         String capitalizedChoice = startingPlayerChoice.toUpperCase();
-        List<GameParticipants> playerPositions = new ArrayList<>();
+        List<Object> playerPositions = new ArrayList<>();
 
         switch (capitalizedChoice) {
             case "1":
@@ -88,7 +93,7 @@ public class ParticipantSetUp implements Configurable {
         return player2;
     }
 
-    public List<GameParticipants> accessFirstAndSecondPlayers() {
+    public List<Object> accessFirstAndSecondPlayers() {
         return positionsOfPlayers;
     }
 }

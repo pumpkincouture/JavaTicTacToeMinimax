@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class ParticipantChoiceConfigurationTest {
+public class ParticipantSetUpTest {
     private ParticipantSetUp playerConfigurationTest;
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
@@ -132,8 +132,8 @@ public class ParticipantChoiceConfigurationTest {
         choosePlayerCombinations("2");
         chooseStartingPlayer(mockUI.captureChoice());
 
-        assertEquals("Human", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("Human", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getClass().getSimpleName());
+        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getClass().getSimpleName());
     }
 
     @Test
@@ -146,8 +146,8 @@ public class ParticipantChoiceConfigurationTest {
         choosePlayerCombinations("2");
         chooseStartingPlayer(mockUI.captureChoice());
 
-        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("Human", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getClass().getSimpleName());
+        assertEquals("Human", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getClass().getSimpleName());
     }
 
     @Test
@@ -160,8 +160,8 @@ public class ParticipantChoiceConfigurationTest {
         choosePlayerCombinations("3");
         chooseStartingPlayer(mockUI.captureChoice());
 
-        assertEquals("HardAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("Human", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("HardAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getClass().getSimpleName());
+        assertEquals("Human", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getClass().getSimpleName());
     }
 
     @Test
@@ -174,8 +174,8 @@ public class ParticipantChoiceConfigurationTest {
         choosePlayerCombinations("4");
         chooseStartingPlayer(mockUI.captureChoice());
 
-        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("HardAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getClass().getSimpleName());
+        assertEquals("HardAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getClass().getSimpleName());
     }
 
     @Test
@@ -188,8 +188,23 @@ public class ParticipantChoiceConfigurationTest {
         choosePlayerCombinations("4");
         chooseStartingPlayer(mockUI.captureChoice());
 
-        assertEquals("HardAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getName());
-        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getName());
+        assertEquals("HardAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(0).getClass().getSimpleName());
+        assertEquals("SimpleAI", playerConfigurationTest.accessFirstAndSecondPlayers().get(1).getClass().getSimpleName());
+    }
+
+    @Test
+    public void geParticipantOptionsList() {
+        Board board = new Board(4);
+        TTTBoardRules boardRules = new FourByFourBoardRules(board);
+        Configurable participantConfig = new ParticipantSetUp(mockUI, boardRules, board);
+
+        mockUI.addNextMove("4");
+        mockUI.addNextMove("1");
+
+        participantConfig.getConfigurationChoice();
+
+        assertEquals("SimpleAI", participantConfig.getDesiredGameOptions().get(0).getClass().getSimpleName());
+        assertEquals("HardAI", participantConfig.getDesiredGameOptions().get(1).getClass().getSimpleName());
     }
 
 }
