@@ -2,10 +2,10 @@ package Java_TTT.games.setup;
 
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.HardAI;
-import Java_TTT.participants.Human;
-import Java_TTT.participants.SimpleAI;
-import Java_TTT.rules.BoardRules;
+import Java_TTT.participants.ai.HardAI;
+import Java_TTT.participants.human.Human;
+import Java_TTT.participants.ai.SimpleAI;
+import Java_TTT.rules.TTTBoardRules;
 import Java_TTT.rules.FourByFourBoardRules;
 import Java_TTT.rules.ThreeByThreeBoardRules;
 import Java_TTT.ui.CommandLineInterface;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GameConfiguration {
     private CommandLineInterface ui;
-    private BoardRules boardRules;
+    private TTTBoardRules boardRules;
     private Board board;
     private GameParticipants player1;
     private GameParticipants player2;
@@ -39,7 +39,7 @@ public class GameConfiguration {
         return board;
     }
 
-    public BoardRules getBoardRules() {
+    public TTTBoardRules getBoardRules() {
         return boardRules;
     }
 
@@ -55,7 +55,7 @@ public class GameConfiguration {
         ui.promptForBoardSize();
         validateBoardSizeChoice(ui.captureChoice());
         ui.chooseGameConfiguration();
-        validateGameConfiguration(ui.captureChoice());
+        validatePlayerConfiguration(ui.captureChoice());
         ui.chooseStartingPlayer(player1.getName(), player2.getName());
         validateStartingPlayer(ui.captureChoice());
     }
@@ -79,8 +79,7 @@ public class GameConfiguration {
         }
     }
 
-    public void validateGameConfiguration(String gameConfigurationChoice) {
-        board = new Board(boardSize);
+    public void validatePlayerConfiguration(String gameConfigurationChoice) {
         switch(gameConfigurationChoice) {
             case "1":
                 player1 = new Human("X", ui);
@@ -101,7 +100,7 @@ public class GameConfiguration {
             default:
                 ui.printError(gameConfigurationChoice);
                 ui.chooseGameConfiguration();
-                validateGameConfiguration(ui.captureChoice());
+                validatePlayerConfiguration(ui.captureChoice());
         }
     }
 

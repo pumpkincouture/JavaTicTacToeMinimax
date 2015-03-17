@@ -42,7 +42,7 @@ public class Board {
 
     public String[] placeMove(String answer, String gamePiece) {
         findCorrectArraySpace(answer, gamePiece);
-       return boardCells;
+        return boardCells;
     }
 
     public void clearBoard(int index) {

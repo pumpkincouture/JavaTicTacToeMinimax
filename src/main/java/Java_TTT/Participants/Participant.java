@@ -1,6 +1,6 @@
 package Java_TTT.participants;
 
-abstract class Participant {
+public abstract class Participant {
 
     private String gamePiece;
 

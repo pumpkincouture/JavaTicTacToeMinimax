@@ -2,7 +2,7 @@ package Java_TTT.games;
 
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.BoardRules;
+import Java_TTT.rules.TTTBoardRules;
 import Java_TTT.ui.CommandLineInterface;
 
 public class Game {
@@ -10,10 +10,10 @@ public class Game {
     private GameParticipants player2;
     private Board board;
     private CommandLineInterface userinterface;
-    private BoardRules boardRules;
+    private TTTBoardRules boardRules;
     private GameParticipants currentPlayer;
 
-    public Game(GameParticipants player1, GameParticipants player2, Board board, CommandLineInterface userinterface, BoardRules boardRules) {
+    public Game(GameParticipants player1, GameParticipants player2, Board board, CommandLineInterface userinterface, TTTBoardRules boardRules) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;

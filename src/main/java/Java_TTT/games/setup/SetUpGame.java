@@ -2,9 +2,8 @@ package Java_TTT.games.setup;
 
 import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
-import Java_TTT.games.setup.GameConfiguration;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.BoardRules;
+import Java_TTT.rules.TTTBoardRules;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
 
@@ -16,7 +15,7 @@ public class SetUpGame {
     private Scanner input;
     private UserInterface ui;
     private Board board;
-    private BoardRules boardRules;
+    private TTTBoardRules boardRules;
     private GameConfiguration gameOptions;
     private GameParticipants player1;
     private GameParticipants player2;

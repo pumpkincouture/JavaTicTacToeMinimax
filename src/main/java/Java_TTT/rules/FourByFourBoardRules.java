@@ -4,7 +4,7 @@ import Java_TTT.boards.Board;
 
 import java.util.ArrayList;
 
-public class FourByFourBoardRules implements BoardRules {
+public class FourByFourBoardRules implements TTTBoardRules {
     private Board board;
 
     public FourByFourBoardRules(Board board) {

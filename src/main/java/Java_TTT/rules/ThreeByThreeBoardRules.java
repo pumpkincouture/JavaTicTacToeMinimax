@@ -4,7 +4,7 @@ import Java_TTT.boards.Board;
 
 import java.util.ArrayList;
 
-public class ThreeByThreeBoardRules implements BoardRules {
+public class ThreeByThreeBoardRules implements TTTBoardRules {
     private Board board;
 
     public ThreeByThreeBoardRules(Board board) {
@@ -40,7 +40,6 @@ public class ThreeByThreeBoardRules implements BoardRules {
     }
 
     public ArrayList<ArrayList<String>> getMatrix() {
-        System.out.println(board.getCells());
         ArrayList<ArrayList<String>> boardMatrix = new ArrayList();
             boardMatrix.add(getColumn1());
             boardMatrix.add(getColumn2());
