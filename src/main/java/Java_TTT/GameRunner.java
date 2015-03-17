@@ -1,11 +1,10 @@
 package Java_TTT;
 
-import Java_TTT.games.setup.SetUpGame;
+import Java_TTT.games.setup.SetUpTicTacToeGame;
 
 public class GameRunner {
 
     public static void main(String[] args) {
-        SetUpGame setup = new SetUpGame();
-        setup.startGame();
+        SetUpTicTacToeGame setup = new SetUpTicTacToeGame();
     }
 }

@@ -1,4 +1,4 @@
-package Java_TTT.participants;
+package Java_TTT.participants.ai;
 
 public class Branch {
     private final int score;

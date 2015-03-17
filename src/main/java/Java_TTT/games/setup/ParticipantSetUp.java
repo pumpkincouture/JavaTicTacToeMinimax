@@ -3,80 +3,34 @@ package Java_TTT.games.setup;
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.ai.HardAI;
-import Java_TTT.participants.human.Human;
 import Java_TTT.participants.ai.SimpleAI;
+import Java_TTT.participants.human.Human;
 import Java_TTT.rules.TTTBoardRules;
-import Java_TTT.rules.FourByFourBoardRules;
-import Java_TTT.rules.ThreeByThreeBoardRules;
 import Java_TTT.ui.CommandLineInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameConfiguration {
+public class ParticipantSetUp implements Configurable {
     private CommandLineInterface ui;
-    private TTTBoardRules boardRules;
-    private Board board;
     private GameParticipants player1;
     private GameParticipants player2;
+    private Board board;
+    private TTTBoardRules boardRules;
     private List<GameParticipants> positionsOfPlayers;
-    private int boardSize;
 
-
-    public GameConfiguration(CommandLineInterface ui) {
+    public ParticipantSetUp(CommandLineInterface ui, TTTBoardRules boardRules, Board board) {
         this.ui = ui;
+        this.boardRules = boardRules;
+        this.board = board;
     }
 
-    public GameParticipants getPlayer1() {
-        return player1;
-    }
-
-    public GameParticipants getPlayer2() {
-        return player2;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public TTTBoardRules getBoardRules() {
-        return boardRules;
-    }
-
-    public List<GameParticipants> accessFirstAndSecondPlayers() {
-        return positionsOfPlayers;
-    }
-
-    public int getBoardSize() {
-        return boardSize;
-    }
-
-    public void getGameConfigurationChoice() {
-        ui.promptForBoardSize();
-        validateBoardSizeChoice(ui.captureChoice());
+    @Override
+    public void getConfiguration() {
         ui.chooseGameConfiguration();
         validatePlayerConfiguration(ui.captureChoice());
         ui.chooseStartingPlayer(player1.getName(), player2.getName());
         validateStartingPlayer(ui.captureChoice());
-    }
-
-    public void validateBoardSizeChoice(String boardSizeChoice) {
-        switch(boardSizeChoice) {
-            case "3":
-                boardSize = convertAnswerToInteger(boardSizeChoice);
-                board = new Board(boardSize);
-                boardRules = new ThreeByThreeBoardRules(board);
-                break;
-            case "4":
-                boardSize = convertAnswerToInteger(boardSizeChoice);
-                board = new Board(boardSize);
-                boardRules = new FourByFourBoardRules(board);
-                break;
-            default:
-                ui.printError(boardSizeChoice);
-                ui.promptForBoardSize();
-                validateBoardSizeChoice(ui.captureChoice());
-        }
     }
 
     public void validatePlayerConfiguration(String gameConfigurationChoice) {
@@ -126,7 +80,15 @@ public class GameConfiguration {
         }
     }
 
-    private int convertAnswerToInteger(String answer) {
-        return Integer.parseInt(answer);
+    public GameParticipants getPlayer1() {
+        return player1;
+    }
+
+    public GameParticipants getPlayer2() {
+        return player2;
+    }
+
+    public List<GameParticipants> accessFirstAndSecondPlayers() {
+        return positionsOfPlayers;
     }
 }
