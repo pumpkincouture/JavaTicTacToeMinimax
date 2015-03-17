@@ -65,8 +65,8 @@ public class CommandLineInterfaceTest {
     public void printChooseStartingPlayerPrompt() {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
-        ui.chooseStartingPlayer("Computer", "Human");
-        assertEquals("Please choose the starting player (1 for Computer, 2 for Human): ", printedToScreen.toString());
+        ui.chooseStartingPlayer(2);
+        assertEquals("Please choose the starting player (1 for Human, 2 for SimpleAI):", printedToScreen.toString());
     }
 
     @Test

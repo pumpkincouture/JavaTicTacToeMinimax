@@ -2,8 +2,6 @@ package Java_TTT.ui;
 
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.ui.CommandLineInterface;
-import Java_TTT.ui.UserInterface;
 
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -44,7 +42,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayWelcomePromptCalled = true;
     }
 
-    public void chooseStartingPlayer(String player1, String player2) {
+    public void chooseStartingPlayer(int playerConfigChoice) {
         displayChooseStartingPlayerCalled = true;
     }
 

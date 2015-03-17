@@ -1,19 +1,10 @@
 package Java_TTT.games.setup;
 
-import Java_TTT.boards.Board;
-import Java_TTT.rules.FourByFourBoardRules;
-import Java_TTT.rules.TTTBoardRules;
-import Java_TTT.rules.ThreeByThreeBoardRules;
 import Java_TTT.ui.CommandLineInterface;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BoardSetUp implements Configurable {
     private CommandLineInterface ui;
-    private TTTBoardRules boardRules;
-    private Board board;
-    private int boardSize;
+    private int boardChoice;
 
     public BoardSetUp(CommandLineInterface ui) {
         this.ui = ui;
@@ -26,24 +17,17 @@ public class BoardSetUp implements Configurable {
     }
 
     @Override
-    public List<Object> getDesiredGameOptions() {
-        List<Object> boardOptions = new ArrayList<>();
-        boardOptions.add(getBoardRules());
-        boardOptions.add(getBoard());
-        return boardOptions;
+    public int getDesiredGameOptions() {
+        return boardChoice;
     }
 
     public void validateBoardSizeChoice(String boardSizeChoice) {
         switch(boardSizeChoice) {
             case "3":
-                boardSize = convertAnswerToInteger(boardSizeChoice);
-                board = new Board(boardSize);
-                boardRules = new ThreeByThreeBoardRules(board);
+                boardChoice = convertAnswerToInteger(boardSizeChoice);
                 break;
             case "4":
-                boardSize = convertAnswerToInteger(boardSizeChoice);
-                board = new Board(boardSize);
-                boardRules = new FourByFourBoardRules(board);
+                boardChoice = convertAnswerToInteger(boardSizeChoice);
                 break;
             default:
                 ui.printError(boardSizeChoice);
@@ -54,17 +38,5 @@ public class BoardSetUp implements Configurable {
 
     private int convertAnswerToInteger(String answer) {
         return Integer.parseInt(answer);
-    }
-
-    public int getBoardSize() {
-        return boardSize;
-    }
-
-    public TTTBoardRules getBoardRules() {
-        return boardRules;
-    }
-
-    public Board getBoard() {
-        return board;
     }
 }

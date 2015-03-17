@@ -43,8 +43,22 @@ public class CommandLineInterface implements UserInterface {
         printMessage("Welcome to Tic Tac Toe! The first player to get " + boardSize + " in a row wins!");
     }
 
-    public void chooseStartingPlayer(String player1, String player2) {
-        printWithoutLineBreak("Please choose the starting player (1 for " + player1 + ", 2 for " + player2 + "): ");
+    public void chooseStartingPlayer(int playerConfigChoice) {
+        switch (playerConfigChoice) {
+            case 1:
+                printWithoutLineBreak("Please choose the starting player (1 for Human, 2 for Human):");
+                break;
+            case 2:
+                printWithoutLineBreak("Please choose the starting player (1 for Human, 2 for SimpleAI):");
+                break;
+            case 3:
+                printWithoutLineBreak("Please choose the starting player (1 for Human, 2 for HardAI):");
+                break;
+            case 4:
+                printWithoutLineBreak("Please choose the starting player (1 for SimpleAI, 2 for HardAI):");
+                break;
+        }
+
     }
 
     public void printGamePieceAssignment(GameParticipants player1, GameParticipants player2) {
@@ -56,7 +70,6 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printChoice(GameParticipants player, String choice) {
-//        System.out.println();
         printMessage(player.getName() + " has chosen space " + choice + ".");
     }
 

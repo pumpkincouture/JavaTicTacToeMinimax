@@ -1,12 +1,6 @@
 package Java_TTT;
 
-import Java_TTT.boards.Board;
-import Java_TTT.games.setup.BoardSetUp;
-import Java_TTT.games.setup.Configurable;
-import Java_TTT.games.setup.ParticipantSetUp;
-import Java_TTT.games.setup.SetUpTicTacToeGame;
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.TTTBoardRules;
+import Java_TTT.games.setup.*;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
 
@@ -21,27 +15,22 @@ public class GameRunner {
         PrintStream output = new PrintStream(System.out);
         Scanner input = new Scanner(System.in);
         UserInterface ui = new CommandLineInterface(output, input);
-        List<Configurable> gameOptions= new ArrayList<>();
-        TTTBoardRules boardRules;
-        Board board;
-        GameParticipants player1;
-        GameParticipants player2;
+        List<Integer> userChoices= new ArrayList<>();
 
         Configurable boardConfig = new BoardSetUp((CommandLineInterface) ui);
-        gameOptions.add(boardConfig);
+        Configurable playerConfig = new ParticipantSetUp((CommandLineInterface) ui);
+        boardConfig.getConfigurationChoice();
+        playerConfig.getConfigurationChoice();
+        int playerChoice = playerConfig.getDesiredGameOptions();
+        Configurable orderConfig = new ParticipantOrderSetUp((CommandLineInterface) ui, playerChoice);
+        orderConfig.getConfigurationChoice();
 
+        userChoices.add(boardConfig.getDesiredGameOptions());
+        userChoices.add(playerConfig.getDesiredGameOptions());
+        userChoices.add(orderConfig.getDesiredGameOptions());
 
-        SetUpTicTacToeGame setup = new SetUpTicTacToeGame();
-        setup.setUpGame(gameOptions);
-
-//        boardConfig.getConfigurationChoice();
-//        boardRules = (TTTBoardRules) boardConfig.getDesiredGameOptions().get(0);
-//        board = (Board) boardConfig.getDesiredGameOptions().get(1);
-//        Configurable participantConfig = new ParticipantSetUp((CommandLineInterface) ui, boardRules, board);
-//        participantConfig.getConfigurationChoice();
-//        player1 = (GameParticipants) participantConfig.getDesiredGameOptions().get(0);
-//        player2 = (GameParticipants) participantConfig.getDesiredGameOptions().get(1);
-
+        SetUpTicTacToeGame setup = new SetUpTicTacToeGame(userChoices);
+        setup.setUpGame();
 
     }
 }
