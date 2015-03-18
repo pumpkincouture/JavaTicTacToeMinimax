@@ -3,7 +3,7 @@ package Java_TTT.boards;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TTTBoard {
+public class TTTBoard implements BoardInterface {
 
     private String[] boardCells;
 

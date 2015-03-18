@@ -1,5 +1,6 @@
 package Java_TTT.ui;
 
+import Java_TTT.boards.BoardInterface;
 import Java_TTT.boards.TTTBoard;
 import Java_TTT.participants.GameParticipants;
 
@@ -21,7 +22,7 @@ public interface UserInterface {
 
     public void printGamePieceAssignment(GameParticipants player1, GameParticipants player2);
 
-    public void printBoard(TTTBoard board);
+    public void printBoard(BoardInterface board);
 
     public void printError(String choice);
 
