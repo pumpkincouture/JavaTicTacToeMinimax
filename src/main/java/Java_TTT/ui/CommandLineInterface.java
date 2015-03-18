@@ -1,6 +1,6 @@
 package Java_TTT.ui;
 
-import Java_TTT.boards.Board;
+import Java_TTT.boards.TTTBoard;
 import Java_TTT.participants.GameParticipants;
 
 import java.io.PrintStream;
@@ -85,7 +85,7 @@ public class CommandLineInterface implements UserInterface {
         printMessage(choice + " is not available, please try again.");
     }
 
-    public void printBoard(Board board) {
+    public void printBoard(TTTBoard board) {
         int boardSquareRoot = board.getCellsSquareRoot(board.getLength());
         int boardLength = board.getLength();
         String boardToDisplay = boardRows(boardSquareRoot);

@@ -1,13 +1,13 @@
 package Java_TTT.rules;
 
-import Java_TTT.boards.Board;
+import Java_TTT.boards.TTTBoard;
 
 import java.util.ArrayList;
 
 public class FourByFourBoardRules implements TTTBoardRules {
-    private Board board;
+    private TTTBoard board;
 
-    public FourByFourBoardRules(Board board) {
+    public FourByFourBoardRules(TTTBoard board) {
         this.board = board;
     }
 

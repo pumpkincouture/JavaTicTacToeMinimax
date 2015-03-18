@@ -2,9 +2,13 @@ package Java_TTT.games.setup;
 
 import Java_TTT.ui.CommandLineInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParticipantSetUp implements Configurable {
     private CommandLineInterface ui;
     private int playerOption;
+    private ChoiceValidator choiceValidator;
 
     public ParticipantSetUp(CommandLineInterface ui) {
         this.ui = ui;
@@ -14,6 +18,7 @@ public class ParticipantSetUp implements Configurable {
     public void getConfigurationChoice() {
         ui.chooseGameConfiguration();
         validatePlayerConfiguration(ui.captureChoice());
+        ui.chooseStartingPlayer(playerOption);
     }
 
     @Override
@@ -21,28 +26,28 @@ public class ParticipantSetUp implements Configurable {
         return playerOption;
     }
 
+    public List<String> addValidChoices() {
+        List<String> validChoices = new ArrayList<>();
+        validChoices.add("1");
+        validChoices.add("2");
+        validChoices.add("3");
+        validChoices.add("4");
+        return validChoices;
+    }
+
     public void validatePlayerConfiguration(String gameConfigurationChoice) {
-        switch(gameConfigurationChoice) {
-            case "1":
-                playerOption = convertAnswerToInteger(gameConfigurationChoice);
-                break;
-            case "2":
-                playerOption = convertAnswerToInteger(gameConfigurationChoice);
-                break;
-            case "3":
-                playerOption = convertAnswerToInteger(gameConfigurationChoice);
-                break;
-            case "4":
-                playerOption = convertAnswerToInteger(gameConfigurationChoice);
-                break;
-            default:
-                ui.printError(gameConfigurationChoice);
-                ui.chooseGameConfiguration();
-                validatePlayerConfiguration(ui.captureChoice());
+        choiceValidator = new ChoiceValidator();
+
+        if (choiceValidator.validUserChoice(gameConfigurationChoice, addValidChoices()) == 0) {
+            getPlayerOption(gameConfigurationChoice);
+        } else {
+            playerOption = choiceValidator.validUserChoice(gameConfigurationChoice, addValidChoices());
         }
     }
 
-    private int convertAnswerToInteger(String answer) {
-        return Integer.parseInt(answer);
+    public void getPlayerOption(String gameConfigurationChoice) {
+        ui.printError(gameConfigurationChoice);
+        ui.chooseGameConfiguration();
+        validatePlayerConfiguration(ui.captureChoice());
     }
 }

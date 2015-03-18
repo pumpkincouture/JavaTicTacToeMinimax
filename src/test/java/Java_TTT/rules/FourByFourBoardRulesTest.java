@@ -1,14 +1,12 @@
 package Java_TTT.rules;
-import Java_TTT.boards.Board;
-import Java_TTT.rules.TTTBoardRules;
-import Java_TTT.rules.FourByFourBoardRules;
+import Java_TTT.boards.TTTBoard;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class FourByFourBoardRulesTest {
     private TTTBoardRules boardRules;
-    private Board board;
+    private TTTBoard board;
 
     private void simulateFilled4x4Board() {
         fillBoard("16", "O");
@@ -35,7 +33,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkEntire4x4BoardForWinWithO() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         simulateFilled4x4Board();
 
@@ -45,7 +43,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkEntire4x4BoardForWinWithX() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         simulateFilled4x4Board();
 
@@ -54,7 +52,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void check4x4BoardForWinInScenarioTwo() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("3", "X");
         fillBoard("7", "X");
@@ -67,7 +65,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void check4x4BoardForWinScenarioThree() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("4", "O");
         fillBoard("7", "O");
@@ -81,7 +79,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void check4x4BoardForCatsGameScenarioFour() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("1", "X");
         fillBoard("2", "X");
@@ -106,7 +104,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInDiagonalTwoOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("4", "O");
         fillBoard("7", "O");
@@ -118,7 +116,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInColumnTwoOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("2", "O");
         fillBoard("6", "O");
@@ -130,7 +128,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInColumnThreeOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("3", "O");
         fillBoard("7", "O");
@@ -142,7 +140,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInColumnFourOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("4", "O");
         fillBoard("8", "O");
@@ -154,7 +152,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfGameOverOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         simulateFilled4x4Board();
 
@@ -163,7 +161,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInRowThreeOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("9", "O");
         fillBoard("10", "O");
@@ -175,7 +173,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInRowFourOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("13", "O");
         fillBoard("14", "O");
@@ -187,7 +185,7 @@ public class FourByFourBoardRulesTest {
 
     @Test
     public void checkIfOWonInColumnOneOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         fillBoard("1", "O");
         fillBoard("5", "O");

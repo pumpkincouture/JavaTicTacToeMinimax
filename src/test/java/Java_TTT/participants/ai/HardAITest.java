@@ -1,7 +1,6 @@
 package Java_TTT.participants.ai;
 
-import Java_TTT.boards.Board;
-import Java_TTT.participants.ai.HardAI;
+import Java_TTT.boards.TTTBoard;
 import Java_TTT.rules.TTTBoardRules;
 import Java_TTT.rules.FourByFourBoardRules;
 import Java_TTT.rules.ThreeByThreeBoardRules;
@@ -11,7 +10,7 @@ import static org.junit.Assert.assertNotEquals;
 
 public class HardAITest {
     private HardAI aiComputerTest;
-    private Board board;
+    private TTTBoard board;
     private TTTBoardRules boardRules;
 
     private void fillBoard(String choice, String gamePiece) {
@@ -20,7 +19,7 @@ public class HardAITest {
 
     @Test
     public void returnsBlockIfCompCannotWinInNextMove() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -36,7 +35,7 @@ public class HardAITest {
 
     @Test
     public void returnsWinForItselfRatherThanBlockingOpponentFromWinning() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -52,7 +51,7 @@ public class HardAITest {
 
     @Test
     public void returnsWinForItself() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -68,7 +67,7 @@ public class HardAITest {
 
     @Test
     public void returnsWinningMoveIfFiveSpacesLeft() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -81,7 +80,7 @@ public class HardAITest {
 
     @Test
     public void returnsWinningMoveAndBlocksOpponent() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "O");
@@ -96,7 +95,7 @@ public class HardAITest {
 
     @Test
     public void returnsWinningSpotWhenThereAreSixSpotsOnTheBoard() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "O");
@@ -108,7 +107,7 @@ public class HardAITest {
 
     @Test
     public void returnsBestMoveAfterOpponentPlacesFirstMove() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -118,7 +117,7 @@ public class HardAITest {
 
     @Test
     public void returnsBlockingMove() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -130,7 +129,7 @@ public class HardAITest {
 
     @Test
     public void returnsBlockForOpponent() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("9", "X");
@@ -142,7 +141,7 @@ public class HardAITest {
 
     @Test
     public void picksASpaceIfBoardEmpty() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -151,7 +150,7 @@ public class HardAITest {
 
     @Test
     public void AIWinsIfBoardHasThreeInARow() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "O");
@@ -164,7 +163,7 @@ public class HardAITest {
 
     @Test
     public void testForCatsGame() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -174,7 +173,7 @@ public class HardAITest {
 
     @Test
     public void XWinsIfBoardHasThreeInARow() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -187,7 +186,7 @@ public class HardAITest {
 
     @Test
     public void XWinsIfBoardHas4InARow() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -200,7 +199,7 @@ public class HardAITest {
 
     @Test
     public void OWinsIfBoardHas4InARow() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("2", "O");
@@ -213,7 +212,7 @@ public class HardAITest {
 
     @Test
     public void picksFirstMoveOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -222,7 +221,7 @@ public class HardAITest {
 
     @Test
     public void picksThirdMoveOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -236,7 +235,7 @@ public class HardAITest {
 
     @Test
     public void getsMoveToBlockOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -249,7 +248,7 @@ public class HardAITest {
 
     @Test
     public void picksWinningMoveOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -269,7 +268,7 @@ public class HardAITest {
 
     @Test
     public void makesMoveToWinInNextMoveOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -286,7 +285,7 @@ public class HardAITest {
 
     @Test
     public void blocksOpponentWinOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -303,7 +302,7 @@ public class HardAITest {
 
     @Test
     public void makesMoveOn4x4BoardToWin() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -318,7 +317,7 @@ public class HardAITest {
 
     @Test
     public void returnsWinForItselfOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -333,7 +332,7 @@ public class HardAITest {
 
     @Test
     public void picksMoveAgainstOpponentOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -348,7 +347,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioOne() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -367,7 +366,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioTwo() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -387,7 +386,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth6On3x3BoardReturnsCorrectMove() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -404,7 +403,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth6On3x3BoardReturnsMiddleSpace() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -419,7 +418,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth5On4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -439,7 +438,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth5On3x3BoardDoesNotReturnMiddleSpace() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");
@@ -454,7 +453,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth4On4x4BoardGetsCorrectMove() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
@@ -474,7 +473,7 @@ public class HardAITest {
 
     @Test
     public void benchmarkTestForDepth4On3x3BoardDoesNotReturnMiddleSpace() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         fillBoard("1", "X");

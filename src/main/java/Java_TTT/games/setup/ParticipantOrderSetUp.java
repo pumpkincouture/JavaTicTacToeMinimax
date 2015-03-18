@@ -2,19 +2,20 @@ package Java_TTT.games.setup;
 
 import Java_TTT.ui.CommandLineInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParticipantOrderSetUp implements Configurable {
     private CommandLineInterface ui;
-    private int playerConfigChoice;
     private int playerOrder;
+    private ChoiceValidator choiceValidator;
 
-    public ParticipantOrderSetUp(CommandLineInterface ui, int playerConfigChoice) {
+    public ParticipantOrderSetUp(CommandLineInterface ui) {
         this.ui = ui;
-        this.playerConfigChoice = playerConfigChoice;
     }
 
     @Override
     public void getConfigurationChoice() {
-        ui.chooseStartingPlayer(playerConfigChoice);
         validateStartingPlayer(ui.captureChoice());
     }
 
@@ -23,22 +24,25 @@ public class ParticipantOrderSetUp implements Configurable {
         return playerOrder;
     }
 
+    public List<String> addValidChoices() {
+        List<String> validChoices = new ArrayList<>();
+        validChoices.add("1");
+        validChoices.add("2");
+        return validChoices;
+    }
     public void validateStartingPlayer(String startingPlayerChoice) {
-        switch (startingPlayerChoice) {
-            case "1":
-                playerOrder = convertAnswerToInteger(startingPlayerChoice);
-                break;
-            case "2":
-                playerOrder = convertAnswerToInteger(startingPlayerChoice);
-                break;
-            default:
-                ui.printError(startingPlayerChoice);
-                ui.chooseStartingPlayer(playerConfigChoice);
-                validateStartingPlayer(ui.captureChoice());
+        choiceValidator = new ChoiceValidator();
+
+        if (choiceValidator.validUserChoice(startingPlayerChoice, addValidChoices()) == 0) {
+            getOrderOption(startingPlayerChoice);
+        } else {
+            playerOrder = choiceValidator.validUserChoice(startingPlayerChoice, addValidChoices());
         }
     }
 
-    private int convertAnswerToInteger(String answer) {
-        return Integer.parseInt(answer);
+    public void getOrderOption(String startingPlayerChoice) {
+        ui.printError(startingPlayerChoice);
+        validateStartingPlayer(ui.captureChoice());
     }
+
 }

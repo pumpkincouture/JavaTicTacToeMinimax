@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class BoardSetUpTest {
+public class TTTBoardSetUpTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUI = new MockUserInterface(output, input);
 
     @Test
     public void validateBoardSizeUntilChoiceIs3() {
-        Configurable boardConfig = new BoardSetUp(mockUI);
+        Configurable boardConfig = new TTTBoardSetUp(mockUI);
 
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");
@@ -30,7 +30,7 @@ public class BoardSetUpTest {
 
     @Test
     public void validateBoardSizeUntilChoiceIs4() {
-        Configurable boardConfig = new BoardSetUp(mockUI);
+        Configurable boardConfig = new TTTBoardSetUp(mockUI);
 
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");
@@ -45,7 +45,7 @@ public class BoardSetUpTest {
 
     @Test
     public void getBoardChoice() {
-        Configurable boardConfig = new BoardSetUp(mockUI);
+        Configurable boardConfig = new TTTBoardSetUp(mockUI);
 
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");

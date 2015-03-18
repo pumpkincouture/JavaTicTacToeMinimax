@@ -1,14 +1,13 @@
 package Java_TTT.participants.ai;
 
-import Java_TTT.boards.Board;
-import Java_TTT.participants.ai.SimpleAI;
+import Java_TTT.boards.TTTBoard;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class SimpleAITest {
     private SimpleAI computerPlayerTest;
-    private Board board;
+    private TTTBoard board;
 
     private void simulateFilledBoard() {
         fillBoard("4", "O");
@@ -40,14 +39,14 @@ public class SimpleAITest {
 
     @Test
     public void getsGamePiece() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         computerPlayerTest = new SimpleAI("Z", board);
         assertEquals("Z", computerPlayerTest.getGamePiece());
     }
 
     @Test
     public void getOpenSpace() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilledBoard();
@@ -61,7 +60,7 @@ public class SimpleAITest {
 
     @Test
     public void getOpenSpaceOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilled4x4Board();
@@ -72,7 +71,7 @@ public class SimpleAITest {
 
     @Test
     public void getOpenSpaceScenarioTwo() {
-        board = new Board(3);
+        board = new TTTBoard(3);
         computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilledBoard();
@@ -86,7 +85,7 @@ public class SimpleAITest {
 
     @Test
     public void getOpenSpaceScenarioTwoOn4x4Board() {
-        board = new Board(4);
+        board = new TTTBoard(4);
         computerPlayerTest = new SimpleAI("Z", board);
 
         simulateFilled4x4Board();

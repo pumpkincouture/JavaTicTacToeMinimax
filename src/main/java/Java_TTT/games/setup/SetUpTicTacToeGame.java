@@ -1,6 +1,6 @@
 package Java_TTT.games.setup;
 
-import Java_TTT.boards.Board;
+import Java_TTT.boards.TTTBoard;
 import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.ai.HardAI;
@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class SetUpTicTacToeGame {
     private List<Integer> userChoices;
-    private Board board;
+    private TTTBoard board;
     private GameParticipants player1;
     private GameParticipants player2;
     private PrintStream output;
@@ -40,7 +40,6 @@ public class SetUpTicTacToeGame {
         getGame();
     }
 
-
     public void setUpCommandLine() {
         output = new PrintStream(System.out);
         input = new Scanner(System.in);
@@ -48,8 +47,11 @@ public class SetUpTicTacToeGame {
     }
 
     public void setUpBoard() {
-        board = new Board(userChoices.get(0));
+        board = new TTTBoard(userChoices.get(0));
+    }
 
+    public TTTBoard getBoard() {
+        return board;
     }
 
     public void setUpRules() {
@@ -60,6 +62,10 @@ public class SetUpTicTacToeGame {
             case 4:
                 boardRules = new FourByFourBoardRules(board);
         }
+    }
+
+    public TTTBoardRules getBoardRules() {
+        return boardRules;
     }
 
     public void setUpPlayers() {
@@ -91,6 +97,14 @@ public class SetUpTicTacToeGame {
                 player2 = switchedPlayer;
                 break;
         }
+    }
+
+    public GameParticipants getPlayerOne() {
+        return player1;
+    }
+
+    public GameParticipants getPlayerTwo() {
+        return player2;
     }
 
     public void getGame() {

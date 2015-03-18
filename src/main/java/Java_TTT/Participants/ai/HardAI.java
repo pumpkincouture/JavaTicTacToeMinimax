@@ -1,6 +1,6 @@
 package Java_TTT.participants.ai;
 
-import Java_TTT.boards.Board;
+import Java_TTT.boards.TTTBoard;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
 import Java_TTT.rules.TTTBoardRules;
@@ -10,10 +10,10 @@ import java.util.*;
 public class HardAI extends Participant implements GameParticipants {
     private TTTBoardRules boardRules;
     private int choice;
-    private Board board;
+    private TTTBoard board;
 
 
-    public HardAI(String gamePiece, TTTBoardRules boardRules, Board board) {
+    public HardAI(String gamePiece, TTTBoardRules boardRules, TTTBoard board) {
         super(gamePiece);
         this.boardRules = boardRules;
         this.board = board;
@@ -32,7 +32,7 @@ public class HardAI extends Participant implements GameParticipants {
         return convertChosenIndexToString(choice);
     }
 
-    public int makeCalculation(Board board, int depth, String gamePiece, int minValue, int maxValue, int endingDepth) {
+    public int makeCalculation(TTTBoard board, int depth, String gamePiece, int minValue, int maxValue, int endingDepth) {
         ArrayList<Branch> movesList = new ArrayList();
 
         if (isGameOver(board) || depth == endingDepth) {
@@ -74,7 +74,7 @@ public class HardAI extends Participant implements GameParticipants {
         return branches.get();
     }
 
-    public int getScores(Board board, int depth) {
+    public int getScores(TTTBoard board, int depth) {
         if (isComputerWinner(board)) {
             return 10 - depth;
         } else if (isOpponentWinner(board)) {
@@ -83,7 +83,7 @@ public class HardAI extends Participant implements GameParticipants {
         return 0;
     }
 
-    private boolean isOpponentWinner(Board board) {
+    private boolean isOpponentWinner(TTTBoard board) {
         if (getGameWinner(board) == "") {
             return false;
         } else if (getGameWinner(board) != this.getGamePiece()) {
@@ -92,19 +92,19 @@ public class HardAI extends Participant implements GameParticipants {
         return false;
     }
 
-    private boolean isComputerWinner(Board board) {
+    private boolean isComputerWinner(TTTBoard board) {
         return getGameWinner(board) == this.getGamePiece();
     }
 
-    private boolean isGameOver(Board board) {
+    private boolean isGameOver(TTTBoard board) {
         return boardRules.isGameOver(board.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
     }
 
-    private String switchPlayers(Board board, String gamePiece) {
+    private String switchPlayers(TTTBoard board, String gamePiece) {
         return gamePiece == this.getGamePiece() ? board.getOpponentPiece(gamePiece) : this.getGamePiece();
     }
 
-    private String getGameWinner(Board board) {
+    private String getGameWinner(TTTBoard board) {
         return boardRules.getWinningPlayer(board.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
     }
 

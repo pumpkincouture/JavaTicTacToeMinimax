@@ -15,22 +15,20 @@ public class GameRunner {
         PrintStream output = new PrintStream(System.out);
         Scanner input = new Scanner(System.in);
         UserInterface ui = new CommandLineInterface(output, input);
-        List<Integer> userChoices= new ArrayList<>();
+        List<Configurable> userChoices= new ArrayList<>();
 
-        Configurable boardConfig = new BoardSetUp((CommandLineInterface) ui);
+        Configurable boardConfig = new TTTBoardSetUp((CommandLineInterface) ui);
         Configurable playerConfig = new ParticipantSetUp((CommandLineInterface) ui);
-        boardConfig.getConfigurationChoice();
-        playerConfig.getConfigurationChoice();
-        int playerChoice = playerConfig.getDesiredGameOptions();
-        Configurable orderConfig = new ParticipantOrderSetUp((CommandLineInterface) ui, playerChoice);
-        orderConfig.getConfigurationChoice();
+        Configurable orderConfig = new ParticipantOrderSetUp((CommandLineInterface) ui);
 
-        userChoices.add(boardConfig.getDesiredGameOptions());
-        userChoices.add(playerConfig.getDesiredGameOptions());
-        userChoices.add(orderConfig.getDesiredGameOptions());
+        userChoices.add(boardConfig);
+        userChoices.add(playerConfig);
+        userChoices.add(orderConfig);
 
-        SetUpTicTacToeGame setup = new SetUpTicTacToeGame(userChoices);
+        InputCollector inputCollector = new InputCollector();
+        inputCollector.collectUserInput(userChoices);
+
+        SetUpTicTacToeGame setup = new SetUpTicTacToeGame(inputCollector.getUserValues());
         setup.setUpGame();
-
     }
 }

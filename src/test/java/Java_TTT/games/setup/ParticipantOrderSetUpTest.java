@@ -15,7 +15,7 @@ public class ParticipantOrderSetUpTest {
 
     @Test
     public void validateStartingPlayerChoice() {
-        Configurable playerOrderConfig = new ParticipantOrderSetUp(mockUI, 4);
+        Configurable playerOrderConfig = new ParticipantOrderSetUp(mockUI);
 
         mockUI.addNextMove("ppp");
         mockUI.addNextMove("2");

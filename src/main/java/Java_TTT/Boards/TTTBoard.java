@@ -3,11 +3,11 @@ package Java_TTT.boards;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Board {
+public class TTTBoard {
 
     private String[] boardCells;
 
-    public Board(int boardSizeChoice) {
+    public TTTBoard(int boardSizeChoice) {
         boardCells = new String[createBoard(boardSizeChoice)];
         fillArray();
     }

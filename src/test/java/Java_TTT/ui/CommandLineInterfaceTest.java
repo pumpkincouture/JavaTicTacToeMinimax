@@ -1,6 +1,6 @@
 package Java_TTT.ui;
 
-import Java_TTT.boards.Board;
+import Java_TTT.boards.TTTBoard;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.human.Human;
 import Java_TTT.participants.ai.SimpleAI;
@@ -15,7 +15,7 @@ public class CommandLineInterfaceTest {
     private ByteArrayOutputStream printedToScreen = new ByteArrayOutputStream();
     private UserInterface ui;
     private Scanner input = new Scanner("3");
-    private Board board;
+    private TTTBoard board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
     private GameParticipants player1 = new Human("X", mockUi);
@@ -35,7 +35,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printBoardChoicePrompt() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.promptForBoardSize();
         assertEquals("Please pick your board size (3, 4): ", printedToScreen.toString());
     }
@@ -43,7 +43,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printOptionsForPlayerConfiguration() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.chooseGameConfiguration();
         assertEquals("Welcome, please choose your desired player configuration.\n" +
                 "1 : Human vs Human\n" +
@@ -56,7 +56,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printWelcomeMessageTest() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printWelcomeMessage(3);
         assertEquals("Welcome to Tic Tac Toe! The first player to get 3 in a row wins!\n", printedToScreen.toString());
     }
@@ -64,7 +64,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printChooseStartingPlayerPrompt() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.chooseStartingPlayer(2);
         assertEquals("Please choose the starting player (1 for Human, 2 for SimpleAI):", printedToScreen.toString());
     }
@@ -72,7 +72,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printGamePieceAssignmentTest() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printGamePieceAssignment(player1, player2);
         assertEquals("Human will have the X piece and SimpleAI will have the O piece. X will start. Please indicate your chosen space with a number.\n", printedToScreen.toString());
     }
@@ -80,7 +80,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void getChosenInputMove() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         scannerInput("4\n");
         ui.captureChoice();
         assertEquals(scannerInput("4\n"), "4");
@@ -89,7 +89,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printMessageAfterUserChoseAMove() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printChoice(player1, "3");
         assertEquals("Human has chosen space 3.\n", printedToScreen.toString());
     }
@@ -97,7 +97,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printWinnerMessage() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printWinner("O");
         assertEquals("O wins!\n", printedToScreen.toString());
     }
@@ -105,7 +105,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printCatsGameMessage() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printCatsGame();
         assertEquals("Cat's game!\n", printedToScreen.toString());
     }
@@ -113,7 +113,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printErrorMessage() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printError("hhhhhh");
         assertEquals("hhhhhh is not available, please try again.\n", printedToScreen.toString());
     }
@@ -121,7 +121,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printEmpty3x3Board() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         ui.printBoard(board);
         assertEquals("\n" +
                      "------------\n" +
@@ -137,7 +137,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printEmpty4x4Board() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(4);
+        this.board = new TTTBoard(4);
         ui.printBoard(board);
         assertEquals("\n" +
                      "----------------\n" +
@@ -155,7 +155,7 @@ public class CommandLineInterfaceTest {
     @Test
     public void printBoardWithSomeInputs() {
         this.ui = new CommandLineInterface(output, input);
-        this.board = new Board(3);
+        this.board = new TTTBoard(3);
         fillBoard("1", "O");
         fillBoard("2", "X");
         fillBoard("3", "X");
