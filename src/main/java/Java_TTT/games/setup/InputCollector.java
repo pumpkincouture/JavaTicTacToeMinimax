@@ -7,9 +7,9 @@ public class InputCollector {
     private List<Integer> gameValues = new ArrayList<>();
 
     public void collectUserInput(List<Configurable> gameOptions) {
-        for (int i = 0; i < gameOptions.size(); i++) {
-            gameOptions.get(i).getConfigurationChoice();
-            gameValues.add(gameOptions.get(i).getDesiredGameOptions());
+        for (Configurable configurable : gameOptions) {
+            configurable.getConfigurationChoice();
+            gameValues.add(configurable.getDesiredGameOptions());
         }
     }
 

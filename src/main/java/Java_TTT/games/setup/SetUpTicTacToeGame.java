@@ -85,7 +85,7 @@ public class SetUpTicTacToeGame {
                 break;
             case 4:
                 player1 = new SimpleAI("O", board);
-                player2 = new HardAI("O", boardRules, board);
+                player2 = new HardAI("X", boardRules, board);
                 break;
         }
     }
@@ -109,7 +109,7 @@ public class SetUpTicTacToeGame {
     }
 
     public void getGame() {
-        game = new Game(player1, player2, board, (CommandLineInterface) ui, boardRules);
+        game = new Game(player1, player2, board, ui, boardRules);
         game.start();
     }
 }

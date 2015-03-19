@@ -28,20 +28,20 @@ public class HardAI extends Participant implements GameParticipants {
     }
 
     public String getMove() {
-        makeCalculation(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        makeCalculation(this.board, 0, this.getGamePiece(), Integer.MIN_VALUE, Integer.MAX_VALUE);
         return convertChosenIndexToString(choice);
     }
 
-    public int makeCalculation(BoardInterface board, int depth, String gamePiece, int minValue, int maxValue, int endingDepth) {
+    public int makeCalculation(BoardInterface board, int depth, String gamePiece, int minValue, int maxValue) {
         ArrayList<Branch> movesList = new ArrayList();
 
-        if (isGameOver(board) || depth == endingDepth) {
+        if (isGameOver(board) || depth == 6) {
             return getScores(board, depth);
         }
 
         for (Integer move : board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(move), gamePiece);
-            int score = (makeCalculation(board, depth + 1, switchPlayers(board, gamePiece), minValue, maxValue, endingDepth));
+            int score = (makeCalculation(board, depth + 1, switchPlayers(board, gamePiece), minValue, maxValue));
             Branch branch = new Branch(score, move);
             board.clearBoard(move);
 

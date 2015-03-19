@@ -3,17 +3,17 @@ package Java_TTT.games;
 import Java_TTT.boards.BoardInterface;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.rules.TTTBoardRules;
-import Java_TTT.ui.CommandLineInterface;
+import Java_TTT.ui.UserInterface;
 
 public class Game {
     private GameParticipants player1;
     private GameParticipants player2;
     private BoardInterface board;
-    private CommandLineInterface userinterface;
+    private UserInterface userinterface;
     private TTTBoardRules boardRules;
     private GameParticipants currentPlayer;
 
-    public Game(GameParticipants player1, GameParticipants player2, BoardInterface board, CommandLineInterface userinterface, TTTBoardRules boardRules) {
+    public Game(GameParticipants player1, GameParticipants player2, BoardInterface board, UserInterface userinterface, TTTBoardRules boardRules) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;

@@ -357,7 +357,7 @@ public class HardAITest {
         fillBoard("3", "X");
 
         long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
         long elapsedTime = System.currentTimeMillis() - start;
         System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 6.");
 
@@ -377,7 +377,7 @@ public class HardAITest {
         fillBoard("11","X");
 
         long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
         long elapsedTime = System.currentTimeMillis() - start;
         System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 6.");
 
@@ -394,7 +394,7 @@ public class HardAITest {
         fillBoard("5", "X");
 
         long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
         long elapsedTime = System.currentTimeMillis() - start;
         System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 6.");
 
@@ -409,7 +409,7 @@ public class HardAITest {
         fillBoard("1", "X");
 
         long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 6);
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
         long elapsedTime = System.currentTimeMillis() - start;
         System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 6.");
 
@@ -429,26 +429,11 @@ public class HardAITest {
         fillBoard("11","X");
 
         long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 5);
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
         long elapsedTime = System.currentTimeMillis() - start;
         System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 5.");
 
         assertEquals(14, aiComputerTest.getChoice());
-    }
-
-    @Test
-    public void benchmarkTestForDepth5On3x3BoardDoesNotReturnMiddleSpace() {
-        board = new TTTBoard(3);
-        boardRules = new ThreeByThreeBoardRules(board);
-        aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-
-        long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 5);
-        long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 5.");
-
-        assertNotEquals(4, aiComputerTest.getChoice());
     }
 
     @Test
@@ -464,25 +449,10 @@ public class HardAITest {
         fillBoard("11","X");
 
         long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 4);
+        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
         long elapsedTime = System.currentTimeMillis() - start;
         System.out.println(elapsedTime + ": elapsed time for ai on 4x4 to get correct move, stopping at depth 4.");
 
         assertEquals(14, aiComputerTest.getChoice());
-    }
-
-    @Test
-    public void benchmarkTestForDepth4On3x3BoardDoesNotReturnMiddleSpace() {
-        board = new TTTBoard(3);
-        boardRules = new ThreeByThreeBoardRules(board);
-        aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-
-        long start = System.currentTimeMillis();
-        aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE, 4);
-        long elapsedTime = System.currentTimeMillis() - start;
-        System.out.println(elapsedTime + ": elapsed time for ai on 3x3 to get move, stopping at depth 4.");
-
-        assertNotEquals(4, aiComputerTest.getChoice());
     }
 }
