@@ -30,9 +30,9 @@ public class Game {
 
     public boolean playGame() {
         currentPlayer = player1;
-        while(board.hasOpenSpaces()) {
+        while(!board.isFull()) {
             getPlayerMove(currentPlayer);
-            if (boardRules.isThereAWinner(currentPlayer.getGamePiece()) || !board.hasOpenSpaces()) {
+            if (boardRules.isThereAWinner(currentPlayer.getGamePiece()) || !board.isFull()) {
                 return false;
             }
             switchPlayers();
@@ -57,7 +57,7 @@ public class Game {
     }
 
     public void printIntro() {
-        userinterface.printWelcomeMessage(board.getCellsSquareRoot(board.getLength()));
+        userinterface.printWelcomeMessage(board.getCellsSquareRoot());
         userinterface.printGamePieceAssignment(player1, player2);
     }
 

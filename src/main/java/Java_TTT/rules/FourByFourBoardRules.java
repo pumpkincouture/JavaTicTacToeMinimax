@@ -19,7 +19,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     @Override
     public boolean isThereAWinner(String gamePiece) {
         for (ArrayList<String> boardPart : getMatrix()) {
-            if (checkBoardForWin(gamePiece, boardPart) == board.getCellsSquareRoot(board.getLength())) {
+            if (checkBoardForWin(gamePiece, boardPart) == board.getCellsSquareRoot()) {
                 return true;
             }
         }
@@ -30,9 +30,9 @@ public class FourByFourBoardRules implements TTTBoardRules {
     public String getWinningPlayer(String playerOne, String playerTwo) {
         String noWinner = "";
         for (ArrayList<String> boardPart : getMatrix()) {
-            if (checkBoardForWin(playerOne, boardPart) == board.getCellsSquareRoot(board.getLength())) {
+            if (checkBoardForWin(playerOne, boardPart) == board.getCellsSquareRoot()) {
                 return playerOne;
-            } else if (checkBoardForWin(playerTwo, boardPart) == board.getCellsSquareRoot(board.getLength())) {
+            } else if (checkBoardForWin(playerTwo, boardPart) == board.getCellsSquareRoot()) {
                 return playerTwo;
             }
         }
@@ -57,7 +57,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
 
 
     private ArrayList<String> getDiagonal1() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> diagonal = new ArrayList();
         int squareDoubled= squareRoot * 2;
         int squareTripled = squareRoot * 3;
@@ -80,7 +80,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getDiagonal2() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> diagonal = new ArrayList();
         int squareDoubled= squareRoot * 2;
         int squareTripled = squareRoot * 3;
@@ -103,7 +103,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getRow1() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> row = new ArrayList();
 
         for (int i=0; i < squareRoot; i++) {
@@ -113,7 +113,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getRow2() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> row = new ArrayList();
         int squareDoubled= squareRoot * 2;
 
@@ -124,7 +124,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getRow3() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> row = new ArrayList();
         int squareDoubled= squareRoot * 2;
         int squareTripled = squareRoot * 3;
@@ -142,7 +142,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getRow4() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> row = new ArrayList();
         int squareTripled = squareRoot * 3;
 
@@ -153,7 +153,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getColumn1() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> column = new ArrayList();
         int squareDoubled= squareRoot * 2;
 
@@ -165,7 +165,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getColumn2() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> column = new ArrayList();
         int squareDoubled= squareRoot * 2;
 
@@ -177,7 +177,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getColumn3() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> column = new ArrayList();
         int squareDoubled= squareRoot * 2;
 
@@ -189,7 +189,7 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     private ArrayList<String> getColumn4() {
-        int squareRoot = board.getCellsSquareRoot(board.getLength());
+        int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> column = new ArrayList();
         int squareDoubled= squareRoot * 2;
 

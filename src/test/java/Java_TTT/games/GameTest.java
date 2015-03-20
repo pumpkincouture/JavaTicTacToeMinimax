@@ -12,7 +12,9 @@ import org.junit.Test;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
@@ -25,16 +27,6 @@ public class GameTest {
     private GameParticipants player2 = new Human("O", mockUi);
     private TTTBoardRules boardRules;
 
-    private void fillBoard(String choice, String gamePiece) {
-        board.placeMove(choice, gamePiece);
-    }
-
-    private boolean getCell(String answer, String gamePiece) {
-        if (board.getCells()[convertAnswerToInteger(answer) - 1] == gamePiece) {
-            return true;
-        }
-        return false;
-    }
 
     private int convertAnswerToInteger(String answer) {
         return Integer.parseInt(answer);
@@ -85,8 +77,8 @@ public class GameTest {
         gameTest.getPlayerChoice(gameTest.getCurrentPlayer(), mockUi.captureChoice());
 
         assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
-        fillBoard("3", "X");
-        assertEquals(true, getCell("3", "X"));
+        board.placeMove("3", "X");
+        assertFalse(board.isMoveValid("3"));
     }
 
     @Test
@@ -103,8 +95,8 @@ public class GameTest {
         gameTest.getPlayerChoice(gameTest.getCurrentPlayer(), mockUi.captureChoice());
 
         assertEquals(true, mockUi.isDisplayInvalidChoiceMessageCalled());
-        fillBoard("15", "X");
-        assertEquals(true, getCell("15", "X"));
+        board.placeMove("15", "X");
+        assertFalse(board.isMoveValid("15"));
     }
 
     @Test
@@ -138,7 +130,7 @@ public class GameTest {
         mockUi.addNextMove("3");
 
         for (int i = 0; i <= 2; i++) {
-            fillBoard(mockUi.captureChoice(), player2.getGamePiece());
+            board.placeMove(mockUi.captureChoice(), player2.getGamePiece());
         }
 
         gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
@@ -150,11 +142,11 @@ public class GameTest {
         board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
-        fillBoard("1", "X");
-        fillBoard("2", "O");
-        fillBoard("3", "O");
-        fillBoard("5", "O");
-        fillBoard("7", "X");
+        board.placeMove("1", "X");
+        board.placeMove("2", "O");
+        board.placeMove("3", "O");
+        board.placeMove("5", "O");
+        board.placeMove("7", "X");
 
         gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(false, mockUi.isWinnerStringCalled());
@@ -172,7 +164,7 @@ public class GameTest {
         mockUi.addNextMove("4");
 
         for (int i = 0; i <= 3; i++) {
-            fillBoard(mockUi.captureChoice(), player2.getGamePiece());
+            board.placeMove(mockUi.captureChoice(), player2.getGamePiece());
         }
 
         gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
@@ -184,15 +176,15 @@ public class GameTest {
         board = new TTTBoard(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "O");
-        fillBoard("4", "O");
-        fillBoard("5", "X");
-        fillBoard("6", "X");
-        fillBoard("7", "X");
-        fillBoard("8", "O");
-        fillBoard("9", "O");
+        board.placeMove("1", "X");
+        board.placeMove("2", "X");
+        board.placeMove("3", "O");
+        board.placeMove("4", "O");
+        board.placeMove("5", "X");
+        board.placeMove("6", "X");
+        board.placeMove("7", "X");
+        board.placeMove("8", "O");
+        board.placeMove("9", "O");
 
 
         gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
@@ -204,22 +196,22 @@ public class GameTest {
         board = new TTTBoard(4);
         boardRules = new FourByFourBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "O");
-        fillBoard("4", "O");
-        fillBoard("5", "X");
-        fillBoard("6", "X");
-        fillBoard("7", "X");
-        fillBoard("8", "O");
-        fillBoard("9", "O");
-        fillBoard("10", "O");
-        fillBoard("11", "X");
-        fillBoard("12", "X");
-        fillBoard("13", "X");
-        fillBoard("14", "O");
-        fillBoard("15", "O");
-        fillBoard("16", "O");
+        board.placeMove("1", "X");
+        board.placeMove("2", "X");
+        board.placeMove("3", "O");
+        board.placeMove("4", "O");
+        board.placeMove("5", "X");
+        board.placeMove("6", "X");
+        board.placeMove("7", "X");
+        board.placeMove("8", "O");
+        board.placeMove("9", "O");
+        board.placeMove("10", "O");
+        board.placeMove("11", "X");
+        board.placeMove("12", "X");
+        board.placeMove("13", "X");
+        board.placeMove("14", "O");
+        board.placeMove("15", "O");
+        board.placeMove("16", "O");
 
         gameTest.printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
         assertEquals(true, mockUi.isCatsGameCalled());

@@ -43,7 +43,7 @@ public class HardAI extends Participant implements GameParticipants {
             board.placeMove(convertChosenIndexToString(move), gamePiece);
             int score = (makeCalculation(board, depth + 1, switchPlayers(board, gamePiece), minValue, maxValue));
             Branch branch = new Branch(score, move);
-            board.clearBoard(move);
+            board.resetCell(move);
 
             if (gamePiece == this.getGamePiece()) {
                 movesList.add(branch);

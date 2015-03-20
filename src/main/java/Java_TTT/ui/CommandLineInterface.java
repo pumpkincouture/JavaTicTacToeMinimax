@@ -86,7 +86,7 @@ public class CommandLineInterface implements UserInterface {
     }
 
     public void printBoard(BoardInterface board) {
-        int boardSquareRoot = board.getCellsSquareRoot(board.getLength());
+        int boardSquareRoot = board.getCellsSquareRoot();
         int boardLength = board.getLength();
         String boardToDisplay = boardRows(boardSquareRoot);
 

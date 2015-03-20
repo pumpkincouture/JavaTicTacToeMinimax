@@ -1,28 +1,24 @@
 package Java_TTT.boards;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface BoardInterface {
 
-    public String[] getCells();
+    public String[][] getCells();
 
-    public ArrayList<Integer> getOpenSpaces();
-
-    public ArrayList<Integer> getOccupiedSpaces();
+    public List<Integer> getOpenSpaces();
 
     public String getOpponentPiece(String gamePiece);
 
     public boolean isMoveValid(String answer);
 
-    public boolean hasOpenSpaces();
+    public boolean isFull();
 
-    public boolean isEmpty();
+    public void placeMove(String answer, String gamePiece);
 
-    public String[] placeMove(String answer, String gamePiece);
-
-    public void clearBoard(int index);
+    public void resetCell(int index);
 
     public int getLength();
 
-    public int getCellsSquareRoot(int boardLength);
+    public int getCellsSquareRoot();
 }

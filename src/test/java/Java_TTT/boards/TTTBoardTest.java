@@ -1,107 +1,31 @@
 package Java_TTT.boards;
 
-import Java_TTT.ui.MockUserInterface;
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.human.Human;
 import org.junit.Test;
-
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TTTBoardTest {
     private TTTBoard boardTest;
-    private PrintStream output = new PrintStream(System.out);
-    private Scanner input = new Scanner(System.in);
-    private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private GameParticipants player1 = new Human("X", mockUi);
 
-    private void simulateFilledBoard() {
-        fillBoard("9", "X");
-        fillBoard("8", "X");
-        fillBoard("7", "O");
-        fillBoard("6", "O");
-        fillBoard("5", "X");
-        fillBoard("4", "O");
-        fillBoard("3", "X");
-        fillBoard("2", "O");
-        fillBoard("1", "X");
-    }
 
-    private ArrayList<Integer> simulateOpenCellsArrayFor3x3Board() {
-        ArrayList<Integer>openCells = new ArrayList();
-        openCells.add(1);
-        openCells.add(3);
-        openCells.add(4);
-        openCells.add(5);
-        openCells.add(6);
-        openCells.add(7);
-        openCells.add(8);
-
-        return openCells;
-    }
-
-    private ArrayList<Integer> simulateOpenCellsArrayFor4x4Board() {
-        ArrayList<Integer>openCells = new ArrayList();
-        openCells.add(0);
-        openCells.add(1);
-        openCells.add(2);
-        openCells.add(3);
-        openCells.add(4);
-        openCells.add(5);
-        openCells.add(6);
-        openCells.add(7);
-        openCells.add(8);
-        openCells.add(10);
-        openCells.add(11);
-        openCells.add(13);
-        openCells.add(14);
-        openCells.add(15);
-
-        return openCells;
-    }
-
-    private ArrayList<Integer> simulateOccupiedCellsArrayFor3x3Board() {
-        ArrayList<Integer>occupiedCells = new ArrayList();
-        occupiedCells.add(0);
-        occupiedCells.add(1);
-
-        return occupiedCells;
-    }
-
-    private ArrayList<Integer> simulateOccupiedCellsArrayFor4x4Board() {
-        ArrayList<Integer>occupiedCells = new ArrayList();
-        occupiedCells.add(9);
-        occupiedCells.add(14);
-
-        return occupiedCells;
-    }
-
-    private boolean getCell(String answer, String gamePiece) {
-       if (boardTest.getCells()[convertAnswerToInteger(answer) - 1] == gamePiece) {
-           return true;
-       }
-        return false;
-    }
-
-    private int convertAnswerToInteger(String answer) {
-        return Integer.parseInt(answer);
-    }
-
-    private void fillBoard(String choice, String gamePiece) {
-        boardTest.placeMove(choice, gamePiece);
+    private void addMovesToBoard(String... positions) {
+        for (int counter = 0; counter < boardTest.getLength(); counter++) {
+            if (positions[counter] != "*") {
+                boardTest.placeMove(String.valueOf(counter + 1), positions[counter]);
+            }
+        }
     }
 
     @Test
-    public void getLengthOf3x3Board() {
+    public void getSizeOf3x3Board() {
         boardTest = new TTTBoard(3);
         assertEquals(9, boardTest.getLength());
     }
 
     @Test
-    public void getLengthOf4x4Board() {
+    public void getSizeOf4x4Board() {
         boardTest = new TTTBoard(4);
         assertEquals(16, boardTest.getLength());
     }
@@ -109,153 +33,156 @@ public class TTTBoardTest {
     @Test
     public void checkBoardSquareRootOf3x3() {
         boardTest = new TTTBoard(3);
-        assertEquals(3, boardTest.getCellsSquareRoot(9));
+        assertEquals(3, boardTest.getCellsSquareRoot());
     }
 
     @Test
     public void checkBoardSquareRootOf4x4() {
         boardTest = new TTTBoard(4);
-        assertEquals(4, boardTest.getCellsSquareRoot(16));
+        assertEquals(4, boardTest.getCellsSquareRoot());
     }
 
     @Test
-    public void returnBoardCellsAsThreeByThreeArray() {
+    public void emptyCellsOnThreeByThreeInitializedWithAsterisk() {
         boardTest = new TTTBoard(3);
-        assertEquals("*", boardTest.getCells()[4]);
+        for (int i=0; i < boardTest.getCells().length; i++) {
+            for (int j=0; j < boardTest.getCells()[i].length; j++) {
+                assertEquals("*", boardTest.getCells()[i][j]);
+            }
+        }
     }
 
     @Test
-    public void returnBoardCellsAsFourByFourArray() {
+    public void emptyCellsOnFourByFourInitializedWithAsterisk() {
         boardTest = new TTTBoard(4);
-        assertEquals("*", boardTest.getCells()[15]);
+        for (int i=0; i < boardTest.getCells().length; i++) {
+            for (int j=0; j < boardTest.getCells()[i].length; j++) {
+                assertEquals("*", boardTest.getCells()[i][j]);
+            }
+        }
     }
 
     @Test
-    public void checkSpaceOfBoardCell3x3Array() {
+    public void checkIfSpaceIsAlreadyOccupiedOn3x3Board() {
         boardTest = new TTTBoard(3);
-        fillBoard("4", "X");
-        fillBoard("5", "O");
-        assertEquals("X", boardTest.getCells()[3]);
-        assertEquals("O", boardTest.getCells()[4]);
+        boardTest.placeMove("4", "X");
+        assertFalse(boardTest.isMoveValid("4"));
     }
 
     @Test
-    public void checkSpaceOfBoardCell4x4Array() {
+    public void checkIfSpace9IsAleadyOccupiedOn4x4Board() {
         boardTest = new TTTBoard(4);
-        fillBoard("9", "X");
-        fillBoard("16", "O");
-        assertEquals("X", boardTest.getCells()[8]);
-        assertEquals("O", boardTest.getCells()[15]);
+        boardTest.placeMove("9", "X");
+        assertFalse(boardTest.isMoveValid("9"));
+    }
+
+    private TTTBoard emptyBoard(int size) {
+        return new TTTBoard(size);
     }
 
     @Test
     public void checkIfSevenIsValid() {
-        boardTest = new TTTBoard(3);
-        assertEquals(true, boardTest.isMoveValid("7"));
+        assertTrue(emptyBoard(3).isMoveValid("7"));
     }
 
     @Test
     public void checkIfVIsValid() {
-        boardTest = new TTTBoard(3);
-        assertEquals(false, boardTest.isMoveValid("v"));
+        assertFalse(emptyBoard(3).isMoveValid("v"));
     }
 
     @Test
     public void checkIfSymbolIsValid() {
-        boardTest = new TTTBoard(3);
-        assertEquals(false, boardTest.isMoveValid("-"));
+        assertFalse(emptyBoard(3).isMoveValid("-"));
     }
 
     @Test
-    public void checkTakenSpaceOn3x3() {
-        boardTest = new TTTBoard(3);
-        fillBoard("1", "O");
-        assertEquals(false, boardTest.isMoveValid("1"));
+    public void checkIfSpaceIsTakenOn3x3Board() {
+        boardTest = emptyBoard(3);
+        boardTest.placeMove("1", "O");
+        assertFalse(boardTest.isMoveValid("1"));
     }
 
     @Test
-    public void checkTakenSpaceOn4x4() {
+    public void checkIfSpaceIsTakenOn4x4Board() {
         boardTest = new TTTBoard(4);
-        fillBoard("11", "O");
-        assertEquals(false, boardTest.isMoveValid("11"));
+        boardTest.placeMove("11", "O");
+        assertFalse(boardTest.isMoveValid("11"));
     }
 
     @Test
     public void checkIfBoardHasOpenSpaces() {
-        boardTest = new TTTBoard(3);
-        assertEquals(true, boardTest.hasOpenSpaces());
-    }
-
-    @Test
-    public void checkIfBoardCompletelyEmpty() {
-        boardTest = new TTTBoard(3);
-        assertEquals(true, boardTest.isEmpty());
+        assertFalse(emptyBoard(3).isFull());
     }
 
     @Test
     public void checkIfBoardFullWithMockInputs () {
         boardTest = new TTTBoard(3);
-        simulateFilledBoard();
-        assertEquals(false, boardTest.hasOpenSpaces());
+        addMovesToBoard("X", "*", "O", "*", "*", "*", "*", "*", "*");
+        assertTrue(boardTest.isFull());
     }
 
     @Test
-    public void placeMoveOn3x3Board() {
-        boardTest = new TTTBoard(3);
-        fillBoard("9", player1.getGamePiece());
-        assertEquals(true, getCell("9", player1.getGamePiece()));
-    }
-
-    @Test
-    public void placeMoveOn4x4Board() {
+    public void checkIfCellIsClearedOn4x4Board() {
         boardTest = new TTTBoard(4);
-        fillBoard("16", player1.getGamePiece());
-        assertEquals(true, getCell("16", player1.getGamePiece()));
+        boardTest.placeMove("11", "O");
+        boardTest.resetCell(10);
+
+        assertTrue(boardTest.isMoveValid("11"));
+    }
+
+    @Test
+    public void checkIfCellIsClearedOn3x3Board() {
+        boardTest = new TTTBoard(4);
+        boardTest.placeMove("11", "O");
+        boardTest.resetCell(10);
+
+        assertTrue(boardTest.isMoveValid("11"));
     }
 
     @Test
     public void getEmptySpacesOn3x3Board() {
         boardTest = new TTTBoard(3);
-        fillBoard("1", "X");
-        fillBoard("3", "O");
-
-        assertEquals(simulateOpenCellsArrayFor3x3Board(), boardTest.getOpenSpaces());
+        addMovesToBoard("X", "X", "O",
+                        "*", "*", "*",
+                        "*", "*", "X");
+        assertEquals(Arrays.asList(3, 4, 5, 6, 7), boardTest.getOpenSpaces());
     }
 
     @Test
     public void getEmptySpacesOn4x4Board() {
         boardTest = new TTTBoard(4);
-        fillBoard("10", "X");
-        fillBoard("13", "O");
+        boardTest.placeMove("1", "X");
+        boardTest.placeMove("2", "O");
+        boardTest.placeMove("3", "X");
+        boardTest.placeMove("4", "O");
+        boardTest.placeMove("5", "X");
+        boardTest.placeMove("10", "X");
+        boardTest.placeMove("13", "O");
 
-        assertEquals(simulateOpenCellsArrayFor4x4Board(), boardTest.getOpenSpaces());
+        assertEquals(Arrays.asList(5, 6, 7, 8, 10, 11, 13, 14, 15),
+                boardTest.getOpenSpaces());
     }
 
     @Test
     public void getOccupiedSpacesOn3x3Board() {
         boardTest = new TTTBoard(3);
-        fillBoard("1", "X");
-        fillBoard("2", "O");
+        boardTest.placeMove("1", "X");
+        boardTest.placeMove("2", "O");
+        boardTest.placeMove("3", "X");
+        boardTest.placeMove("4", "O");
+        boardTest.placeMove("5", "X");
 
-        assertEquals(simulateOccupiedCellsArrayFor3x3Board(), boardTest.getOccupiedSpaces());
-    }
-
-    @Test
-    public void getOccupiedSpacesOn4x4Board() {
-        boardTest = new TTTBoard(4);
-        fillBoard("15", "X");
-        fillBoard("10", "O");
-
-        assertEquals(simulateOccupiedCellsArrayFor4x4Board(), boardTest.getOccupiedSpaces());
+        assertEquals(Arrays.asList(5, 6, 7, 8),
+                boardTest.getOpenSpaces());
     }
 
     @Test
     public void getOpponentGamePieceIfOpponentHasX() {
         boardTest = new TTTBoard(3);
-        fillBoard("1", "X");
-        fillBoard("2", "O");
-        fillBoard("5", "X");
-        fillBoard("7", "O");
+        boardTest.placeMove("1", "X");
+        boardTest.placeMove("2", "O");
+        boardTest.placeMove("5", "X");
+        boardTest.placeMove("7", "O");
 
         assertEquals("X", boardTest.getOpponentPiece("O"));
     }
@@ -263,7 +190,7 @@ public class TTTBoardTest {
     @Test
     public void getOpponentGamePieceIfOpponentHasMadeNoMoves() {
         boardTest = new TTTBoard(3);
-        fillBoard("1", "X");
+        boardTest.placeMove("1", "X");
 
         assertEquals("", boardTest.getOpponentPiece("X"));
     }
