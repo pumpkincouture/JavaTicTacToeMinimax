@@ -33,7 +33,7 @@ public class Board implements BoardInterface {
     }
 
     public boolean isFull() {
-        return getOpenCellLocations().size() != getLength();
+        return getOpenCellLocations().isEmpty();
     }
 
     public void placeMove(String answer, String gamePiece) {

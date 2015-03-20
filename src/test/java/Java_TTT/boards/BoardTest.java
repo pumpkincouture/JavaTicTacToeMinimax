@@ -103,12 +103,12 @@ public class BoardTest {
     }
 
     @Test
-    public void checkIfBoardFullWithMockInputs () {
+    public void checkIfBoardFull() {
         boardTest = new Board(3);
         addMovesToBoard("X", "*", "O",
                         "*", "*", "*",
                         "*", "*", "*");
-        assertTrue(boardTest.isFull());
+        assertFalse(boardTest.isFull());
     }
 
     @Test
@@ -153,9 +153,7 @@ public class BoardTest {
     @Test
     public void getListOfIndexedOccupiedSpacesOn3x3Board() {
         boardTest = new Board(3);
-        addMovesToBoard("X", "O", "X",
-                        "O", "X", "*",
-                        "*", "*", "*");
+        addMovesToBoard("X", "O", "X", "O", "X", "*", "*", "*", "*");
 
         assertEquals(Arrays.asList(5, 6, 7, 8),
                 boardTest.getOpenSpaces());

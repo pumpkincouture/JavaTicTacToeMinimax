@@ -4,77 +4,95 @@ import Java_TTT.boards.Board;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ThreeByThreeBoardRulesTest {
-    private TTTBoardRules boardRules;
+    private ThreeByThreeBoardRules boardRules;
     private Board board;
 
-    private void simulateFilled3x3Board() {
-        fillBoard("9", "X");
-        fillBoard("8", "X");
-        fillBoard("7", "O");
-        fillBoard("6", "O");
-        fillBoard("5", "X");
-        fillBoard("4", "O");
-        fillBoard("3", "X");
-        fillBoard("2", "O");
-        fillBoard("1", "X");
-    }
-
-    private void fillBoard(String choice, String gamePiece) {
-        board.placeMove(choice, gamePiece);
+    private void addMovesToBoard(String... positions) {
+        for (int counter = 0; counter < board.getLength(); counter++) {
+            if (positions[counter] != "*") {
+                board.placeMove(String.valueOf(counter + 1), positions[counter]);
+            }
+        }
     }
 
     @Test
-    public void threeByThreeBoardHasAWinner() {
+    public void threeByThreeBoardHasAWinnerInFirstRow() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        simulateFilled3x3Board();
+        addMovesToBoard("X", "X", "X",
+                        "O", "O", "*",
+                        "*", "*", "*");
 
-        assertEquals(true, boardRules.isThereAWinner("X"));
-        assertEquals("X", boardRules.getWinningPlayer("X", "O"));
+        assertEquals(3, boardRules.getWinnerInRows("X"));
+        assertEquals("X", boardRules.checkForRowWinner("X", "O"));
+    }
+
+    @Test
+    public void threeByThreeBoardHasAWinnerInSecondRow() {
+        board = new Board(3);
+        boardRules = new ThreeByThreeBoardRules(board);
+        addMovesToBoard("X", "X", "*",
+                        "O", "O", "O",
+                        "*", "*", "X");
+
+        assertEquals(3, boardRules.getWinnerInRows("O"));
+        assertEquals(2, boardRules.getWinnerInRows("X"));
+//        assertEquals("O", boardRules.checkForRowWinner("X", "O"));
+    }
+
+    @Test
+    public void threeByThreeBoardHasAWinnerInThirdRow() {
+        board = new Board(3);
+        boardRules = new ThreeByThreeBoardRules(board);
+        addMovesToBoard("X", "X", "*",
+                        "O", "*", "*",
+                        "X", "X", "X");
+
+        assertEquals("X", boardRules.checkForRowWinner("X", "O"));
     }
 
     @Test
     public void threeByThreeBoardHasWinnerO() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        simulateFilled3x3Board();
+        addMovesToBoard("X", "*", "O",
+                        "*", "*", "*",
+                        "*", "*", "*");
 
-        assertEquals(false, boardRules.isThereAWinner("O"));
+        assertFalse(boardRules.isThereAWinner("O"));
     }
 
     @Test
     public void checkThreeByThreeBoardForWinScenarioTwo() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("1", "X");
-        fillBoard("5", "X");
-        fillBoard("9", "X");
+        addMovesToBoard("X", "*", "O", "*", "X", "*", "*", "*", "X");
 
-        assertEquals(true, boardRules.isThereAWinner("X"));
+        assertTrue(boardRules.isThereAWinner("X"));
     }
 
     @Test
     public void checkThreeByThreeBoardForWinScenarioThree() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("3", "O");
-        fillBoard("5", "O");
-        fillBoard("7", "O");
+        addMovesToBoard("X", "*", "O", "*", "O", "*", "O", "*", "*");
 
-        assertEquals(true, boardRules.isThereAWinner("O"));
+        assertTrue(boardRules.isThereAWinner("O"));
     }
 
     @Test
     public void checkThreeByThreeBoardForWinScenarioFour() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("1", "O");
-        fillBoard("2", "O");
-        fillBoard("3", "O");
+        addMovesToBoard("O", "O", "O",
+                        "*", "*", "*",
+                        "*", "*", "*");
 
-        assertEquals(true, boardRules.isThereAWinner("O"));
+        assertTrue(boardRules.isThereAWinner("O"));
         assertEquals("O", boardRules.getWinningPlayer("X", "O"));
     }
 
@@ -82,11 +100,11 @@ public class ThreeByThreeBoardRulesTest {
     public void checkThreeByThreeBoardForWinScenarioFive() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("2", "O");
-        fillBoard("5", "O");
-        fillBoard("8", "O");
+        addMovesToBoard("X", "O", "*",
+                        "*", "O", "*",
+                        "*", "O", "*");
 
-        assertEquals(true, boardRules.isThereAWinner("O"));
+        assertTrue(boardRules.isThereAWinner("O"));
         assertEquals("O", boardRules.getWinningPlayer("X", "O"));
     }
 
@@ -94,11 +112,9 @@ public class ThreeByThreeBoardRulesTest {
     public void checkThreeByThreeBoardForWinScenarioSix() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("3", "O");
-        fillBoard("6", "O");
-        fillBoard("9", "O");
+        addMovesToBoard("X", "*", "O", "*", "*", "O", "*", "*", "O");
 
-        assertEquals(true, boardRules.isThereAWinner("O"));
+        assertTrue(boardRules.isThereAWinner("O"));
         assertEquals("O", boardRules.getWinningPlayer("X", "O"));
     }
 
@@ -106,11 +122,9 @@ public class ThreeByThreeBoardRulesTest {
     public void checkThreeByThreeBoardForWinScenarioSeven() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("4", "O");
-        fillBoard("5", "O");
-        fillBoard("6", "O");
+        addMovesToBoard("X", "*", "X", "O", "O", "O", "*", "*", "*");
 
-        assertEquals(true, boardRules.isThereAWinner("O"));
+        assertTrue(boardRules.isThereAWinner("O"));
         assertEquals("O", boardRules.getWinningPlayer("X", "O"));
     }
 
@@ -119,11 +133,9 @@ public class ThreeByThreeBoardRulesTest {
     public void checkThreeByThreeBoardForWinScenarioEight() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("7", "O");
-        fillBoard("8", "O");
-        fillBoard("9", "O");
+        addMovesToBoard("X", "*", "O", "*", "*", "*", "O", "O", "O");
 
-        assertEquals(true, boardRules.isThereAWinner("O"));
+        assertTrue(boardRules.isThereAWinner("O"));
         assertEquals("O", boardRules.getWinningPlayer("X", "O"));
     }
 
@@ -131,17 +143,11 @@ public class ThreeByThreeBoardRulesTest {
     public void checkThreeByThreeBoardForCatsGameScenarioFour() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "O");
-        fillBoard("4", "O");
-        fillBoard("5", "X");
-        fillBoard("6", "X");
-        fillBoard("7", "X");
-        fillBoard("8", "O");
-        fillBoard("9", "O");
+        addMovesToBoard("X", "O", "O",
+                        "O", "X", "X",
+                        "X", "O", "O");
 
-        assertEquals(false, boardRules.isThereAWinner("X"));
+        assertFalse(boardRules.isThereAWinner("X"));
         assertEquals(false, boardRules.isThereAWinner("O"));
     }
 
@@ -149,10 +155,7 @@ public class ThreeByThreeBoardRulesTest {
     public void getOpponentGamePieceIfOpponentHasX() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        board.placeMove("1", "X");
-        board.placeMove("2", "O");
-        board.placeMove("5", "X");
-        board.placeMove("7", "O");
+        addMovesToBoard("X", "O", "O", "*", "X", "*", "O", "*", "*");
 
         assertEquals("X", boardRules.getOpponentPiece("O"));
     }
@@ -161,7 +164,7 @@ public class ThreeByThreeBoardRulesTest {
     public void getOpponentGamePieceIfOpponentHasMadeNoMoves() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        board.placeMove("1", "X");
+        addMovesToBoard("X", "*", "*", "*", "*", "*", "*", "*", "*");
 
         assertEquals("", boardRules.getOpponentPiece("X"));
     }
@@ -170,16 +173,18 @@ public class ThreeByThreeBoardRulesTest {
     public void checkIfGameOverOn3x3Board() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        simulateFilled3x3Board();
+        addMovesToBoard("X", "O", "O",
+                        "O", "X", "X",
+                        "X", "O", "O");
 
-        assertEquals(true, boardRules.isGameOver("X", "O"));
+        assertTrue(boardRules.isGameOver("X", "O"));
     }
 
     @Test
     public void check3x3BoardForWin() {
         board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
-        fillBoard("1", "X");
-        assertEquals(false, boardRules.isThereAWinner("O"));
+        addMovesToBoard("X", "O", "O", "O", "X", "X", "X", "O", "O");
+        assertFalse(boardRules.isThereAWinner("O"));
     }
 }

@@ -6,6 +6,8 @@ public interface BoardInterface {
 
     public String[] getCells();
 
+    public String[][] getMatrix();
+
     public List<Integer> getOpenSpaces();
 
     public boolean isMoveValid(String answer);

@@ -27,6 +27,11 @@ public class FourByFourBoardRules implements TTTBoardRules {
     }
 
     @Override
+    public String checkForRowWinner(String playerOne, String playerTwo) {
+        return null;
+    }
+
+    @Override
     public String getWinningPlayer(String playerOne, String playerTwo) {
         String noWinner = "";
         for (ArrayList<String> boardPart : getMatrix()) {

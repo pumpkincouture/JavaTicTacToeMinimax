@@ -70,6 +70,34 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
         return boardMatrix;
     }
 
+    @Override
+    public String checkForRowWinner(String playerOne, String playerTwo) {
+        if (getWinnerInRows(playerOne) == board.getCellsSquareRoot()) {
+            return playerOne;
+        } else if (getWinnerInRows(playerTwo) == board.getCellsSquareRoot()) {
+            return playerTwo;
+        }
+        return "";
+    }
+
+    public int getWinnerInRows(String gamePiece) {
+        int count = 0;
+
+        for (int i = 0; i < board.getMatrix().length; i++) {
+            for (int j = 0; j < board.getMatrix()[i].length; j++) {
+                if (board.getMatrix()[i][j] == gamePiece) {
+                    count++;
+                    System.out.println(board.getCellsSquareRoot() * j + i);
+                    if (board.getMatrix()[i][j] != gamePiece) {
+                        count = 0;
+                        System.out.println(board.getCellsSquareRoot() * j + i);
+                    }
+                }
+                }
+            }
+        return count;
+    }
+
     private ArrayList<String> getDiagonal1() {
         int squareRoot = board.getCellsSquareRoot();
         ArrayList<String> diagonal = new ArrayList();
