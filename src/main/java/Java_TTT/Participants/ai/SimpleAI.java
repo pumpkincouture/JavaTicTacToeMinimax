@@ -1,7 +1,6 @@
 package Java_TTT.participants.ai;
 
 import Java_TTT.boards.BoardInterface;
-import Java_TTT.boards.TTTBoard;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
 

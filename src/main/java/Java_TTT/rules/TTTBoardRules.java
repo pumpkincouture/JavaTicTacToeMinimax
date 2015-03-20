@@ -7,4 +7,6 @@ public interface TTTBoardRules {
     public boolean isThereAWinner(String gamePiece);
 
     public String getWinningPlayer(String playerOne, String playerTwo);
+
+    public String getOpponentPiece(String gamePiece);
 }

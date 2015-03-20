@@ -35,13 +35,13 @@ public class HardAI extends Participant implements GameParticipants {
     public int makeCalculation(BoardInterface board, int depth, String gamePiece, int minValue, int maxValue) {
         ArrayList<Branch> movesList = new ArrayList();
 
-        if (isGameOver(board) || depth == 6) {
+        if (isGameOver() || depth == 6) {
             return getScores(board, depth);
         }
 
         for (Integer move : board.getOpenSpaces()) {
             board.placeMove(convertChosenIndexToString(move), gamePiece);
-            int score = (makeCalculation(board, depth + 1, switchPlayers(board, gamePiece), minValue, maxValue));
+            int score = (makeCalculation(board, depth + 1, switchPlayers(gamePiece), minValue, maxValue));
             Branch branch = new Branch(score, move);
             board.resetCell(move);
 
@@ -84,28 +84,28 @@ public class HardAI extends Participant implements GameParticipants {
     }
 
     private boolean isOpponentWinner(BoardInterface board) {
-        if (getGameWinner(board) == "") {
+        if (getGameWinner() == "") {
             return false;
-        } else if (getGameWinner(board) != this.getGamePiece()) {
+        } else if (getGameWinner() != this.getGamePiece()) {
             return true;
         }
         return false;
     }
 
     private boolean isComputerWinner(BoardInterface board) {
-        return getGameWinner(board) == this.getGamePiece();
+        return getGameWinner() == this.getGamePiece();
     }
 
-    private boolean isGameOver(BoardInterface board) {
-        return boardRules.isGameOver(board.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
+    private boolean isGameOver() {
+        return boardRules.isGameOver(boardRules.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
     }
 
-    private String switchPlayers(BoardInterface board, String gamePiece) {
-        return gamePiece == this.getGamePiece() ? board.getOpponentPiece(gamePiece) : this.getGamePiece();
+    private String switchPlayers(String gamePiece) {
+        return gamePiece == this.getGamePiece() ? boardRules.getOpponentPiece(gamePiece) : this.getGamePiece();
     }
 
-    private String getGameWinner(BoardInterface board) {
-        return boardRules.getWinningPlayer(board.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
+    private String getGameWinner() {
+        return boardRules.getWinningPlayer(boardRules.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
     }
 
     private String convertChosenIndexToString(int chosenSpace) {

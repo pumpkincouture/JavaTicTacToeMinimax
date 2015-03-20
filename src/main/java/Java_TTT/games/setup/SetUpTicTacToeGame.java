@@ -1,7 +1,7 @@
 package Java_TTT.games.setup;
 
 import Java_TTT.boards.BoardInterface;
-import Java_TTT.boards.TTTBoard;
+import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.ai.HardAI;
@@ -48,7 +48,7 @@ public class SetUpTicTacToeGame {
     }
 
     public void setUpBoard() {
-        board = new TTTBoard(userChoices.get(0));
+        board = new Board(userChoices.get(0));
     }
 
     public BoardInterface getBoard() {

@@ -1,7 +1,7 @@
 package Java_TTT.games;
 
 import Java_TTT.ui.MockUserInterface;
-import Java_TTT.boards.TTTBoard;
+import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.human.Human;
 import Java_TTT.rules.TTTBoardRules;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 public class GameTest {
 
     private Game gameTest;
-    private TTTBoard board;
+    private Board board;
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
@@ -46,7 +46,7 @@ public class GameTest {
 
     @Test
     public void displayWelcomeMessage() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         gameTest.printIntro();
@@ -56,7 +56,7 @@ public class GameTest {
 
     @Test
     public void getInitialBoardDisplay() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.printBoard(board);
@@ -65,7 +65,7 @@ public class GameTest {
 
     @Test
     public void promptUntilMoveValidOn3x3Board() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("PPP");
@@ -83,7 +83,7 @@ public class GameTest {
 
     @Test
     public void promptUntilMoveValidOn4x4Board() {
-        board = new TTTBoard(4);
+        board = new Board(4);
         boardRules = new FourByFourBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("hhhhhhhhh");
@@ -101,7 +101,7 @@ public class GameTest {
 
     @Test
     public void testIfCurrentPlayerIsPlayerWithX() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         setCurrentPlayer(player1);
@@ -111,7 +111,7 @@ public class GameTest {
 
     @Test
     public void switchPlayersAndTestIfPlayerWithOIsSetAsCurrentPlayer() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         setCurrentPlayer(player1);
@@ -122,7 +122,7 @@ public class GameTest {
 
     @Test
     public void testForWinnerOn3x3Board() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("1");
@@ -139,7 +139,7 @@ public class GameTest {
 
     @Test
     public void testForWinnerScenarioTwo3x3() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         board.placeMove("1", "X");
@@ -155,7 +155,7 @@ public class GameTest {
 
     @Test
     public void testForWinner() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("1");
@@ -173,7 +173,7 @@ public class GameTest {
 
     @Test
     public void testForCatsGameOn3x3Board() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         board.placeMove("1", "X");
@@ -193,7 +193,7 @@ public class GameTest {
 
     @Test
     public void check4x4BoardForCatsGameScenarioFour() {
-        board = new TTTBoard(4);
+        board = new Board(4);
         boardRules = new FourByFourBoardRules(board);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         board.placeMove("1", "X");

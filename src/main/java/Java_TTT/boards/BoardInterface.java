@@ -4,11 +4,9 @@ import java.util.List;
 
 public interface BoardInterface {
 
-    public String[][] getCells();
+    public String[] getCells();
 
     public List<Integer> getOpenSpaces();
-
-    public String getOpponentPiece(String gamePiece);
 
     public boolean isMoveValid(String answer);
 

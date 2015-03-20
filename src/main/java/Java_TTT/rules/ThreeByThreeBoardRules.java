@@ -39,6 +39,24 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
         return noWinner;
     }
 
+    public String getOpponentPiece(String gamePiece) {
+        return "X";
+//        return findOpponentPiece(gamePiece);
+    }
+
+//    private String findOpponentPiece(String gamePiece) {
+//        for (int i = 0; i < board.getCells().length; i++) {
+//            for (int j = 0; j < board.getCells()[i].length; j++) {
+//                if (!board.getCells()[i][j].contains("*")) {
+//                    if (board.getCells()[i][j] != gamePiece) {
+//                        return board.getCells()[i][j];
+//                    }
+//                }
+//            }
+//        }
+//        return "";
+//    }
+
     public ArrayList<ArrayList<String>> getMatrix() {
         ArrayList<ArrayList<String>> boardMatrix = new ArrayList();
             boardMatrix.add(getColumn1());

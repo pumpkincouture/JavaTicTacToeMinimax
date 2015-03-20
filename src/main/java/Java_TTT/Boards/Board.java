@@ -5,27 +5,27 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class TTTBoard implements BoardInterface {
+public class Board implements BoardInterface {
 
     private String[][] boardCells;
     private int boardSize;
 
-    public TTTBoard(int boardSizeChoice) {
+    public Board(int boardSizeChoice) {
         this.boardSize = boardSizeChoice;
         boardCells = new String[boardSizeChoice][boardSizeChoice];
         fillArray();
     }
 
-    public String[][] getCells() {
+    public String[] getCells() {
+        return boardCells[0];
+    }
+
+    public String[][] getMatrix() {
         return boardCells;
     }
 
     public List<Integer> getOpenSpaces() {
         return getOpenCellLocations();
-    }
-
-    public String getOpponentPiece(String gamePiece) {
-        return findOpponentPiece(gamePiece);
     }
 
     public boolean isMoveValid(String answer) {
@@ -89,18 +89,5 @@ public class TTTBoard implements BoardInterface {
         }
         Collections.sort(openCells);
         return openCells;
-    }
-
-    private String findOpponentPiece(String gamePiece) {
-        for (int i = 0; i < boardCells.length; i++) {
-            for (int j = 0; j < boardCells[i].length; j++) {
-                if (!boardCells[i][j].contains("*")) {
-                    if (boardCells[i][j] != gamePiece) {
-                        return boardCells[i][j];
-                    }
-                }
-            }
-        }
-        return "";
     }
 }

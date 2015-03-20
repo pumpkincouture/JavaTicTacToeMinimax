@@ -1,7 +1,7 @@
 package Java_TTT.participants.ai;
 
 import Java_TTT.ui.MockUserInterface;
-import Java_TTT.boards.TTTBoard;
+import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.rules.TTTBoardRules;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 
 public class AIIntegrationTest {
-    private TTTBoard board;
+    private Board board;
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
@@ -26,7 +26,7 @@ public class AIIntegrationTest {
 
     @Test
     public void gameWithTwoAIsFor4x4Board() {
-        board = new TTTBoard(4);
+        board = new Board(4);
         boardRules = new FourByFourBoardRules(board);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
@@ -46,7 +46,7 @@ public class AIIntegrationTest {
 
     @Test
     public void gameWithTwoAIsFor3x3Board() {
-        board = new TTTBoard(3);
+        board = new Board(3);
         boardRules = new ThreeByThreeBoardRules(board);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
