@@ -1,6 +1,7 @@
 package Java_TTT.rules;
 
 import Java_TTT.boards.BoardInterface;
+import Java_TTT.participants.GameParticipants;
 
 import java.util.ArrayList;
 
@@ -72,30 +73,28 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
 
     @Override
     public String checkForRowWinner(String playerOne, String playerTwo) {
-        if (getWinnerInRows(playerOne) == board.getCellsSquareRoot()) {
-            return playerOne;
-        } else if (getWinnerInRows(playerTwo) == board.getCellsSquareRoot()) {
-            return playerTwo;
-        }
         return "";
     }
 
-    public int getWinnerInRows(String gamePiece) {
-        int count = 0;
-
+    public String getWinnerInRows() {
         for (int i = 0; i < board.getMatrix().length; i++) {
-            for (int j = 0; j < board.getMatrix()[i].length; j++) {
-                if (board.getMatrix()[i][j] == gamePiece) {
-                    count++;
-                    System.out.println(board.getCellsSquareRoot() * j + i);
-                    if (board.getMatrix()[i][j] != gamePiece) {
-                        count = 0;
-                        System.out.println(board.getCellsSquareRoot() * j + i);
-                    }
+            String value = board.getMatrix()[i][0];
+            if (value == "*") {
+                continue;
+            }
+            for (int j = 1; j < board.getMatrix()[i].length; j++) {
+                String currentSpace = board.getMatrix()[i][j];
+                if (currentSpace == "*" || !currentSpace.equals(value)) {
+                    break;
                 }
+                if (j == board.getMatrix()[i].length - 1) {
+                    return value;
                 }
             }
-        return count;
+        }
+
+
+        return "";
     }
 
     private ArrayList<String> getDiagonal1() {
