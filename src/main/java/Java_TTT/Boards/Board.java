@@ -17,7 +17,17 @@ public class Board implements BoardInterface {
     }
 
     public String[] getCells() {
-        return boardCells[0];
+        String[] flatArray = new String[boardSize * boardSize];
+        int index = 0;
+        for (int i=0; i<boardSize; i++) {
+            flatArray[index++] = boardCells[0][i];
+            flatArray[index++] = boardCells[1][i];
+            flatArray[index++] = boardCells[2][i];
+            if (boardSize == 4) {
+                flatArray[index++] = boardCells[3][i];
+            }
+        }
+        return flatArray;
     }
 
     public String[][] getMatrix() {

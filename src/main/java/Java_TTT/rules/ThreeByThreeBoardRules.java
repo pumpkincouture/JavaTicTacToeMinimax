@@ -76,7 +76,7 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
         return "";
     }
 
-    public String getWinnerInRows() {
+    public String getBoardWinner() {
         for (int i = 0; i < board.getMatrix().length; i++) {
             String value = board.getMatrix()[i][0];
             if (value == "*") {
@@ -90,6 +90,23 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
                 if (j == board.getMatrix()[i].length - 1) {
                     return value;
                 }
+            }
+        }
+
+        for (int i = 0; i < board.getMatrix().length; i++) {
+            String value = board.getMatrix()[1][i];
+            if (value == "*") {
+                continue;
+            }
+            for (int j = 0; j < board.getMatrix()[i].length; j++) {
+                String currentSpace = board.getMatrix()[j][i];
+                if (currentSpace == "*" || !currentSpace.equals(value)) {
+                    break;
+                }
+                if (j == board.getMatrix()[i].length - 1) {
+                    return value;
+                }
+
             }
         }
 

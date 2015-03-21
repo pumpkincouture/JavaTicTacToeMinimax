@@ -9,7 +9,6 @@ import static org.junit.Assert.assertTrue;
 
 public class ThreeByThreeBoardRulesTest {
     private ThreeByThreeBoardRules threeByThreeRules;
-    private FourByFourBoardRules fourByFourRules;
     private Board board;
 
     private void addMovesToBoard(String... positions) {
@@ -24,9 +23,11 @@ public class ThreeByThreeBoardRulesTest {
     public void threeByThreeBoardHasAWinnerInFirstRow() {
         board = new Board(3);
         threeByThreeRules = new ThreeByThreeBoardRules(board);
-        addMovesToBoard("X", "X", "X", "O", "O", "*", "*", "*", "*");
+        addMovesToBoard("X", "X", "X",
+                        "O", "O", "*",
+                        "*", "*", "*");
 
-        assertEquals("X", threeByThreeRules.getWinnerInRows());
+        assertEquals("X", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -37,7 +38,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "O", "O",
                         "*", "*", "X");
 
-        assertEquals("O", threeByThreeRules.getWinnerInRows());
+        assertEquals("O", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -48,7 +49,55 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "*", "*",
                         "X", "X", "X");
 
-        assertEquals("X", threeByThreeRules.getWinnerInRows());
+        assertEquals("X", threeByThreeRules.getBoardWinner());
+    }
+
+    @Test
+    public void fourByFourBoardHasAWinnerInFirstRow() {
+        board = new Board(4);
+        threeByThreeRules = new ThreeByThreeBoardRules(board);
+        addMovesToBoard("O", "O", "O", "O",
+                        "*", "*", "X", "X",
+                        "*", "X", "*", "*",
+                        "O", "*", "X", "X");
+
+        assertEquals("O", threeByThreeRules.getBoardWinner());
+    }
+
+    @Test
+    public void fourByFourBoardHasAWinnerInSecondRow() {
+        board = new Board(4);
+        threeByThreeRules = new ThreeByThreeBoardRules(board);
+        addMovesToBoard("O", "*", "*", "O",
+                        "X", "X", "X", "X",
+                        "*", "X", "*", "*",
+                        "O", "*", "X", "X");
+
+        assertEquals("X", threeByThreeRules.getBoardWinner());
+    }
+
+    @Test
+    public void fourByFourBoardHasAWinnerInThirdRow() {
+        board = new Board(4);
+        threeByThreeRules = new ThreeByThreeBoardRules(board);
+        addMovesToBoard("O", "*", "*", "O",
+                        "*", "*", "*", "*",
+                        "O", "O", "O", "O",
+                        "O", "*", "X", "X");
+
+        assertEquals("O", threeByThreeRules.getBoardWinner());
+    }
+
+    @Test
+    public void fourByFourBoardHasAWinnerInFourthRow() {
+        board = new Board(4);
+        threeByThreeRules = new ThreeByThreeBoardRules(board);
+        addMovesToBoard("O", "*", "*", "O",
+                        "*", "*", "*", "*",
+                        "*", "O", "O", "O",
+                        "X", "X", "X", "X");
+
+        assertEquals("X", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -59,7 +108,7 @@ public class ThreeByThreeBoardRulesTest {
                         "X", "*", "*",
                         "X", "O", "*");
 
-        assertEquals("X", threeByThreeRules.getWinnerInRows());
+        assertEquals("X", threeByThreeRules.getBoardWinner());
     }
 
 
@@ -71,7 +120,7 @@ public class ThreeByThreeBoardRulesTest {
                         "*", "O", "*",
                         "*", "O", "*");
 
-        assertEquals("O", threeByThreeRules.getWinnerInRows());
+        assertEquals("O", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -82,7 +131,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "*", "X",
                         "*", "X", "X");
 
-        assertEquals("X", threeByThreeRules.getWinnerInRows());
+        assertEquals("X", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -94,7 +143,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "X", "*", "*",
                         "O", "*", "X", "X");
 
-        assertEquals("O", threeByThreeRules.getWinnerInRows());
+        assertEquals("O", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -106,7 +155,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "X", "*", "*",
                         "O", "X", "X", "X");
 
-        assertEquals("X", threeByThreeRules.getWinnerInRows());
+        assertEquals("X", threeByThreeRules.getBoardWinner());
     }
 
 
@@ -119,7 +168,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "X", "O", "*",
                         "O", "X", "O", "X");
 
-        assertEquals("O", threeByThreeRules.getWinnerInRows());
+        assertEquals("O", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -131,7 +180,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "X", "*", "X",
                         "O", "X", "O", "X");
 
-        assertEquals("X", threeByThreeRules.getWinnerInRows());
+        assertEquals("X", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -143,7 +192,7 @@ public class ThreeByThreeBoardRulesTest {
                         "*", "X", "*", "*",
                         "*", "X", "O", "X");
 
-        assertEquals("", threeByThreeRules.getWinnerInRows());
+        assertEquals("", threeByThreeRules.getBoardWinner());
     }
 
     @Test
@@ -154,7 +203,7 @@ public class ThreeByThreeBoardRulesTest {
                         "O", "*", "*",
                         "*", "X", "X");
 
-        assertEquals("", threeByThreeRules.getWinnerInRows());
+        assertEquals("", threeByThreeRules.getBoardWinner());
     }
 
 }
