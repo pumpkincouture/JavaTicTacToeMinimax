@@ -8,6 +8,7 @@ import Java_TTT.rules.BoardRulesInterface;
 import java.util.*;
 
 public class HardAI extends Participant implements GameParticipants {
+    public static final int MAX_DEPTH = 6;
     private BoardRulesInterface boardRules;
     private int choice;
     private BoardInterface board;
@@ -35,7 +36,7 @@ public class HardAI extends Participant implements GameParticipants {
     public int makeCalculation(BoardInterface board, int depth, String gamePiece, int minValue, int maxValue) {
         ArrayList<Branch> movesList = new ArrayList();
 
-        if (isGameOver() || depth == 6) {
+        if (isGameOver() || depth == MAX_DEPTH) {
             return getScores(board, depth);
         }
 

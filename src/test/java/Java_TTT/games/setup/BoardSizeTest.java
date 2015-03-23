@@ -15,7 +15,7 @@ public class BoardSizeTest {
 
     @Test
     public void validateBoardSizeUntilChoiceIs3() {
-        ChoiceInterface boardConfig = new BoardSize(mockUI);
+        Choice boardConfig = new BoardSize(mockUI);
 
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");
@@ -30,7 +30,7 @@ public class BoardSizeTest {
 
     @Test
     public void validateBoardSizeUntilChoiceIs4() {
-        ChoiceInterface boardConfig = new BoardSize(mockUI);
+        Choice boardConfig = new BoardSize(mockUI);
 
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");
@@ -45,7 +45,7 @@ public class BoardSizeTest {
 
     @Test
     public void getBoardChoice() {
-        ChoiceInterface boardConfig = new BoardSize(mockUI);
+        Choice boardConfig = new BoardSize(mockUI);
 
         mockUI.addNextMove("2");
         mockUI.addNextMove("p");

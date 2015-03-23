@@ -5,7 +5,7 @@ import Java_TTT.ui.CommandLineInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParticipantChoice implements ChoiceInterface {
+public class ParticipantChoice implements Choice {
     private CommandLineInterface ui;
     private int playerOption;
     private ChoiceValidator choiceValidator;

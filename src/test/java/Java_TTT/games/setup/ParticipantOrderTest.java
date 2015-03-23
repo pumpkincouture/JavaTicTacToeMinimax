@@ -15,7 +15,7 @@ public class ParticipantOrderTest {
 
     @Test
     public void validateStartingPlayerChoice() {
-        ChoiceInterface playerOrderConfig = new ParticipantOrder(mockUI);
+        Choice playerOrderConfig = new ParticipantOrder(mockUI);
 
         mockUI.addNextMove("ppp");
         mockUI.addNextMove("2");

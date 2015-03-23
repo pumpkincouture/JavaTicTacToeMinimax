@@ -15,7 +15,7 @@ public class ParticipantChoiceTest {
 
     @Test
     public void capturesUserChoiceForPlayerConfiguration() {
-        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
+        Choice playerConfig = new ParticipantChoice(mockUI);
         mockUI.addNextMove("a");
         mockUI.addNextMove("1");
 
@@ -27,7 +27,7 @@ public class ParticipantChoiceTest {
 
     @Test
     public void checkThatChoiceIs1() {
-        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
+        Choice playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("ppp");
         mockUI.addNextMove("1");
@@ -39,7 +39,7 @@ public class ParticipantChoiceTest {
 
     @Test
     public void checkThatChoiceIs2() {
-        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
+        Choice playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("b");
         mockUI.addNextMove("9");
@@ -52,7 +52,7 @@ public class ParticipantChoiceTest {
 
     @Test
     public void checkThatChoiceIs3() {
-        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
+        Choice playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("---");
         mockUI.addNextMove("3");
@@ -64,7 +64,7 @@ public class ParticipantChoiceTest {
 
     @Test
     public void geParticipantOption() {
-        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
+        Choice playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("4");
 

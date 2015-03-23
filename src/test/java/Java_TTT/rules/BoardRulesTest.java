@@ -329,6 +329,7 @@ public class BoardRulesTest {
 
     @Test
     public void fourByFourHasWinnerInSecondDiagonal() {
+        System.out.println("last test");
         board = new Board(4);
         threeByThreeRules = new BoardRules(board);
         addMovesToBoard("O", "X", "O", "X",

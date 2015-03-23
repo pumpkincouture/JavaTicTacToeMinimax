@@ -15,11 +15,11 @@ public class GameRunner {
         PrintStream output = new PrintStream(System.out);
         Scanner input = new Scanner(System.in);
         UserInterface ui = new CommandLineInterface(output, input);
-        List<ChoiceInterface> userChoices= new ArrayList<>();
+        List<Choice> userChoices= new ArrayList<>();
 
-        ChoiceInterface boardConfig = new BoardSize((CommandLineInterface) ui);
-        ChoiceInterface playerConfig = new ParticipantChoice((CommandLineInterface) ui);
-        ChoiceInterface orderConfig = new ParticipantOrder((CommandLineInterface) ui);
+        Choice boardConfig = new BoardSize((CommandLineInterface) ui);
+        Choice playerConfig = new ParticipantChoice((CommandLineInterface) ui);
+        Choice orderConfig = new ParticipantOrder((CommandLineInterface) ui);
 
         userChoices.add(boardConfig);
         userChoices.add(playerConfig);

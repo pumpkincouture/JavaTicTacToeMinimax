@@ -2,6 +2,9 @@ package Java_TTT.rules;
 
 import Java_TTT.boards.BoardInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoardRules implements BoardRulesInterface {
     private BoardInterface board;
 
@@ -21,19 +24,23 @@ public class BoardRules implements BoardRulesInterface {
 
     @Override
     public String getBoardWinner() {
-        if (checkColumns() != "") {
-            return checkColumns();
-        }
-        if (checkRows() != "") {
-            return checkRows();
-        }
-        if (checkRightDiagonal() != "") {
-            return checkRightDiagonal();
-        }
-        if (checkLeftDiagonal() != "") {
-            return checkLeftDiagonal();
+        for (String winningGamePiece : checkEntireBoardForWin()) {
+            if (!winningGamePiece.isEmpty()) {
+                return winningGamePiece;
+            }
         }
         return "";
+    }
+
+    private List<String> checkEntireBoardForWin() {
+        List<String> valuesAfterCheckingForWin = new ArrayList<>();
+
+        valuesAfterCheckingForWin.add(checkColumns());
+        valuesAfterCheckingForWin.add(checkRows());
+        valuesAfterCheckingForWin.add(checkRightDiagonal());
+        valuesAfterCheckingForWin.add(checkLeftDiagonal());
+
+        return valuesAfterCheckingForWin;
     }
 
     private String findOpponentPiece(String gamePiece) {
@@ -50,80 +57,81 @@ public class BoardRules implements BoardRulesInterface {
     }
 
     private String checkColumns() {
-        for (int row = 0; row < board.getMatrix().length; row++) {
-            String value = board.getMatrix()[row][0];
-            if (value == "*") {
-                continue;
-            }
-            for (int column = 1; column < board.getMatrix()[row].length; column++) {
-                String currentSpace = board.getMatrix()[row][column];
-                if (currentSpace == "*" || !currentSpace.equals(value)) {
-                    break;
-                }
-                if (column == board.getMatrix().length - 1) {
-                    return value;
-                }
+        int boardLength = board.getMatrix().length;
+        int maxIndexValue = boardLength - 1;
+        String[][] lineValues = new String[boardLength][boardLength];
+
+        for (int columnIndex = 0; columnIndex < boardLength; columnIndex++) {
+            for (int index = 0; index < boardLength; index++) {
+                lineValues[columnIndex][index] = board.getMatrix()[columnIndex][maxIndexValue - index];
             }
         }
+
+        for (int i = 0; i < boardLength; i++) {
+            if (isWinningCombo(lineValues[i])) {
+                return lineValues[i][0];
+            }
+        }
+
         return "";
     }
 
     private String checkRows() {
-        for (int row = 0; row < board.getMatrix().length; row++) {
-            String value = board.getMatrix()[1][row];
-            if (value == "*") {
-                continue;
-            }
-            for (int column = 0; column < board.getMatrix()[row].length; column++) {
-                String currentSpace = board.getMatrix()[column][row];
-                if (currentSpace == "*" || !currentSpace.equals(value)) {
-                    break;
-                }
-                if (column == board.getMatrix()[row].length - 1) {
-                    return value;
-                }
+        int boardLength = board.getMatrix().length;
+        int maxIndexValue = boardLength - 1;
+        String[][] lineValues = new String[boardLength][boardLength];
 
+        for (int rowIndex = 0; rowIndex < boardLength; rowIndex++) {
+            for (int index = 0; index < boardLength; index++) {
+                lineValues[rowIndex][index] = board.getMatrix()[maxIndexValue - index][rowIndex];
             }
+        }
+
+        for (int i = 0; i < boardLength; i++) {
+            if (isWinningCombo(lineValues[i])) {
+                return lineValues[i][0];
+            }
+        }
+
+        return "";
+    }
+
+    private String checkRightDiagonal() {
+        int boardLength = board.getMatrix().length;
+        int maxIndexValue = boardLength - 1;
+        String[] lineValues = new String[boardLength];
+
+        for (int index = 0; index < boardLength; index++) {
+            lineValues[index] = board.getMatrix()[index][maxIndexValue - index];
+        }
+
+        if (isWinningCombo(lineValues)) {
+            return lineValues[0];
         }
         return "";
     }
 
-    public String checkRightDiagonal() {
-        for (int row = 0; row < board.getMatrix().length; row++) {
-            String value = board.getMatrix()[row][board.getMatrix().length - 1];
-            if (value == "*") {
-                continue;
-            }
-            for (int column = 0; column < board.getMatrix().length; column++) {
-                String currentSpace = board.getMatrix()[column][board.getMatrix().length - column - 1];
-                if (currentSpace == "*" || !currentSpace.equals(value)) {
-                    break;
-                }
-                if (column == board.getMatrix().length - 1) {
-                    return value;
-                }
-            }
+    private String checkLeftDiagonal() {
+        int boardLength = board.getMatrix().length;
+        String[] lineValues = new String[boardLength];
+
+        for (int index = 0; index < boardLength; index++) {
+            lineValues[index] = board.getMatrix()[index][index];
+        }
+
+        if (isWinningCombo(lineValues)) {
+            return lineValues[0];
         }
         return "";
     }
 
-
-    public String checkLeftDiagonal() {
-        for (int row = 1; row < board.getMatrix().length; row++) {
-            String value = board.getMatrix()[0][0];
-            if (value == "*") {
-                continue;
-            }
-            for (int column = 1; column < board.getMatrix().length; column++) {
-                String currentSpace = board.getMatrix()[column][column];
-                if (currentSpace == "*" || !currentSpace.equals(value)) {
-                    break;
-                }
-                if (column == board.getMatrix().length - 1) {
-                    return value;
-                }
+    private boolean isWinningCombo(String[] lineValues) {
+        String first = lineValues[0];
+        for (String value : lineValues) {
+            if (value != first || value == "*") {
+                return false;
             }
         }
-        return "";
+        return true;
     }
 }

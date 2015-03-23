@@ -5,7 +5,7 @@ import Java_TTT.ui.CommandLineInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardSize implements ChoiceInterface {
+public class BoardSize implements Choice {
     private CommandLineInterface ui;
     private int boardChoice;
     private ChoiceValidator choiceValidator;

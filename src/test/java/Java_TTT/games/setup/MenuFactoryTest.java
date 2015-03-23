@@ -16,12 +16,12 @@ public class MenuFactoryTest {
 
     @Test
     public void checkIfAppropriateValuesAreCollected() {
-        List<ChoiceInterface> userChoices= new ArrayList<>();
+        List<Choice> userChoices= new ArrayList<>();
         List<Integer> inputValues = new ArrayList<>();
 
-        ChoiceInterface boardConfig = new BoardSize(mockUI);
-        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
-        ChoiceInterface orderConfig = new ParticipantOrder(mockUI);
+        Choice boardConfig = new BoardSize(mockUI);
+        Choice playerConfig = new ParticipantChoice(mockUI);
+        Choice orderConfig = new ParticipantOrder(mockUI);
 
         userChoices.add(boardConfig);
         userChoices.add(playerConfig);
