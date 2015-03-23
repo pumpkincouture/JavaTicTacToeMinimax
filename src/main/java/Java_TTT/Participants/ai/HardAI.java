@@ -3,17 +3,17 @@ package Java_TTT.participants.ai;
 import Java_TTT.boards.BoardInterface;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
-import Java_TTT.rules.TTTBoardRules;
+import Java_TTT.rules.BoardRulesInterface;
 
 import java.util.*;
 
 public class HardAI extends Participant implements GameParticipants {
-    private TTTBoardRules boardRules;
+    private BoardRulesInterface boardRules;
     private int choice;
     private BoardInterface board;
 
 
-    public HardAI(String gamePiece, TTTBoardRules boardRules, BoardInterface board) {
+    public HardAI(String gamePiece, BoardRulesInterface boardRules, BoardInterface board) {
         super(gamePiece);
         this.boardRules = boardRules;
         this.board = board;
@@ -84,28 +84,24 @@ public class HardAI extends Participant implements GameParticipants {
     }
 
     private boolean isOpponentWinner(BoardInterface board) {
-        if (getGameWinner() == "") {
+        if (boardRules.getBoardWinner() == "") {
             return false;
-        } else if (getGameWinner() != this.getGamePiece()) {
+        } else if (boardRules.getBoardWinner() != this.getGamePiece()) {
             return true;
         }
         return false;
     }
 
     private boolean isComputerWinner(BoardInterface board) {
-        return getGameWinner() == this.getGamePiece();
+        return (boardRules.getBoardWinner() == this.getGamePiece());
     }
 
     private boolean isGameOver() {
-        return boardRules.isGameOver(boardRules.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
+        return boardRules.isGameOver();
     }
 
     private String switchPlayers(String gamePiece) {
         return gamePiece == this.getGamePiece() ? boardRules.getOpponentPiece(gamePiece) : this.getGamePiece();
-    }
-
-    private String getGameWinner() {
-        return boardRules.getWinningPlayer(boardRules.getOpponentPiece(this.getGamePiece()), this.getGamePiece());
     }
 
     private String convertChosenIndexToString(int chosenSpace) {

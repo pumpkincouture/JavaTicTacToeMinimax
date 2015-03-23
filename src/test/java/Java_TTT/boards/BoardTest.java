@@ -33,7 +33,7 @@ public class BoardTest {
     @Test
     public void emptyCellsOnThreeByThreeInitializedWithAsterisk() {
         boardTest = new Board(3);
-        for (int i=0; i < boardTest.getCells().length; i++) {
+        for (int i=0; i < boardTest.getMatrix().length; i++) {
             for (int j=0; j < boardTest.getMatrix()[i].length; j++) {
                 assertEquals("*", boardTest.getMatrix()[i][j]);
             }
@@ -43,7 +43,7 @@ public class BoardTest {
     @Test
     public void emptyCellsOnFourByFourInitializedWithAsterisk() {
         boardTest = new Board(4);
-        for (int i=0; i < boardTest.getCells().length; i++) {
+        for (int i=0; i < boardTest.getMatrix().length; i++) {
             for (int j=0; j < boardTest.getMatrix()[i].length; j++) {
                 assertEquals("*", boardTest.getMatrix()[i][j]);
             }

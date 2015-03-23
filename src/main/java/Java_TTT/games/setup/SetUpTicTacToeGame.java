@@ -7,9 +7,8 @@ import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.ai.HardAI;
 import Java_TTT.participants.ai.SimpleAI;
 import Java_TTT.participants.human.Human;
-import Java_TTT.rules.FourByFourBoardRules;
-import Java_TTT.rules.TTTBoardRules;
-import Java_TTT.rules.ThreeByThreeBoardRules;
+import Java_TTT.rules.BoardRulesInterface;
+import Java_TTT.rules.BoardRules;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
 
@@ -25,7 +24,7 @@ public class SetUpTicTacToeGame {
     private PrintStream output;
     private Scanner input;
     private UserInterface ui;
-    private TTTBoardRules boardRules;
+    private BoardRulesInterface boardRules;
     private Game game;
 
     public SetUpTicTacToeGame(List<Integer> userChoices) {
@@ -58,14 +57,14 @@ public class SetUpTicTacToeGame {
     public void setUpRules() {
         switch(userChoices.get(0)) {
             case 3:
-                boardRules = new ThreeByThreeBoardRules(board);
+                boardRules = new BoardRules(board);
                 break;
             case 4:
-                boardRules = new FourByFourBoardRules(board);
+                boardRules = new BoardRules(board);
         }
     }
 
-    public TTTBoardRules getBoardRules() {
+    public BoardRulesInterface getBoardRules() {
         return boardRules;
     }
 

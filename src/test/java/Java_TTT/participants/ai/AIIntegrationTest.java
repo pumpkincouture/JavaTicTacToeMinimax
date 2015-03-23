@@ -4,9 +4,8 @@ import Java_TTT.ui.MockUserInterface;
 import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.TTTBoardRules;
-import Java_TTT.rules.FourByFourBoardRules;
-import Java_TTT.rules.ThreeByThreeBoardRules;
+import Java_TTT.rules.BoardRulesInterface;
+import Java_TTT.rules.BoardRules;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -21,13 +20,13 @@ public class AIIntegrationTest {
     private MockUserInterface mockUi = new MockUserInterface(output, input);
     private GameParticipants player1;
     private GameParticipants player2;
-    private TTTBoardRules boardRules;
+    private BoardRulesInterface boardRules;
     private Game game;
 
     @Test
     public void gameWithTwoAIsFor4x4Board() {
         board = new Board(4);
-        boardRules = new FourByFourBoardRules(board);
+        boardRules = new BoardRules(board);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
         game = new Game(player1, player2, board, mockUi, boardRules);
@@ -39,15 +38,14 @@ public class AIIntegrationTest {
         }
 
         assertEquals(1000, gameCounter);
-        assertEquals(false, boardRules.isThereAWinner("X"));
-        assertEquals(false, boardRules.isThereAWinner("O"));
-        assertEquals(true, boardRules.isGameOver("X", "O"));
+        assertEquals("", boardRules.getBoardWinner());
+        assertEquals(true, boardRules.isGameOver());
     }
 
     @Test
     public void gameWithTwoAIsFor3x3Board() {
         board = new Board(3);
-        boardRules = new ThreeByThreeBoardRules(board);
+        boardRules = new BoardRules(board);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
         game = new Game(player1, player2, board, mockUi, boardRules);
@@ -59,8 +57,7 @@ public class AIIntegrationTest {
         }
 
         assertEquals(1000, gameCounter);
-        assertEquals(false, boardRules.isThereAWinner("X"));
-        assertEquals(false, boardRules.isThereAWinner("O"));
-        assertEquals(true, boardRules.isGameOver("X", "O"));
+        assertEquals("", boardRules.getBoardWinner());
+        assertEquals(true, boardRules.isGameOver());
     }
 }

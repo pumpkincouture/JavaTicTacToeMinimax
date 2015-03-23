@@ -24,7 +24,7 @@ public class SetUpTicTacToeGameTest {
         setupTest.setUpOrder();
 
         assertEquals(9, setupTest.getBoard().getLength());
-        assertEquals("ThreeByThreeBoardRules", setupTest.getBoardRules().getClass().getSimpleName());
+        assertEquals("BoardRules", setupTest.getBoardRules().getClass().getSimpleName());
         assertEquals("Human", setupTest.getPlayerOne().getClass().getSimpleName());
         assertEquals("SimpleAI", setupTest.getPlayerTwo().getClass().getSimpleName());
     }
@@ -44,7 +44,7 @@ public class SetUpTicTacToeGameTest {
         setupTest.setUpOrder();
 
         assertEquals(16, setupTest.getBoard().getLength());
-        assertEquals("FourByFourBoardRules", setupTest.getBoardRules().getClass().getSimpleName());
+        assertEquals("BoardRules", setupTest.getBoardRules().getClass().getSimpleName());
         assertEquals("HardAI", setupTest.getPlayerOne().getClass().getSimpleName());
         assertEquals("Human", setupTest.getPlayerTwo().getClass().getSimpleName());
     }

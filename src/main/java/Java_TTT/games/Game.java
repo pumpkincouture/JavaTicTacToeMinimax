@@ -2,7 +2,7 @@ package Java_TTT.games;
 
 import Java_TTT.boards.BoardInterface;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.TTTBoardRules;
+import Java_TTT.rules.BoardRulesInterface;
 import Java_TTT.ui.UserInterface;
 
 public class Game {
@@ -10,10 +10,10 @@ public class Game {
     private GameParticipants player2;
     private BoardInterface board;
     private UserInterface userinterface;
-    private TTTBoardRules boardRules;
+    private BoardRulesInterface boardRules;
     private GameParticipants currentPlayer;
 
-    public Game(GameParticipants player1, GameParticipants player2, BoardInterface board, UserInterface userinterface, TTTBoardRules boardRules) {
+    public Game(GameParticipants player1, GameParticipants player2, BoardInterface board, UserInterface userinterface, BoardRulesInterface boardRules) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
@@ -24,7 +24,7 @@ public class Game {
     public void start() {
         printIntro();
         playGame();
-        printGameWinner(boardRules.getWinningPlayer(player1.getGamePiece(), player2.getGamePiece()));
+        printGameWinner(boardRules.getBoardWinner());
         userinterface.printBoard(board);
     }
 
@@ -32,7 +32,8 @@ public class Game {
         currentPlayer = player1;
         while(!board.isFull()) {
             getPlayerMove(currentPlayer);
-            if (boardRules.isThereAWinner(currentPlayer.getGamePiece()) || !board.isFull()) {
+            System.out.println(!boardRules.getBoardWinner().isEmpty());
+            if (!boardRules.getBoardWinner().isEmpty() || !board.isFull()) {
                 return false;
             }
             switchPlayers();
@@ -70,7 +71,7 @@ public class Game {
     }
 
     public void printGameWinner(String gamePiece) {
-        if (gamePiece.isEmpty()) {
+        if (gamePiece == "") {
             userinterface.printCatsGame();
         } else {
             userinterface.printWinner(gamePiece);
