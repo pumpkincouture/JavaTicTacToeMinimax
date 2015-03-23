@@ -1,6 +1,6 @@
 package Java_TTT.participants.ai;
 
-import Java_TTT.boards.BoardInterface;
+import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
 import Java_TTT.rules.BoardRulesInterface;
@@ -11,10 +11,10 @@ public class HardAI extends Participant implements GameParticipants {
     public static final int MAX_DEPTH = 6;
     private BoardRulesInterface boardRules;
     private int choice;
-    private BoardInterface board;
+    private Board board;
 
 
-    public HardAI(String gamePiece, BoardRulesInterface boardRules, BoardInterface board) {
+    public HardAI(String gamePiece, BoardRulesInterface boardRules, Board board) {
         super(gamePiece);
         this.boardRules = boardRules;
         this.board = board;
@@ -33,7 +33,7 @@ public class HardAI extends Participant implements GameParticipants {
         return convertChosenIndexToString(choice);
     }
 
-    public int makeCalculation(BoardInterface board, int depth, String gamePiece, int minValue, int maxValue) {
+    public int makeCalculation(Board board, int depth, String gamePiece, int minValue, int maxValue) {
         ArrayList<Branch> movesList = new ArrayList();
 
         if (isGameOver() || depth == MAX_DEPTH) {
@@ -75,7 +75,7 @@ public class HardAI extends Participant implements GameParticipants {
         return branches.get();
     }
 
-    public int getScores(BoardInterface board, int depth) {
+    public int getScores(Board board, int depth) {
         if (isComputerWinner(board)) {
             return 10 - depth;
         } else if (isOpponentWinner(board)) {
@@ -84,7 +84,7 @@ public class HardAI extends Participant implements GameParticipants {
         return 0;
     }
 
-    private boolean isOpponentWinner(BoardInterface board) {
+    private boolean isOpponentWinner(Board board) {
         if (boardRules.getBoardWinner() == "") {
             return false;
         } else if (boardRules.getBoardWinner() != this.getGamePiece()) {
@@ -93,7 +93,7 @@ public class HardAI extends Participant implements GameParticipants {
         return false;
     }
 
-    private boolean isComputerWinner(BoardInterface board) {
+    private boolean isComputerWinner(Board board) {
         return (boardRules.getBoardWinner() == this.getGamePiece());
     }
 

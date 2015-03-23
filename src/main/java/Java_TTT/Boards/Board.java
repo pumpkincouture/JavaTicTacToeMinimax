@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Board implements BoardInterface {
+public class Board {
 
     private String[][] boardCells;
     private int boardSize;

@@ -1,6 +1,6 @@
 package Java_TTT.participants.ai;
 
-import Java_TTT.boards.BoardInterface;
+import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
 
@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class SimpleAI extends Participant implements GameParticipants {
     private Random randomGenerator;
-    private BoardInterface board;
+    private Board board;
 
-    public SimpleAI(String gamePiece, BoardInterface board) {
+    public SimpleAI(String gamePiece, Board board) {
         super(gamePiece);
         this.board = board;
         randomGenerator = new Random();
@@ -24,15 +24,15 @@ public class SimpleAI extends Participant implements GameParticipants {
         return convertChosenIndexToString(board);
     }
 
-    private String convertChosenIndexToString(BoardInterface board) {
+    private String convertChosenIndexToString(Board board) {
         return Integer.toString(convertIndexToSpace(board));
     }
 
-    private int convertIndexToSpace(BoardInterface board) {
+    private int convertIndexToSpace(Board board) {
         return getRandomIndex(board) + 1;
     }
 
-    private int getRandomIndex(BoardInterface board) {
+    private int getRandomIndex(Board board) {
         int randomSpace = board.getOpenSpaces().get(randomGenerator.nextInt(board.getOpenSpaces().size()));
         return randomSpace;
     }

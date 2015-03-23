@@ -1,14 +1,14 @@
 package Java_TTT.rules;
 
-import Java_TTT.boards.BoardInterface;
+import Java_TTT.boards.Board;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoardRules implements BoardRulesInterface {
-    private BoardInterface board;
+    private Board board;
 
-    public BoardRules(BoardInterface board) {
+    public BoardRules(Board board) {
         this.board = board;
     }
 

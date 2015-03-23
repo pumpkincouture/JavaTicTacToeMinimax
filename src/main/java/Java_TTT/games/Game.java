@@ -1,6 +1,6 @@
 package Java_TTT.games;
 
-import Java_TTT.boards.BoardInterface;
+import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.rules.BoardRulesInterface;
 import Java_TTT.ui.UserInterface;
@@ -8,12 +8,12 @@ import Java_TTT.ui.UserInterface;
 public class Game {
     private GameParticipants player1;
     private GameParticipants player2;
-    private BoardInterface board;
+    private Board board;
     private UserInterface userinterface;
     private BoardRulesInterface boardRules;
     private GameParticipants currentPlayer;
 
-    public Game(GameParticipants player1, GameParticipants player2, BoardInterface board, UserInterface userinterface, BoardRulesInterface boardRules) {
+    public Game(GameParticipants player1, GameParticipants player2, Board board, UserInterface userinterface, BoardRulesInterface boardRules) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;

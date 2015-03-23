@@ -1,6 +1,5 @@
 package Java_TTT.games.setup;
 
-import Java_TTT.boards.BoardInterface;
 import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
@@ -18,7 +17,7 @@ import java.util.Scanner;
 
 public class SetUpTicTacToeGame {
     private List<Integer> userChoices;
-    private BoardInterface board;
+    private Board board;
     private GameParticipants player1;
     private GameParticipants player2;
     private PrintStream output;
@@ -50,7 +49,7 @@ public class SetUpTicTacToeGame {
         board = new Board(userChoices.get(0));
     }
 
-    public BoardInterface getBoard() {
+    public Board getBoard() {
         return board;
     }
 

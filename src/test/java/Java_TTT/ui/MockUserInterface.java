@@ -1,6 +1,6 @@
 package Java_TTT.ui;
 
-import Java_TTT.boards.BoardInterface;
+import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 
 import java.io.PrintStream;
@@ -61,7 +61,7 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
         displayInvalidMoveMessageCalled = true;
     }
 
-    public void printBoard(BoardInterface board) {
+    public void printBoard(Board board) {
         displayBoardCalled = true;
     }
 
