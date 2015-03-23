@@ -19,10 +19,6 @@ public class HardAITest {
         }
     }
 
-    private void fillBoard(String choice, String gamePiece) {
-        board.placeMove(choice, gamePiece);
-    }
-
     @Test
     public void returnsBlockIfCompCannotWinInNextMove() {
         board = new Board(3);

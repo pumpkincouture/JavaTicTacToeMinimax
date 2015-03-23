@@ -1,6 +1,6 @@
 package Java_TTT.games.setup;
 
-public interface Configurable {
+public interface ChoiceInterface {
 
     public void getConfigurationChoice();
 

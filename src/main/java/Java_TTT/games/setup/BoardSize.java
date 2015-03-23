@@ -5,12 +5,12 @@ import Java_TTT.ui.CommandLineInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TTTBoardSetUp implements Configurable {
+public class BoardSize implements ChoiceInterface {
     private CommandLineInterface ui;
     private int boardChoice;
     private ChoiceValidator choiceValidator;
 
-    public TTTBoardSetUp(CommandLineInterface ui) {
+    public BoardSize(CommandLineInterface ui) {
         this.ui = ui;
     }
 

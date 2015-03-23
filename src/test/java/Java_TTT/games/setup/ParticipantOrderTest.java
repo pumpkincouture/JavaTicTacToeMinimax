@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class ParticipantOrderSetUpTest {
+public class ParticipantOrderTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUI = new MockUserInterface(output, input);
 
     @Test
     public void validateStartingPlayerChoice() {
-        Configurable playerOrderConfig = new ParticipantOrderSetUp(mockUI);
+        ChoiceInterface playerOrderConfig = new ParticipantOrder(mockUI);
 
         mockUI.addNextMove("ppp");
         mockUI.addNextMove("2");

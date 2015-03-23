@@ -9,19 +9,19 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class InputCollectorTest {
+public class MenuFactoryTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUI = new MockUserInterface(output, input);
 
     @Test
     public void checkIfAppropriateValuesAreCollected() {
-        List<Configurable> userChoices= new ArrayList<>();
+        List<ChoiceInterface> userChoices= new ArrayList<>();
         List<Integer> inputValues = new ArrayList<>();
 
-        Configurable boardConfig = new TTTBoardSetUp(mockUI);
-        Configurable playerConfig = new ParticipantSetUp(mockUI);
-        Configurable orderConfig = new ParticipantOrderSetUp(mockUI);
+        ChoiceInterface boardConfig = new BoardSize(mockUI);
+        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
+        ChoiceInterface orderConfig = new ParticipantOrder(mockUI);
 
         userChoices.add(boardConfig);
         userChoices.add(playerConfig);
@@ -36,7 +36,7 @@ public class InputCollectorTest {
         inputValues.add(2);
         inputValues.add(1);
 
-        InputCollector inputCollector= new InputCollector();
+        MenuFactory inputCollector= new MenuFactory();
         inputCollector.collectUserInput(userChoices);
 
         assertEquals(inputValues, inputCollector.getUserValues());

@@ -5,12 +5,12 @@ import Java_TTT.ui.CommandLineInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParticipantOrderSetUp implements Configurable {
+public class ParticipantOrder implements ChoiceInterface {
     private CommandLineInterface ui;
     private int playerOrder;
     private ChoiceValidator choiceValidator;
 
-    public ParticipantOrderSetUp(CommandLineInterface ui) {
+    public ParticipantOrder(CommandLineInterface ui) {
         this.ui = ui;
     }
 

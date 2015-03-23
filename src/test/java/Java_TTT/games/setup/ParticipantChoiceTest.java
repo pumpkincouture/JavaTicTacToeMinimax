@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class ParticipantSetUpTest {
+public class ParticipantChoiceTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUI = new MockUserInterface(output, input);
 
     @Test
     public void capturesUserChoiceForPlayerConfiguration() {
-        Configurable playerConfig = new ParticipantSetUp(mockUI);
+        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
         mockUI.addNextMove("a");
         mockUI.addNextMove("1");
 
@@ -27,7 +27,7 @@ public class ParticipantSetUpTest {
 
     @Test
     public void checkThatChoiceIs1() {
-        Configurable playerConfig = new ParticipantSetUp(mockUI);
+        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("ppp");
         mockUI.addNextMove("1");
@@ -39,7 +39,7 @@ public class ParticipantSetUpTest {
 
     @Test
     public void checkThatChoiceIs2() {
-        Configurable playerConfig = new ParticipantSetUp(mockUI);
+        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("b");
         mockUI.addNextMove("9");
@@ -52,7 +52,7 @@ public class ParticipantSetUpTest {
 
     @Test
     public void checkThatChoiceIs3() {
-        Configurable playerConfig = new ParticipantSetUp(mockUI);
+        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("---");
         mockUI.addNextMove("3");
@@ -64,7 +64,7 @@ public class ParticipantSetUpTest {
 
     @Test
     public void geParticipantOption() {
-        Configurable playerConfig = new ParticipantSetUp(mockUI);
+        ChoiceInterface playerConfig = new ParticipantChoice(mockUI);
 
         mockUI.addNextMove("4");
 
