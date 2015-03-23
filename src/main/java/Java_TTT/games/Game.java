@@ -32,8 +32,8 @@ public class Game {
         currentPlayer = player1;
         while(!board.isFull()) {
             getPlayerMove(currentPlayer);
-            System.out.println(!boardRules.getBoardWinner().isEmpty());
-            if (!boardRules.getBoardWinner().isEmpty() || !board.isFull()) {
+            System.out.println(boardRules.getBoardWinner());
+            if (!boardRules.getBoardWinner().isEmpty() || board.isFull()) {
                 return false;
             }
             switchPlayers();
