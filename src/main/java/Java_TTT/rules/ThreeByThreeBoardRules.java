@@ -1,7 +1,6 @@
 package Java_TTT.rules;
 
 import Java_TTT.boards.BoardInterface;
-import Java_TTT.participants.GameParticipants;
 
 import java.util.ArrayList;
 
@@ -40,6 +39,11 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
         return noWinner;
     }
 
+    public ArrayList<ArrayList<String>> getMatrix() {
+        ArrayList<ArrayList<String>> boardMatrix = new ArrayList();
+        return boardMatrix;
+    }
+
     public String getOpponentPiece(String gamePiece) {
         return "X";
 //        return findOpponentPiece(gamePiece);
@@ -58,18 +62,6 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
 //        return "";
 //    }
 
-    public ArrayList<ArrayList<String>> getMatrix() {
-        ArrayList<ArrayList<String>> boardMatrix = new ArrayList();
-            boardMatrix.add(getColumn1());
-            boardMatrix.add(getColumn2());
-            boardMatrix.add(getColumn3());
-            boardMatrix.add(getRow1());
-            boardMatrix.add(getRow2());
-            boardMatrix.add(getRow3());
-            boardMatrix.add(getDiagonal1());
-            boardMatrix.add(getDiagonal2());
-        return boardMatrix;
-    }
 
     @Override
     public String checkForRowWinner(String playerOne, String playerTwo) {
@@ -77,6 +69,20 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
     }
 
     public String getBoardWinner() {
+        if (checkColumns() != "") {
+            return checkColumns();
+        }
+        if (checkRows() != "") {
+            return checkRows();
+        }if (checkFirstDiagonal() != "") {
+            return checkFirstDiagonal();
+        } if (checkSecondDiagonal() != "") {
+            return checkSecondDiagonal();
+        }
+        return "";
+    }
+
+    private String checkColumns() {
         for (int i = 0; i < board.getMatrix().length; i++) {
             String value = board.getMatrix()[i][0];
             if (value == "*") {
@@ -92,128 +98,66 @@ public class ThreeByThreeBoardRules implements TTTBoardRules {
                 }
             }
         }
+        return "";
+    }
 
-        for (int i = 0; i < board.getMatrix().length; i++) {
-            String value = board.getMatrix()[1][i];
+    private String checkRows() {
+        for (int row = 0; row < board.getMatrix().length; row++) {
+            String value = board.getMatrix()[1][row];
             if (value == "*") {
                 continue;
             }
-            for (int j = 0; j < board.getMatrix()[i].length; j++) {
-                String currentSpace = board.getMatrix()[j][i];
+            for (int column = 0; column < board.getMatrix()[row].length; column++) {
+                String currentSpace = board.getMatrix()[column][row];
                 if (currentSpace == "*" || !currentSpace.equals(value)) {
                     break;
                 }
-                if (j == board.getMatrix()[i].length - 1) {
+                if (column == board.getMatrix()[row].length - 1) {
                     return value;
                 }
 
             }
         }
-
-
         return "";
     }
 
-    private ArrayList<String> getDiagonal1() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> diagonal = new ArrayList();
-        int squareDoubled= squareRoot * 2;
-
-        for (int i=0; i <  board.getLength(); i++) {
-            if (i == 0) {
-                diagonal.add(board.getCells()[i]);
+    private String checkFirstDiagonal() {
+        for (int row = 0; row < board.getMatrix().length; row++) {
+            String value = board.getMatrix()[board.getMatrix().length - 1][row];
+            if (value == "*") {
+                continue;
             }
-            if (i == squareRoot + 1) {
-                diagonal.add(board.getCells()[i]);
-            }
-            if (i == squareDoubled + 2) {
-                diagonal.add(board.getCells()[i]);
-            }
-        }
-        return diagonal;
-    }
-
-    private ArrayList<String> getDiagonal2() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> diagonal = new ArrayList();
-        int squareDoubled= squareRoot * 2;
-
-        for (int i=0; i <  board.getLength(); i++) {
-            if (i == squareRoot - 1) {
-                diagonal.add(board.getCells()[i]);
-            }
-            if (i == squareRoot + 1) {
-                diagonal.add(board.getCells()[i]);
-            }
-            if (i == squareDoubled) {
-                diagonal.add(board.getCells()[i]);
+            for (int column = 1; column < board.getMatrix().length; column++) {
+                String currentSpace = board.getMatrix()[column][board.getMatrix().length - column - 1];
+                if (currentSpace == "*" || !currentSpace.equals(value)) {
+                    break;
+                }
+                if (column == board.getMatrix().length - 1) {
+                    return value;
+                }
             }
         }
-        return diagonal;
+        return "";
     }
 
-    private ArrayList<String> getRow1() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> row = new ArrayList();
 
-        for (int i=0; i < squareRoot; i++) {
-            row.add(board.getCells()[i]);
-        }
-        return row;
-    }
-
-    private ArrayList<String> getRow2() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> row = new ArrayList();
-        int squareDoubled= squareRoot * 2;
-
-        for (int i= squareRoot; i < squareDoubled; i++) {
-            row.add(board.getCells()[i]);
-        }
-        return row;
-    }
-
-    private ArrayList<String> getRow3() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> row = new ArrayList();
-        int squareDoubled= squareRoot * 2;
-        int squareTripled = squareRoot * 3;
-
-        for (int i= squareDoubled; i < board.getLength(); i++) {
-                row.add(board.getCells()[i]);
+    private String checkSecondDiagonal() {
+        for (int row = 1; row < board.getMatrix().length; row++) {
+            String value = board.getMatrix()[0][0];
+            if (value == "*") {
+                continue;
             }
-        return row;
-    }
-
-    private ArrayList<String> getColumn1() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> column = new ArrayList();
-
-        column.add(board.getCells()[0]);
-        column.add(board.getCells()[squareRoot]);
-        column.add(board.getCells()[board.getLength() - squareRoot]);
-        return column;
-    }
-
-    private ArrayList<String> getColumn2() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> column = new ArrayList();
-
-
-        column.add(board.getCells()[1]);
-        column.add(board.getCells()[squareRoot + 1]);
-        column.add(board.getCells()[board.getLength() - (squareRoot - 1)]);
-        return column;
-    }
-
-    private ArrayList<String> getColumn3() {
-        int squareRoot = board.getCellsSquareRoot();
-        ArrayList<String> column = new ArrayList();
-
-        column.add(board.getCells()[2]);
-        column.add(board.getCells()[squareRoot + 2]);
-        column.add(board.getCells()[board.getLength() - (squareRoot - 2)]);
-        return column;
+            for (int column = 1; column < board.getMatrix().length; column++) {
+                String currentSpace = board.getMatrix()[row][row];
+                if (currentSpace == "*" || !currentSpace.equals(value)) {
+                    break;
+                }
+                if (column == board.getMatrix().length - 1) {
+                    return value;
+                }
+            }
+        }
+        return "";
     }
 
     private int checkBoardForWin(String gamePiece, ArrayList<String> boardPart) {
