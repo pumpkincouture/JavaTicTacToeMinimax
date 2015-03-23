@@ -166,10 +166,9 @@ public class HardAITest {
         board = new Board(3);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "X");
-        fillBoard("4", "O");
+        addMovesToBoard("X", "X", "X",
+                        "O", "*", "*",
+                        "*", "*", "*");
 
         assertEquals(-10, aiComputerTest.getScores(board, 0));
     }
@@ -179,10 +178,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "X");
-        fillBoard("4", "X");
+        addMovesToBoard("X", "X", "X", "X",
+                        "*", "*", "*", "*",
+                        "*", "O", "O", "O",
+                        "*", "*", "*", "*");
 
         assertEquals(-10, aiComputerTest.getScores(board, 0));
     }
@@ -192,10 +191,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("2", "O");
-        fillBoard("6", "O");
-        fillBoard("10", "O");
-        fillBoard("14", "O");
+        addMovesToBoard("*", "O", "*", "*",
+                        "*", "O", "*", "*",
+                        "*", "O", "O", "O",
+                        "X", "O", "X", "X");
 
         assertEquals(10, aiComputerTest.getScores(board, 0));
     }
@@ -214,11 +213,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("2", "O");
-        fillBoard("5", "X");
-        fillBoard("3", "O");
-        fillBoard("9", "X");
+        addMovesToBoard("X", "O", "O", "*",
+                        "X", "*", "*", "*",
+                        "X", "*", "*", "*",
+                        "*", "*", "*", "*");
 
         assertEquals("13", aiComputerTest.getMove());
     }
@@ -228,10 +226,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("5", "O");
-        fillBoard("3", "X");
+        addMovesToBoard("X", "X", "X", "*",
+                        "O", "*", "*", "*",
+                        "X", "*", "*", "*",
+                        "*", "*", "*", "*");
 
         assertEquals("4", aiComputerTest.getMove());
     }
@@ -241,17 +239,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("6", "X");
-        fillBoard("11", "O");
-
-        fillBoard("3", "X");
-        fillBoard("4", "O");
-        fillBoard("8", "O");
-        fillBoard("7", "X");
-        fillBoard("5", "X");
-        fillBoard("12", "O");
-        fillBoard("9", "X");
+        addMovesToBoard("X", "*", "X", "O",
+                        "X", "X", "X", "O",
+                        "X", "*", "O", "O",
+                        "*", "*", "*", "*");
 
         assertEquals("16", aiComputerTest.getMove());
     }
@@ -261,13 +252,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "X");
-
-        fillBoard("5", "O");
-        fillBoard("6", "O");
-        fillBoard("7", "O");
+        addMovesToBoard("X", "X", "X", "*",
+                        "O", "O", "O", "*",
+                        "X", "*", "*", "*",
+                        "*", "*", "*", "*");
 
         assertEquals("8", aiComputerTest.getMove());
     }
@@ -278,14 +266,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("3", "X");
-        fillBoard("4", "O");
-
-        fillBoard("5", "X");
-        fillBoard("7", "X");
-        fillBoard("8", "X");
+        addMovesToBoard("X", "X", "X", "O",
+                        "X", "*", "X", "X",
+                        "X", "*", "*", "*",
+                        "*", "*", "*", "*");
 
         assertEquals("6", aiComputerTest.getMove());
     }
@@ -295,12 +279,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("3", "O");
-        fillBoard("7", "O");
-        fillBoard("9", "X");
-        fillBoard("13", "X");
-        fillBoard("15", "O");
+        addMovesToBoard("X", "*", "O", "*",
+                        "*", "*", "O", "*",
+                        "X", "*", "*", "*",
+                        "X", "*", "O", "*");
 
         assertEquals("11", aiComputerTest.getMove());
     }
@@ -310,12 +292,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-
-        fillBoard("1", "O");
-        fillBoard("2", "O");
-        fillBoard("6", "O");
-        fillBoard("10","O");
-        fillBoard("16", "X");
+        addMovesToBoard("O", "O", "*", "*",
+                        "*", "O", "*", "*",
+                        "*", "O", "*", "*",
+                        "*", "*", "*", "X");
 
         assertEquals("14", aiComputerTest.getMove());
     }
@@ -325,12 +305,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-
-        fillBoard("3", "X");
-        fillBoard("4", "O");
-        fillBoard("7", "X");
-        fillBoard("1", "O");
-        fillBoard("11","X");
+        addMovesToBoard("O", "*", "X", "O",
+                        "*", "*", "X", "*",
+                        "*", "*", "X", "*",
+                        "*", "*", "*", "*");
 
         assertEquals("15", aiComputerTest.getMove());
     }
@@ -340,11 +318,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-
-        fillBoard("1", "X");
-        fillBoard("2", "X");
-        fillBoard("5", "O");
-        fillBoard("3", "X");
+        addMovesToBoard("X", "X", "X", "*",
+                        "O", "*", "*", "*",
+                        "*", "*", "*", "*",
+                        "*", "*", "*", "*");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -359,12 +336,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-
-        fillBoard("3", "X");
-        fillBoard("4", "O");
-        fillBoard("7", "X");
-        fillBoard("1", "O");
-        fillBoard("11","X");
+        addMovesToBoard("O", "*", "X", "O",
+                        "*", "*", "X", "*",
+                        "*", "*", "X", "*",
+                        "*", "*", "*", "*");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -379,9 +354,9 @@ public class HardAITest {
         board = new Board(3);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
-        fillBoard("7", "O");
-        fillBoard("5", "X");
+        addMovesToBoard("X", "*", "*",
+                        "*", "X", "*",
+                        "O", "*", "*");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -396,7 +371,9 @@ public class HardAITest {
         board = new Board(3);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-        fillBoard("1", "X");
+        addMovesToBoard("X", "*", "*",
+                        "*", "*", "*",
+                        "*", "*", "*");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -411,12 +388,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-
-        fillBoard("3", "X");
-        fillBoard("4", "O");
-        fillBoard("7", "X");
-        fillBoard("1", "O");
-        fillBoard("11","X");
+        addMovesToBoard("O", "*", "X", "O",
+                        "*", "*", "X", "*",
+                        "*", "*", "X", "*",
+                        "*", "*", "*", "*");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -431,12 +406,10 @@ public class HardAITest {
         board = new Board(4);
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
-
-        fillBoard("3", "X");
-        fillBoard("4", "O");
-        fillBoard("7", "X");
-        fillBoard("1", "O");
-        fillBoard("11","X");
+        addMovesToBoard("O", "*", "X", "O",
+                        "*", "*", "X", "*",
+                        "*", "*", "X", "*",
+                        "*", "*", "*", "*");
 
         long start = System.currentTimeMillis();
         aiComputerTest.makeCalculation(board, 0, "O", Integer.MIN_VALUE, Integer.MAX_VALUE);
