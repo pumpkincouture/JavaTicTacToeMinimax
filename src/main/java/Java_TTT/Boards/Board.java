@@ -38,6 +38,10 @@ public class Board {
         return getOpenCellLocations();
     }
 
+    public String getBoardEmptySpace() {
+        return "*";
+    }
+
     public boolean isMoveValid(String answer) {
         return (checkIfMoveIsInteger(answer) && cellOpen(answer));
     }
@@ -51,7 +55,7 @@ public class Board {
     }
 
     public void resetCell(int index) {
-        boardCells[index % boardSize][index / boardSize] = "*";
+        boardCells[index % boardSize][index / boardSize] = getBoardEmptySpace();
     }
 
     public int getLength() {
@@ -64,7 +68,7 @@ public class Board {
 
     private void fillArray() {
         for (String[] row : boardCells)
-             Arrays.fill(row, "*");
+             Arrays.fill(row, getBoardEmptySpace());
     }
 
     private void findCorrectArraySpace(String answer, String gamePiece) {
@@ -76,7 +80,7 @@ public class Board {
     private boolean cellOpen(String space) {
         int answerWithIndex = Integer.parseInt(space) - 1;
 
-        return boardCells[answerWithIndex % boardSize][answerWithIndex / boardSize].contains("*");
+        return boardCells[answerWithIndex % boardSize][answerWithIndex / boardSize].contains(getBoardEmptySpace());
     }
 
     private boolean checkIfMoveIsInteger(String answer) {
@@ -92,7 +96,7 @@ public class Board {
         ArrayList<Integer> openCells = new ArrayList();
         for (int i = 0; i < boardCells.length; i++) {
             for (int j = 0; j < boardCells[i].length; j++) {
-                if (boardCells[i][j].contains("*")) {
+                if (boardCells[i][j].contains(getBoardEmptySpace())) {
                     openCells.add(boardSize * j + i);
                 }
             }

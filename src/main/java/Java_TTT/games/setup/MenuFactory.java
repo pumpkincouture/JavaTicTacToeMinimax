@@ -8,8 +8,7 @@ public class MenuFactory {
 
     public void collectUserInput(List<Choice> gameOptions) {
         for (Choice choice : gameOptions) {
-            choice.getConfigurationChoice();
-            gameValues.add(choice.getDesiredGameOptions());
+            gameValues.add(choice.getConfigurationChoice());
         }
     }
 

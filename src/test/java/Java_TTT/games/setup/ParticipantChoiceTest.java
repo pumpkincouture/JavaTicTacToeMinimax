@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ParticipantChoiceTest {
     private PrintStream output = new PrintStream(System.out);
@@ -21,8 +22,8 @@ public class ParticipantChoiceTest {
 
         playerConfig.getConfigurationChoice();
 
-        assertEquals(true, mockUI.areGameConfigOptionsCalled());
-        assertEquals(true, mockUI.isDisplayInvalidChoiceMessageCalled());
+        assertTrue(mockUI.areGameConfigOptionsCalled());
+        assertTrue(mockUI.isDisplayInvalidChoiceMessageCalled());
     }
 
     @Test
@@ -32,9 +33,7 @@ public class ParticipantChoiceTest {
         mockUI.addNextMove("ppp");
         mockUI.addNextMove("1");
 
-        playerConfig.getConfigurationChoice();
-
-        assertEquals(1, playerConfig.getDesiredGameOptions());
+        assertEquals(1, playerConfig.getConfigurationChoice());
     }
 
     @Test
@@ -45,9 +44,7 @@ public class ParticipantChoiceTest {
         mockUI.addNextMove("9");
         mockUI.addNextMove("2");
 
-        playerConfig.getConfigurationChoice();
-
-        assertEquals(2, playerConfig.getDesiredGameOptions());
+        assertEquals(2, playerConfig.getConfigurationChoice());
     }
 
     @Test
@@ -57,9 +54,7 @@ public class ParticipantChoiceTest {
         mockUI.addNextMove("---");
         mockUI.addNextMove("3");
 
-        playerConfig.getConfigurationChoice();
-
-        assertEquals(3, playerConfig.getDesiredGameOptions());
+        assertEquals(3, playerConfig.getConfigurationChoice());
     }
 
     @Test
@@ -68,8 +63,6 @@ public class ParticipantChoiceTest {
 
         mockUI.addNextMove("4");
 
-        playerConfig.getConfigurationChoice();
-
-        assertEquals(4, playerConfig.getDesiredGameOptions());
+        assertEquals(4, playerConfig.getConfigurationChoice());
     }
 }

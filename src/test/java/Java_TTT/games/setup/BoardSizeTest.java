@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BoardSizeTest {
     private PrintStream output = new PrintStream(System.out);
@@ -23,9 +24,8 @@ public class BoardSizeTest {
 
         boardConfig.getConfigurationChoice();
 
-        assertEquals(true, mockUI.isDisplayInvalidChoiceMessageCalled());
-        assertEquals(true, mockUI.isBoardSizePromptCalled());
-        assertEquals(3, boardConfig.getDesiredGameOptions());
+        assertTrue(mockUI.isDisplayInvalidChoiceMessageCalled());
+        assertTrue(mockUI.isBoardSizePromptCalled());
     }
 
     @Test
@@ -38,9 +38,8 @@ public class BoardSizeTest {
 
         boardConfig.getConfigurationChoice();
 
-        assertEquals(true, mockUI.isDisplayInvalidChoiceMessageCalled());
-        assertEquals(true, mockUI.isBoardSizePromptCalled());
-        assertEquals(4, boardConfig.getDesiredGameOptions());
+        assertTrue(mockUI.isDisplayInvalidChoiceMessageCalled());
+        assertTrue(mockUI.isBoardSizePromptCalled());
     }
 
     @Test
@@ -53,6 +52,6 @@ public class BoardSizeTest {
 
         boardConfig.getConfigurationChoice();
 
-        assertEquals(4, boardConfig.getDesiredGameOptions());
+        assertTrue(mockUI.isBoardSizePromptCalled());
     }
 }

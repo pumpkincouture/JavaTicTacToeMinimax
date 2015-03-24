@@ -15,13 +15,9 @@ public class BoardSize implements Choice {
     }
 
     @Override
-    public void getConfigurationChoice() {
+    public int getConfigurationChoice() {
         ui.promptForBoardSize();
         validateBoardSizeChoice(ui.captureChoice());
-    }
-
-    @Override
-    public int getDesiredGameOptions() {
         return boardChoice;
     }
 

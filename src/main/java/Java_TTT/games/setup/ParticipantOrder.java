@@ -15,12 +15,8 @@ public class ParticipantOrder implements Choice {
     }
 
     @Override
-    public void getConfigurationChoice() {
+    public int getConfigurationChoice() {
         validateStartingPlayer(ui.captureChoice());
-    }
-
-    @Override
-    public int getDesiredGameOptions() {
         return playerOrder;
     }
 

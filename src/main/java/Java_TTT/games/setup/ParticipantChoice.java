@@ -15,14 +15,10 @@ public class ParticipantChoice implements Choice {
     }
 
     @Override
-    public void getConfigurationChoice() {
+    public int getConfigurationChoice() {
         ui.chooseGameConfiguration();
         validatePlayerConfiguration(ui.captureChoice());
         ui.chooseStartingPlayer(playerOption);
-    }
-
-    @Override
-    public int getDesiredGameOptions() {
         return playerOption;
     }
 

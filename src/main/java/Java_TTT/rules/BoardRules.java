@@ -46,7 +46,7 @@ public class BoardRules implements BoardRulesInterface {
     private String findOpponentPiece(String gamePiece) {
         for (int i = 0; i < board.getMatrix().length; i++) {
             for (int j = 0; j < board.getMatrix()[i].length; j++) {
-                if (!board.getMatrix()[i][j].contains("*")) {
+                if (!board.getMatrix()[i][j].contains(board.getBoardEmptySpace())) {
                     if (board.getMatrix()[i][j] != gamePiece) {
                         return board.getMatrix()[i][j];
                     }
@@ -63,7 +63,7 @@ public class BoardRules implements BoardRulesInterface {
 
         for (int columnIndex = 0; columnIndex < boardLength; columnIndex++) {
             for (int index = 0; index < boardLength; index++) {
-                lineValues[columnIndex][index] = board.getMatrix()[columnIndex][maxIndexValue - index];
+                lineValues[columnIndex][index] = getValueAtIndex(columnIndex, maxIndexValue - index);
             }
         }
 
@@ -83,7 +83,7 @@ public class BoardRules implements BoardRulesInterface {
 
         for (int rowIndex = 0; rowIndex < boardLength; rowIndex++) {
             for (int index = 0; index < boardLength; index++) {
-                lineValues[rowIndex][index] = board.getMatrix()[maxIndexValue - index][rowIndex];
+                lineValues[rowIndex][index] = getValueAtIndex(maxIndexValue - index, rowIndex);
             }
         }
 
@@ -92,7 +92,6 @@ public class BoardRules implements BoardRulesInterface {
                 return lineValues[i][0];
             }
         }
-
         return "";
     }
 
@@ -102,7 +101,7 @@ public class BoardRules implements BoardRulesInterface {
         String[] lineValues = new String[boardLength];
 
         for (int index = 0; index < boardLength; index++) {
-            lineValues[index] = board.getMatrix()[index][maxIndexValue - index];
+            lineValues[index] = getValueAtIndex(index, maxIndexValue - index);
         }
 
         if (isWinningCombo(lineValues)) {
@@ -116,7 +115,7 @@ public class BoardRules implements BoardRulesInterface {
         String[] lineValues = new String[boardLength];
 
         for (int index = 0; index < boardLength; index++) {
-            lineValues[index] = board.getMatrix()[index][index];
+            lineValues[index] = getValueAtIndex(index, index);
         }
 
         if (isWinningCombo(lineValues)) {
@@ -125,10 +124,14 @@ public class BoardRules implements BoardRulesInterface {
         return "";
     }
 
+    private String getValueAtIndex(int startingIndex, int endingIndex) {
+        return board.getMatrix()[startingIndex][endingIndex];
+    }
+
     private boolean isWinningCombo(String[] lineValues) {
         String first = lineValues[0];
         for (String value : lineValues) {
-            if (value != first || value == "*") {
+            if (value != first || value == board.getBoardEmptySpace()) {
                 return false;
             }
         }

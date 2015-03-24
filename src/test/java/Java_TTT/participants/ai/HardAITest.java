@@ -144,7 +144,7 @@ public class HardAITest {
                         "X", "*", "*",
                         "*", "*", "*");
 
-        assertEquals(10, aiComputerTest.getScores(board, 0));
+        assertEquals(10, aiComputerTest.getScores(0));
     }
 
     @Test
@@ -153,7 +153,7 @@ public class HardAITest {
         boardRules = new BoardRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
-        assertEquals(0, aiComputerTest.getScores(board, 0));
+        assertEquals(0, aiComputerTest.getScores(0));
     }
 
 
@@ -166,7 +166,7 @@ public class HardAITest {
                         "O", "*", "*",
                         "*", "*", "*");
 
-        assertEquals(-10, aiComputerTest.getScores(board, 0));
+        assertEquals(-10, aiComputerTest.getScores(0));
     }
 
     @Test
@@ -179,7 +179,7 @@ public class HardAITest {
                         "*", "O", "O", "O",
                         "*", "*", "*", "*");
 
-        assertEquals(-10, aiComputerTest.getScores(board, 0));
+        assertEquals(-10, aiComputerTest.getScores(0));
     }
 
     @Test
@@ -192,7 +192,7 @@ public class HardAITest {
                         "*", "O", "O", "O",
                         "X", "O", "X", "X");
 
-        assertEquals(10, aiComputerTest.getScores(board, 0));
+        assertEquals(10, aiComputerTest.getScores(0));
     }
 
     @Test

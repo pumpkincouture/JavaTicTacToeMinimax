@@ -37,7 +37,7 @@ public class HardAI extends Participant implements GameParticipants {
         ArrayList<Branch> movesList = new ArrayList();
 
         if (isGameOver() || depth == MAX_DEPTH) {
-            return getScores(board, depth);
+            return getScores(depth);
         }
 
         for (Integer move : board.getOpenSpaces()) {
@@ -75,16 +75,16 @@ public class HardAI extends Participant implements GameParticipants {
         return branches.get();
     }
 
-    public int getScores(Board board, int depth) {
-        if (isComputerWinner(board)) {
+    public int getScores(int depth) {
+        if (isComputerWinner()) {
             return 10 - depth;
-        } else if (isOpponentWinner(board)) {
+        } else if (isOpponentWinner()) {
             return depth - 10;
         }
         return 0;
     }
 
-    private boolean isOpponentWinner(Board board) {
+    private boolean isOpponentWinner() {
         if (boardRules.getBoardWinner() == "") {
             return false;
         } else if (boardRules.getBoardWinner() != this.getGamePiece()) {
@@ -93,7 +93,7 @@ public class HardAI extends Participant implements GameParticipants {
         return false;
     }
 
-    private boolean isComputerWinner(Board board) {
+    private boolean isComputerWinner() {
         return (boardRules.getBoardWinner() == this.getGamePiece());
     }
 
