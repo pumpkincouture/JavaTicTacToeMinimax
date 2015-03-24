@@ -3,18 +3,18 @@ package Java_TTT.participants.ai;
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
-import Java_TTT.rules.BoardRulesInterface;
+import Java_TTT.rules.GameRulesInterface;
 
 import java.util.*;
 
 public class HardAI extends Participant implements GameParticipants {
     public static final int MAX_DEPTH = 6;
-    private BoardRulesInterface boardRules;
+    private GameRulesInterface boardRules;
     private int choice;
     private Board board;
 
 
-    public HardAI(String gamePiece, BoardRulesInterface boardRules, Board board) {
+    public HardAI(String gamePiece, GameRulesInterface boardRules, Board board) {
         super(gamePiece);
         this.boardRules = boardRules;
         this.board = board;

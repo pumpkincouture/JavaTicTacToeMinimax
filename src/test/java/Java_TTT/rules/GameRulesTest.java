@@ -7,9 +7,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class BoardRulesTest {
-    private BoardRules threeByThreeRules;
+public class GameRulesTest {
+    private GameRules threeByThreeRules;
     private Board board;
+    private TicTacToeWinnerDetector winnerDetector;
 
     private void addMovesToBoard(String... positions) {
         for (int counter = 0; counter < board.getLength(); counter++) {
@@ -22,7 +23,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasGameOver() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "X",
                         "O", "O", "X",
                         "O", "X", "O");
@@ -33,7 +35,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardDoesNotHaveGameOver() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "X",
                         "O", "O", "X",
                         "*", "X", "O");
@@ -44,7 +47,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardIsNotInGameOverState() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "*", "O",
                         "*", "O", "O",
                         "X", "O", "X");
@@ -55,7 +59,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerAndHasGameOver() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "X",
                         "O", "X", "X",
                         "X", "X", "*");
@@ -66,7 +71,8 @@ public class BoardRulesTest {
     @Test
     public void getOpponentPieceIfPlayerIsX() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "X",
                         "O", "X", "X",
                         "X", "X", "*");
@@ -77,7 +83,8 @@ public class BoardRulesTest {
     @Test
     public void getOpponentPieceIfPlayerIsO() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "X",
                         "O", "X", "X",
                         "X", "X", "*");
@@ -88,7 +95,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInFirstRow() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "X", "X",
                         "O", "O", "*",
                         "*", "*", "*");
@@ -99,7 +107,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInSecondRow() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "X", "*",
                         "O", "O", "O",
                         "*", "*", "X");
@@ -110,7 +119,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInThirdRow() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "X", "*",
                         "O", "*", "*",
                         "X", "X", "X");
@@ -121,7 +131,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInFirstRow() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "O", "O", "O",
                         "*", "*", "X", "X",
                         "*", "X", "*", "*",
@@ -133,7 +144,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInSecondRow() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "*", "*", "O",
                         "X", "X", "X", "X",
                         "*", "X", "*", "*",
@@ -145,7 +157,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInThirdRow() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "*", "*", "O",
                         "*", "*", "*", "*",
                         "O", "O", "O", "O",
@@ -157,7 +170,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInFourthRow() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "*", "*", "O",
                         "*", "*", "*", "*",
                         "*", "O", "O", "O",
@@ -169,7 +183,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInFirstColumn() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "*",
                         "X", "*", "*",
                         "X", "O", "*");
@@ -180,7 +195,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInSecondColumn() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "O", "*",
                         "*", "O", "*",
                         "*", "O", "*");
@@ -191,7 +207,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInThirdColumn() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "X", "X",
                         "O", "*", "X",
                         "*", "X", "X");
@@ -202,7 +219,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInFirstColumn() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "X", "X", "O",
                         "O", "*", "X", "X",
                         "O", "X", "*", "*",
@@ -214,7 +232,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInSecondColumn() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "X", "X", "O",
                         "*", "X", "X", "X",
                         "O", "X", "*", "*",
@@ -227,7 +246,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInThirdColumn() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "X", "O", "O",
                         "*", "*", "O", "X",
                         "O", "X", "O", "*",
@@ -239,7 +259,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourBoardHasAWinnerInFourthColumn() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "X", "O", "X",
                         "*", "*", "*", "X",
                         "O", "X", "*", "X",
@@ -251,7 +272,8 @@ public class BoardRulesTest {
     @Test
     public void returnsEmptyStringIfThereIsNoWinnerOn4x4Board() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "X", "O", "X",
                         "*", "*", "*", "X",
                         "*", "X", "*", "*",
@@ -263,7 +285,8 @@ public class BoardRulesTest {
     @Test
     public void returnsEmptyStringIfThereIsNoWinnerOn3x3Board() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("*", "X", "X",
                         "O", "*", "*",
                         "*", "X", "X");
@@ -274,7 +297,8 @@ public class BoardRulesTest {
     @Test
     public void returnsEmptyStringIfNoWinnerOn3x3Board() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "O", "O",
                         "*", "O", "*",
                         "X", "*", "*");
@@ -285,7 +309,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardShouldHaveATie() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "X", "O",
                         "O", "X", "X",
                         "X", "O", "O");
@@ -296,7 +321,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInFirstDiagonal() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("X", "*", "O",
                         "O", "X", "*",
                         "*", "*", "X");
@@ -307,7 +333,8 @@ public class BoardRulesTest {
     @Test
     public void threeByThreeBoardHasAWinnerInSecondDiagonal() {
         board = new Board(3);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "*", "X",
                         "*", "X", "*",
                         "X", "*", "O");
@@ -318,7 +345,8 @@ public class BoardRulesTest {
     @Test
     public void fourByFourHasWinnerInFirstDiagonal() {
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "X", "O", "X",
                         "*", "O", "*", "X",
                         "*", "X", "O", "*",
@@ -329,9 +357,9 @@ public class BoardRulesTest {
 
     @Test
     public void fourByFourHasWinnerInSecondDiagonal() {
-        System.out.println("last test");
         board = new Board(4);
-        threeByThreeRules = new BoardRules(board);
+        winnerDetector = new TicTacToeWinnerDetector(board);
+        threeByThreeRules = new GameRules(board, winnerDetector);
         addMovesToBoard("O", "X", "O", "X",
                         "*", "*", "X", "X",
                         "*", "X", "O", "*",

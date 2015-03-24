@@ -1,6 +1,6 @@
 package Java_TTT.rules;
 
-public interface BoardRulesInterface {
+public interface GameRulesInterface {
 
     public boolean isGameOver();
 
