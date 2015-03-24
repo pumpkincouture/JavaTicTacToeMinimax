@@ -7,6 +7,8 @@ import java.util.List;
 
 public class BoardRules implements BoardRulesInterface {
     private Board board;
+    private int boardLength;
+    private int maxIndexValue;
 
     public BoardRules(Board board) {
         this.board = board;
@@ -24,6 +26,8 @@ public class BoardRules implements BoardRulesInterface {
 
     @Override
     public String getBoardWinner() {
+        boardLength = board.getMatrix().length;
+        maxIndexValue = boardLength - 1;
         for (String winningGamePiece : checkEntireBoardForWin()) {
             if (!winningGamePiece.isEmpty()) {
                 return winningGamePiece;
@@ -57,8 +61,6 @@ public class BoardRules implements BoardRulesInterface {
     }
 
     private String checkColumns() {
-        int boardLength = board.getMatrix().length;
-        int maxIndexValue = boardLength - 1;
         String[][] lineValues = new String[boardLength][boardLength];
 
         for (int columnIndex = 0; columnIndex < boardLength; columnIndex++) {
@@ -77,8 +79,6 @@ public class BoardRules implements BoardRulesInterface {
     }
 
     private String checkRows() {
-        int boardLength = board.getMatrix().length;
-        int maxIndexValue = boardLength - 1;
         String[][] lineValues = new String[boardLength][boardLength];
 
         for (int rowIndex = 0; rowIndex < boardLength; rowIndex++) {
@@ -96,28 +96,32 @@ public class BoardRules implements BoardRulesInterface {
     }
 
     private String checkRightDiagonal() {
-        int boardLength = board.getMatrix().length;
-        int maxIndexValue = boardLength - 1;
         String[] lineValues = new String[boardLength];
 
-        for (int index = 0; index < boardLength; index++) {
-            lineValues[index] = getValueAtIndex(index, maxIndexValue - index);
-        }
-
-        if (isWinningCombo(lineValues)) {
-            return lineValues[0];
-        }
-        return "";
+        findDiagonalValuesOnBoard(lineValues, true);
+        return checkDiagonalsForWinningCombo(lineValues);
     }
 
     private String checkLeftDiagonal() {
-        int boardLength = board.getMatrix().length;
         String[] lineValues = new String[boardLength];
 
-        for (int index = 0; index < boardLength; index++) {
-            lineValues[index] = getValueAtIndex(index, index);
-        }
+        findDiagonalValuesOnBoard(lineValues, false);
+        return checkDiagonalsForWinningCombo(lineValues);
+    }
 
+
+
+    private void findDiagonalValuesOnBoard(String[] lineValues, boolean rightDiagonal) {
+        for (int index = 0; index < boardLength; index++) {
+            if (rightDiagonal) {
+                lineValues[index] = getValueAtIndex(index, maxIndexValue - index);
+            } else {
+                lineValues[index] = getValueAtIndex(index, index);
+            }
+        }
+    }
+
+    private String checkDiagonalsForWinningCombo(String[] lineValues) {
         if (isWinningCombo(lineValues)) {
             return lineValues[0];
         }
