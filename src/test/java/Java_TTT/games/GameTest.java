@@ -51,6 +51,7 @@ public class GameTest {
     @Test
     public void displayWelcomeMessage() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         gameTest.printIntro();
@@ -61,6 +62,7 @@ public class GameTest {
     @Test
     public void getInitialBoardDisplay() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.printBoard(board);
@@ -70,6 +72,7 @@ public class GameTest {
     @Test
     public void promptUntilMoveValidOn3x3Board() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("PPP");
@@ -88,6 +91,7 @@ public class GameTest {
     @Test
     public void promptUntilMoveValidOn4x4Board() {
         board = new Board(4);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("hhhhhhhhh");
@@ -106,6 +110,7 @@ public class GameTest {
     @Test
     public void testIfCurrentPlayerIsPlayerWithX() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         setCurrentPlayer(player1);
@@ -116,6 +121,7 @@ public class GameTest {
     @Test
     public void switchPlayersAndTestIfPlayerWithOIsSetAsCurrentPlayer() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         setCurrentPlayer(player1);
@@ -127,6 +133,7 @@ public class GameTest {
     @Test
     public void testForWinnerOn3x3Board() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("1");
@@ -144,6 +151,7 @@ public class GameTest {
     @Test
     public void testForWinnerScenarioTwo3x3() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         addMovesToBoard("X", "O", "O",
@@ -157,6 +165,7 @@ public class GameTest {
     @Test
     public void testForWinner() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         mockUi.addNextMove("1");
@@ -175,6 +184,7 @@ public class GameTest {
     @Test
     public void testForCatsGameOn3x3Board() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         addMovesToBoard("X", "X", "O",
@@ -188,6 +198,7 @@ public class GameTest {
     @Test
     public void check4x4BoardForCatsGameScenarioFour() {
         board = new Board(4);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         gameTest = new Game(player1, player2, board, mockUi, boardRules);
         addMovesToBoard("X", "X", "O", "O",

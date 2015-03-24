@@ -2,9 +2,6 @@ package Java_TTT.rules;
 
 import Java_TTT.boards.Board;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameRules implements GameRulesInterface {
     private Board board;
     private GameWinnerDetector gameWinnerDetector;
@@ -26,23 +23,12 @@ public class GameRules implements GameRulesInterface {
 
     @Override
     public String getBoardWinner() {
-        for (String winningGamePiece : checkEntireBoardForWin()) {
+        for (String winningGamePiece : gameWinnerDetector.findBoardWinner()) {
             if (!winningGamePiece.isEmpty()) {
                 return winningGamePiece;
             }
         }
         return "";
-    }
-
-    private List<String> checkEntireBoardForWin() {
-        List<String> valuesAfterCheckingForWin = new ArrayList<>();
-
-        valuesAfterCheckingForWin.add(gameWinnerDetector.checkColumns());
-        valuesAfterCheckingForWin.add(gameWinnerDetector.checkRows());
-        valuesAfterCheckingForWin.add(gameWinnerDetector.checkRightDiagonal());
-        valuesAfterCheckingForWin.add(gameWinnerDetector.checkLeftDiagonal());
-
-        return valuesAfterCheckingForWin;
     }
 
     private String findOpponentPiece(String gamePiece) {

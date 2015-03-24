@@ -1,10 +1,9 @@
 package Java_TTT.rules;
 
+import java.util.List;
+
 abstract class GameWinnerDetector {
 
-    abstract String checkColumns();
-    abstract String checkRows();
-    abstract String checkRightDiagonal();
-    abstract String checkLeftDiagonal();
+    abstract List<String> findBoardWinner();
 }
 

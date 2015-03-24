@@ -2,6 +2,9 @@ package Java_TTT.rules;
 
 import Java_TTT.boards.Board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicTacToeWinnerDetector extends GameWinnerDetector {
     private Board board;
     private int maxIndexValue;
@@ -12,28 +15,37 @@ public class TicTacToeWinnerDetector extends GameWinnerDetector {
     }
 
     @Override
-    String checkColumns() {
+    List<String> findBoardWinner() {
+        List<String> valuesAfterCheckingForWin = new ArrayList<>();
+
+        valuesAfterCheckingForWin.add(checkColumns());
+        valuesAfterCheckingForWin.add(checkRows());
+        valuesAfterCheckingForWin.add(checkRightDiagonal());
+        valuesAfterCheckingForWin.add(checkLeftDiagonal());
+
+        return valuesAfterCheckingForWin;
+    }
+
+
+    private String checkColumns() {
         String[][] lineValues = new String[board.getMatrix().length][board.getMatrix().length];
         findRowAndColumnValuesOnBoard(lineValues, false);
         return checkRowsAndColumnsForWinningCombo(lineValues);
     }
 
-    @Override
-    String checkRows() {
+    private String checkRows() {
         String[][] lineValues = new String[board.getMatrix().length][board.getMatrix().length];
         findRowAndColumnValuesOnBoard(lineValues, true);
         return checkRowsAndColumnsForWinningCombo(lineValues);
     }
 
-    @Override
-    String checkRightDiagonal() {
+    private String checkRightDiagonal() {
         String[] lineValues = new String[board.getMatrix().length];
         findDiagonalValuesOnBoard(lineValues, true);
         return checkDiagonalsForWinningCombo(lineValues);
     }
 
-    @Override
-    String checkLeftDiagonal() {
+    private String checkLeftDiagonal() {
         String[] lineValues = new String[board.getMatrix().length];
         findDiagonalValuesOnBoard(lineValues, false);
         return checkDiagonalsForWinningCombo(lineValues);

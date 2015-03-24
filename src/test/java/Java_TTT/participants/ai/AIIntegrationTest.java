@@ -28,6 +28,7 @@ public class AIIntegrationTest {
     @Test
     public void gameWithTwoAIsFor4x4Board() {
         board = new Board(4);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
@@ -47,6 +48,7 @@ public class AIIntegrationTest {
     @Test
     public void gameWithTwoAIsFor3x3Board() {
         board = new Board(3);
+        winnerDetector = new TicTacToeWinnerDetector(board);
         boardRules = new GameRules(board, winnerDetector);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
