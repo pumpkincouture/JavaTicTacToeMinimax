@@ -8,7 +8,6 @@ import Java_TTT.participants.ai.SimpleAI;
 import Java_TTT.participants.human.Human;
 import Java_TTT.rules.GameRulesInterface;
 import Java_TTT.rules.GameRules;
-import Java_TTT.rules.TicTacToeWinnerDetector;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
 
@@ -26,7 +25,6 @@ public class SetUpTicTacToeGame {
     private UserInterface ui;
     private GameRulesInterface boardRules;
     private Game game;
-    private TicTacToeWinnerDetector winnerDetector;
 
     public SetUpTicTacToeGame(List<Integer> userChoices) {
         this.userChoices = userChoices;
@@ -58,10 +56,10 @@ public class SetUpTicTacToeGame {
     public void setUpRules() {
         switch(userChoices.get(0)) {
             case 3:
-                boardRules = new GameRules(board, winnerDetector);
+                boardRules = new GameRules(board);
                 break;
             case 4:
-                boardRules = new GameRules(board, winnerDetector);
+                boardRules = new GameRules(board);
         }
     }
 

@@ -7,14 +7,9 @@ import java.util.List;
 
 public class GameRules implements GameRulesInterface {
     private Board board;
-    private TicTacToeWinnerDetector gameWinnerDetector;
-    private WinnerValidator winnerValidator;
-    private GameWinnerDetector gameDetector;
 
-    public GameRules(Board board, TicTacToeWinnerDetector gameWinnerDetector) {
+    public GameRules(Board board) {
         this.board = board;
-        this.gameWinnerDetector = gameWinnerDetector;
-        this.winnerValidator = new WinnerValidator();
     }
 
     @Override
@@ -29,9 +24,7 @@ public class GameRules implements GameRulesInterface {
 
     @Override
     public String getBoardWinner() {
-        gameDetector = new ColumnWinnerDetector(board, winnerValidator);
-        System.out.println(gameDetector.findBoardWinner(board.getMatrix().length) + " printing from getBoardWinner in GameRules");
-        for (String winningGamePiece : gameWinnerDetector.findBoardWinner()) {
+        for (String winningGamePiece : boardWinner()) {
             if (!winningGamePiece.isEmpty()) {
                 return winningGamePiece;
             }
@@ -39,16 +32,20 @@ public class GameRules implements GameRulesInterface {
         return "";
     }
 
-//    public List<String> findBoardWinner() {
-//        List<String> valuesAfterCheckingForWin = new ArrayList<>();
+    public List<String> boardWinner() {
+        List<GameWinnerDetector> detectors = new ArrayList<>();
+        WinnerValidator winnerValidator = new WinnerValidator();
+        detectors.add(new ColumnWinnerDetector(board, winnerValidator));
+        detectors.add(new RowWinnerDetector(board, winnerValidator));
+        detectors.add(new LeftDiagonalWinnerDetector(board, winnerValidator));
+        detectors.add(new RightDiagonalWinnerDetector(board, winnerValidator));
 
-//        valuesAfterCheckingForWin.add(new ColumnWinnerDetector(board, winnerValidator).getWinner());
-//        valuesAfterCheckingForWin.add(new RowWinnerDetector(board, winnerValidator));
-//        valuesAfterCheckingForWin.add(checkRightDiagonal());
-//        valuesAfterCheckingForWin.add(checkLeftDiagonal());
-//
-//        return valuesAfterCheckingForWin;
-//    }
+        List<String> valuesAfterCheckingForWin = new ArrayList<>();
+        for (GameWinnerDetector detector : detectors) {
+            valuesAfterCheckingForWin.add(detector.findBoardWinner(board.getMatrix().length));
+        }
+        return valuesAfterCheckingForWin;
+    }
 
     private String findOpponentPiece(String gamePiece) {
         for (int i = 0; i < board.getMatrix().length; i++) {

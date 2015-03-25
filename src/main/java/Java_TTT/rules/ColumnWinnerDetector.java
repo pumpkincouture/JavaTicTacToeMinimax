@@ -16,17 +16,13 @@ public class ColumnWinnerDetector extends GameWinnerDetector {
     @Override
     protected void addGamePiecesToList(int index) {
         int maxIndexValue = board.getMatrix().length - 1;
-        for (int rowIndex = 0; index < board.getMatrix().length; index++) {
-            lineValues[index][rowIndex] = winnerValidator.getValueAtIndex(board, rowIndex, maxIndexValue - index);
+        for (int columnIndex = 0; columnIndex < board.getMatrix().length; columnIndex++) {
+            lineValues[index][columnIndex] = winnerValidator.getValueAtIndex(board, index, maxIndexValue - columnIndex);
         }
     }
 
     @Override
     protected String checkIfWinnerExists() {
-        for (int i = 0; i < board.getMatrix().length; i++) {
-            if (winnerValidator.isWinningCombo(board, lineValues[i])) {
-                return lineValues[i][0];
-            }
-        } return "";
+        return winnerValidator.checkRowsAndColumnsForWin(board, lineValues);
     }
 }

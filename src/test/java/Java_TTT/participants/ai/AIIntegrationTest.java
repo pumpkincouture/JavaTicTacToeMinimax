@@ -1,6 +1,5 @@
 package Java_TTT.participants.ai;
 
-import Java_TTT.rules.TicTacToeWinnerDetector;
 import Java_TTT.ui.MockUserInterface;
 import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
@@ -23,13 +22,11 @@ public class AIIntegrationTest {
     private GameParticipants player2;
     private GameRulesInterface boardRules;
     private Game game;
-    private TicTacToeWinnerDetector winnerDetector;
 
     @Test
     public void gameWithTwoAIsFor4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
         game = new Game(player1, player2, board, mockUi, boardRules);
@@ -48,8 +45,7 @@ public class AIIntegrationTest {
     @Test
     public void gameWithTwoAIsFor3x3Board() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         player1 = new HardAI("X", boardRules, board);
         player2 = new HardAI("O", boardRules, board);
         game = new Game(player1, player2, board, mockUi, boardRules);

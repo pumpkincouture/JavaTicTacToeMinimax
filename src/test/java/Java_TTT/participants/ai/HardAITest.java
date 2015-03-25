@@ -3,7 +3,6 @@ package Java_TTT.participants.ai;
 import Java_TTT.boards.Board;
 import Java_TTT.rules.GameRulesInterface;
 import Java_TTT.rules.GameRules;
-import Java_TTT.rules.TicTacToeWinnerDetector;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +10,6 @@ public class HardAITest {
     private HardAI aiComputerTest;
     private Board board;
     private GameRulesInterface boardRules;
-    private TicTacToeWinnerDetector winnerDetector;
 
     private void addMovesToBoard(String... positions) {
         for (int counter = 0; counter < board.getLength(); counter++) {
@@ -24,8 +22,7 @@ public class HardAITest {
     @Test
     public void returnsBlockIfCompCannotWinInNextMove() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "*",
                         "O", "O", "X",
@@ -37,8 +34,7 @@ public class HardAITest {
     @Test
     public void returnsWinForItselfRatherThanBlockingOpponentFromWinning() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "O",
                         "*", "O", "O",
@@ -51,8 +47,7 @@ public class HardAITest {
     @Test
     public void returnsWinForItself() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "O",
                         "O", "*", "X",
@@ -64,8 +59,7 @@ public class HardAITest {
     @Test
     public void returnsWinningMoveIfFiveSpacesLeft() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "O", "*",
                         "X", "O", "*",
@@ -77,8 +71,7 @@ public class HardAITest {
     @Test
     public void returnsWinningMoveAndBlocksOpponent() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "X", "X", "*", "*", "X", "O", "O");
 
@@ -88,8 +81,7 @@ public class HardAITest {
     @Test
     public void returnsWinningSpotWhenThereAreSixSpotsOnTheBoard() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "O",
                         "*", "X", "*",
@@ -101,8 +93,7 @@ public class HardAITest {
     @Test
     public void returnsBestMoveAfterOpponentPlacesFirstMove() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "*",
                         "*", "*", "*",
@@ -114,8 +105,7 @@ public class HardAITest {
     @Test
     public void returnsBlockingMove() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "*",
                         "*", "X", "*",
@@ -127,8 +117,7 @@ public class HardAITest {
     @Test
     public void returnsBlockForOpponent() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "*",
                         "*", "*", "*",
@@ -140,8 +129,7 @@ public class HardAITest {
     @Test
     public void picksASpaceIfBoardEmpty() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
         assertEquals("1", aiComputerTest.getMove());
@@ -150,8 +138,7 @@ public class HardAITest {
     @Test
     public void AIWinsIfBoardHasThreeInARow() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "O", "O",
                         "X", "*", "*",
@@ -163,8 +150,7 @@ public class HardAITest {
     @Test
     public void testForCatsGame() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
         assertEquals(0, aiComputerTest.getScores(0));
@@ -174,8 +160,7 @@ public class HardAITest {
     @Test
     public void XWinsIfBoardHasThreeInARow() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "X",
                         "O", "*", "*",
@@ -187,8 +172,7 @@ public class HardAITest {
     @Test
     public void XWinsIfBoardHas4InARow() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "X", "X",
                         "*", "*", "*", "*",
@@ -201,8 +185,7 @@ public class HardAITest {
     @Test
     public void OWinsIfBoardHas4InARow() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("*", "O", "*", "*",
                         "*", "O", "*", "*",
@@ -215,8 +198,7 @@ public class HardAITest {
     @Test
     public void picksFirstMoveOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
 
         assertEquals("1", aiComputerTest.getMove());
@@ -225,8 +207,7 @@ public class HardAITest {
     @Test
     public void picksThirdMoveOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "O", "O", "*",
                         "X", "*", "*", "*",
@@ -239,8 +220,7 @@ public class HardAITest {
     @Test
     public void getsMoveToBlockOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "X", "*",
                         "O", "*", "*", "*",
@@ -253,8 +233,7 @@ public class HardAITest {
     @Test
     public void picksWinningMoveOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "X", "O",
                         "X", "X", "X", "O",
@@ -267,8 +246,7 @@ public class HardAITest {
     @Test
     public void makesMoveToWinInNextMoveOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "X", "*",
                         "O", "O", "O", "*",
@@ -282,8 +260,7 @@ public class HardAITest {
     @Test
     public void blocksOpponentWinOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "X", "O",
                         "X", "*", "X", "X",
@@ -296,8 +273,7 @@ public class HardAITest {
     @Test
     public void makesMoveOn4x4BoardToWin() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "O", "*",
                         "*", "*", "O", "*",
@@ -310,8 +286,7 @@ public class HardAITest {
     @Test
     public void returnsWinForItselfOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "O", "*", "*",
                         "*", "O", "*", "*",
@@ -324,8 +299,7 @@ public class HardAITest {
     @Test
     public void picksMoveAgainstOpponentOn4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "X", "O",
                         "*", "*", "X", "*",
@@ -338,8 +312,7 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioOne() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "X", "X", "*",
                         "O", "*", "*", "*",
@@ -357,8 +330,7 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On4x4BoardGetsCorrectMoveScenarioTwo() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "X", "O",
                         "*", "*", "X", "*",
@@ -376,8 +348,7 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On3x3BoardReturnsCorrectMove() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "*",
                         "*", "X", "*",
@@ -394,8 +365,7 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth6On3x3BoardReturnsMiddleSpace() {
         board = new Board(3);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("X", "*", "*",
                         "*", "*", "*",
@@ -412,8 +382,7 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth5On4x4Board() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "X", "O",
                         "*", "*", "X", "*",
@@ -431,8 +400,7 @@ public class HardAITest {
     @Test
     public void benchmarkTestForDepth4On4x4BoardGetsCorrectMove() {
         board = new Board(4);
-        winnerDetector = new TicTacToeWinnerDetector(board);
-        boardRules = new GameRules(board, winnerDetector);
+        boardRules = new GameRules(board);
         aiComputerTest = new HardAI("O", boardRules, board);
         addMovesToBoard("O", "*", "X", "O",
                         "*", "*", "X", "*",
