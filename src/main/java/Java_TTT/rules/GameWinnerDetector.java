@@ -1,9 +1,15 @@
 package Java_TTT.rules;
 
-import java.util.List;
+public abstract class GameWinnerDetector {
 
-abstract class GameWinnerDetector {
+    protected String findBoardWinner(int boardLength) {
 
-    abstract List<String> findBoardWinner();
+        for (int index = 0; index < boardLength; index++) {
+            addGamePiecesToList(index);
+        }
+        return checkIfWinnerExists();
+    }
+
+    protected abstract void addGamePiecesToList(int index);
+    protected abstract String checkIfWinnerExists();
 }
-

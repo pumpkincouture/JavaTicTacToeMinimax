@@ -5,7 +5,7 @@ import Java_TTT.boards.Board;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicTacToeWinnerDetector extends GameWinnerDetector {
+public class TicTacToeWinnerDetector  {
     private Board board;
     private int maxIndexValue;
 
@@ -14,8 +14,8 @@ public class TicTacToeWinnerDetector extends GameWinnerDetector {
         this.maxIndexValue = board.getMatrix().length - 1;
     }
 
-    @Override
-    List<String> findBoardWinner() {
+
+    public List<String> findBoardWinner() {
         List<String> valuesAfterCheckingForWin = new ArrayList<>();
 
         valuesAfterCheckingForWin.add(checkColumns());
