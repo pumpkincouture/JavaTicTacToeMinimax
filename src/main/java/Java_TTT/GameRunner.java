@@ -1,10 +1,10 @@
 package Java_TTT;
 
 import Java_TTT.games.Game;
-import Java_TTT.games.setup.MenuFactory;
-import Java_TTT.games.setup.GameFactory;
-import Java_TTT.ui.CommandLineInterface;
-import Java_TTT.ui.UserInterface;
+import Java_TTT.games.choiceUi.MenuFactory;
+import Java_TTT.games.choiceUi.GameFactory;
+import Java_TTT.messages.CommandLineInterface;
+import Java_TTT.messages.UserInterface;
 
 import java.io.PrintStream;
 import java.util.Scanner;

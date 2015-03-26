@@ -64,28 +64,6 @@ public class GameRulesTest {
     }
 
     @Test
-    public void getOpponentPieceIfPlayerIsX() {
-        board = new Board(3);
-        threeByThreeRules = new GameRules(board);
-        addMovesToBoard("X", "O", "X",
-                        "O", "X", "X",
-                        "X", "X", "*");
-
-        assertEquals("O", threeByThreeRules.getOpponentPiece("X"));
-    }
-
-    @Test
-    public void getOpponentPieceIfPlayerIsO() {
-        board = new Board(3);
-        threeByThreeRules = new GameRules(board);
-        addMovesToBoard("X", "O", "X",
-                        "O", "X", "X",
-                        "X", "X", "*");
-
-        assertEquals("X", threeByThreeRules.getOpponentPiece("O"));
-    }
-
-    @Test
     public void threeByThreeBoardHasAWinnerInFirstRow() {
         board = new Board(3);
         threeByThreeRules = new GameRules(board);

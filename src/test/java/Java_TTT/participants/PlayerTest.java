@@ -1,6 +1,6 @@
 package Java_TTT.participants;
 
-import Java_TTT.ui.MockUserInterface;
+import Java_TTT.messages.MockUserInterface;
 import org.junit.Before;
 import org.junit.Test;
 

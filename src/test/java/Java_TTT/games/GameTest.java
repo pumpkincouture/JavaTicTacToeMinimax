@@ -1,7 +1,7 @@
 package Java_TTT.games;
 
 import Java_TTT.participants.Participant;
-import Java_TTT.ui.MockUserInterface;
+import Java_TTT.messages.MockUserInterface;
 import Java_TTT.boards.Board;
 import Java_TTT.participants.Human;
 import Java_TTT.rules.GameRules;

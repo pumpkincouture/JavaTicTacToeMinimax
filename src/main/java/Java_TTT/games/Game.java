@@ -3,7 +3,7 @@ package Java_TTT.games;
 import Java_TTT.boards.Board;
 import Java_TTT.participants.Participant;
 import Java_TTT.rules.GameRules;
-import Java_TTT.ui.UserInterface;
+import Java_TTT.messages.UserInterface;
 
 public class Game {
     private Participant player1;

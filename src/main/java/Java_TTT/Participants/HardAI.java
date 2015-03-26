@@ -10,12 +10,14 @@ public class HardAI extends Participant {
     private GameRules gameRules;
     private int choice;
     private Board board;
+    private String opponentPiece;
 
 
-    public HardAI(String gamePiece, GameRules gameRules, Board board) {
+    public HardAI(String gamePiece, GameRules gameRules, Board board, String opponentPiece) {
         super(gamePiece);
         this.gameRules = gameRules;
         this.board = board;
+        this.opponentPiece = opponentPiece;
     }
 
     public String getName() {
@@ -100,7 +102,7 @@ public class HardAI extends Participant {
     }
 
     private String switchPlayers(String gamePiece) {
-        return gamePiece == this.getGamePiece() ? gameRules.getOpponentPiece(gamePiece) : this.getGamePiece();
+        return gamePiece == this.getGamePiece() ? opponentPiece : this.getGamePiece();
     }
 
     private String convertChosenIndexToString(int chosenSpace) {

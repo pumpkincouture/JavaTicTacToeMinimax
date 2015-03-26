@@ -1,6 +1,6 @@
 package Java_TTT.participants;
 
-import Java_TTT.ui.UserInterface;
+import Java_TTT.messages.UserInterface;
 
 public class Human extends Participant {
     private UserInterface ui;

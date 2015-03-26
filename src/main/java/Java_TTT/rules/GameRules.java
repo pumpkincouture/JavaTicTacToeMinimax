@@ -16,10 +16,6 @@ public class GameRules {
         return !getBoardWinner().isEmpty() || board.getOpenSpaces().isEmpty();
     }
 
-    public String getOpponentPiece(String gamePiece) {
-        return findOpponentPiece(gamePiece);
-    }
-
     public String getBoardWinner() {
         for (String winningGamePiece : boardWinner()) {
             if (!winningGamePiece.isEmpty()) {
@@ -42,18 +38,5 @@ public class GameRules {
             valuesAfterCheckingForWin.add(detector.findBoardWinner(board.getMatrix().length));
         }
         return valuesAfterCheckingForWin;
-    }
-
-    private String findOpponentPiece(String gamePiece) {
-        for (int i = 0; i < board.getMatrix().length; i++) {
-            for (int j = 0; j < board.getMatrix()[i].length; j++) {
-                if (!board.getMatrix()[i][j].contains(board.getBoardEmptySpace())) {
-                    if (board.getMatrix()[i][j] != gamePiece) {
-                        return board.getMatrix()[i][j];
-                    }
-                }
-            }
-        }
-        return "";
     }
 }
