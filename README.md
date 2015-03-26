@@ -11,5 +11,5 @@ maven```. To check if Maven was installed, type ```mvn -version```. For troubles
 Once Maven is successfully installed, type ```mvn compile```, then ```mvn package``` to bundle the application.
 Type ```java -cp target/Java_TTT-1.0-SNAPSHOT.jar Java_TTT.GameRunner``` to start.
 
-## Instructions on running the test suitecho
+## Instructions on running the test suite
 In your IDE : run your chosen test file.
