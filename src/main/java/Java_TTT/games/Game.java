@@ -1,19 +1,19 @@
 package Java_TTT.games;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.Participant;
+import Java_TTT.players.PlayerInterface;
 import Java_TTT.rules.GameRules;
 import Java_TTT.messages.UserInterface;
 
 public class Game {
-    private Participant player1;
-    private Participant player2;
+    private PlayerInterface player1;
+    private PlayerInterface player2;
     private Board board;
     private UserInterface userinterface;
     private GameRules gameRules;
-    private Participant currentPlayer;
+    private PlayerInterface currentPlayer;
 
-    public Game(Participant player1, Participant player2, Board board, UserInterface userinterface, GameRules gameRules) {
+    public Game(PlayerInterface player1, PlayerInterface player2, Board board, UserInterface userinterface, GameRules gameRules) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
@@ -41,12 +41,12 @@ public class Game {
         return true;
     }
 
-    public void getPlayerMove(Participant player) {
+    public void getPlayerMove(PlayerInterface player) {
         userinterface.printBoard(board);
         getPlayerChoice(player, player.getMove());
     }
 
-    public void getPlayerChoice(Participant player, String choice) {
+    public void getPlayerChoice(PlayerInterface player, String choice) {
         if (!board.isMoveValid(choice)) {
             userinterface.printError(choice);
             getPlayerMove(currentPlayer);
@@ -62,11 +62,11 @@ public class Game {
         userinterface.printGamePieceAssignment(player1, player2);
     }
 
-    public Participant getCurrentPlayer() {
+    public PlayerInterface getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(Participant player) {
+    public void setCurrentPlayer(PlayerInterface player) {
         currentPlayer = player;
     }
 

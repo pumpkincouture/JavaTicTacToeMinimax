@@ -1,9 +1,9 @@
 package Java_TTT.games;
 
-import Java_TTT.participants.Participant;
 import Java_TTT.messages.MockUserInterface;
 import Java_TTT.boards.Board;
-import Java_TTT.participants.Human;
+import Java_TTT.players.Human;
+import Java_TTT.players.PlayerInterface;
 import Java_TTT.rules.GameRules;
 import org.junit.Test;
 
@@ -20,8 +20,8 @@ public class GameTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private Participant player1 = new Human("X", mockUi);
-    private Participant player2 = new Human("O", mockUi);
+    private PlayerInterface player1 = new Human("X", mockUi);
+    private PlayerInterface player2 = new Human("O", mockUi);
     private GameRules gameRules;
 
 
@@ -33,7 +33,7 @@ public class GameTest {
         }
     }
 
-    private void setCurrentPlayer(Participant player) {
+    private void setCurrentPlayer(PlayerInterface player) {
         gameTest.setCurrentPlayer(player);
     }
 

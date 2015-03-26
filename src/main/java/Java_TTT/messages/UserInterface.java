@@ -1,7 +1,7 @@
 package Java_TTT.messages;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.Participant;
+import Java_TTT.players.PlayerInterface;
 
 public interface UserInterface {
 
@@ -13,13 +13,13 @@ public interface UserInterface {
 
     public void promptForBoardSize();
 
-    public void printChoice(Participant player, String choice);
+    public void printChoice(PlayerInterface player, String choice);
 
     public void printWelcomeMessage(int boardSize);
 
     public void chooseStartingPlayer(int playerConfigChoice);
 
-    public void printGamePieceAssignment(Participant player1, Participant player2);
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2);
 
     public void printBoard(Board board);
 

@@ -1,7 +1,7 @@
 package Java_TTT.messages;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.Participant;
+import Java_TTT.players.PlayerInterface;
 
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -61,7 +61,7 @@ public class CommandLineInterface implements UserInterface {
 
     }
 
-    public void printGamePieceAssignment(Participant player1, Participant player2) {
+    public void printGamePieceAssignment(PlayerInterface player1, PlayerInterface player2) {
         printMessage(player1.getName() + " will have the " + player1.getGamePiece() + " piece and " + player2.getName() + " will have the " + player2.getGamePiece() + " piece. " + player1.getGamePiece() + " will start. Please indicate your chosen space with a number.");
     }
 
@@ -69,7 +69,7 @@ public class CommandLineInterface implements UserInterface {
         return scannerIn.next();
     }
 
-    public void printChoice(Participant player, String choice) {
+    public void printChoice(PlayerInterface player, String choice) {
         printMessage(player.getName() + " has chosen space " + choice + ".");
     }
 

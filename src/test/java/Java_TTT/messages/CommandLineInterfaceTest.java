@@ -1,9 +1,9 @@
 package Java_TTT.messages;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.Human;
-import Java_TTT.participants.Participant;
-import Java_TTT.participants.SimpleAI;
+import Java_TTT.players.Human;
+import Java_TTT.players.PlayerInterface;
+import Java_TTT.players.SimpleAI;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -18,8 +18,8 @@ public class CommandLineInterfaceTest {
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private Participant player1 = new Human("X", mockUi);
-    private Participant player2 = new SimpleAI("O", board);
+    private PlayerInterface player1 = new Human("X", mockUi);
+    private PlayerInterface player2 = new SimpleAI("O", board);
 
 
     private void addMovesToBoard(String... positions) {
