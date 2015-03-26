@@ -6,8 +6,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class SetUpTicTacToeGameTest {
-    private SetUpTicTacToeGame setupTest;
+public class GameFactoryTest {
+    private GameFactory setupTest;
 
     @Test
     public void checkThatAllObjectsAreInitialized() {
@@ -16,7 +16,7 @@ public class SetUpTicTacToeGameTest {
         userChoices.add(2);
         userChoices.add(1);
 
-        setupTest = new SetUpTicTacToeGame(userChoices);
+        setupTest = new GameFactory(userChoices);
 
         setupTest.setUpBoard();
         setupTest.setUpRules();
@@ -24,7 +24,7 @@ public class SetUpTicTacToeGameTest {
         setupTest.setUpOrder();
 
         assertEquals(9, setupTest.getBoard().getLength());
-        assertEquals("GameRules", setupTest.getBoardRules().getClass().getSimpleName());
+        assertEquals("GameRules", setupTest.getGameRules().getClass().getSimpleName());
         assertEquals("Human", setupTest.getPlayerOne().getClass().getSimpleName());
         assertEquals("SimpleAI", setupTest.getPlayerTwo().getClass().getSimpleName());
     }
@@ -36,7 +36,7 @@ public class SetUpTicTacToeGameTest {
         userChoices.add(3);
         userChoices.add(2);
 
-        setupTest = new SetUpTicTacToeGame(userChoices);
+        setupTest = new GameFactory(userChoices);
 
         setupTest.setUpBoard();
         setupTest.setUpRules();
@@ -44,7 +44,7 @@ public class SetUpTicTacToeGameTest {
         setupTest.setUpOrder();
 
         assertEquals(16, setupTest.getBoard().getLength());
-        assertEquals("GameRules", setupTest.getBoardRules().getClass().getSimpleName());
+        assertEquals("GameRules", setupTest.getGameRules().getClass().getSimpleName());
         assertEquals("HardAI", setupTest.getPlayerOne().getClass().getSimpleName());
         assertEquals("Human", setupTest.getPlayerTwo().getClass().getSimpleName());
     }

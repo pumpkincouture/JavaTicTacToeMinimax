@@ -1,16 +1,16 @@
 package Java_TTT.games.setup;
 
-import Java_TTT.ui.CommandLineInterface;
+import Java_TTT.ui.UserInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParticipantChoice implements Choice {
-    private CommandLineInterface ui;
+    private UserInterface ui;
     private int playerOption;
     private ChoiceValidator choiceValidator;
 
-    public ParticipantChoice(CommandLineInterface ui) {
+    public ParticipantChoice(UserInterface ui) {
         this.ui = ui;
     }
 

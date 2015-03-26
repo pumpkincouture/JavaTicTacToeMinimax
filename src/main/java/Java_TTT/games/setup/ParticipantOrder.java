@@ -1,16 +1,16 @@
 package Java_TTT.games.setup;
 
-import Java_TTT.ui.CommandLineInterface;
+import Java_TTT.ui.UserInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParticipantOrder implements Choice {
-    private CommandLineInterface ui;
+    private UserInterface ui;
     private int playerOrder;
     private ChoiceValidator choiceValidator;
 
-    public ParticipantOrder(CommandLineInterface ui) {
+    public ParticipantOrder(UserInterface ui) {
         this.ui = ui;
     }
 

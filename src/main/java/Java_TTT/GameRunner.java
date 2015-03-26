@@ -1,12 +1,12 @@
 package Java_TTT;
 
-import Java_TTT.games.setup.*;
+import Java_TTT.games.Game;
+import Java_TTT.games.setup.MenuFactory;
+import Java_TTT.games.setup.GameFactory;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class GameRunner {
@@ -15,20 +15,12 @@ public class GameRunner {
         PrintStream output = new PrintStream(System.out);
         Scanner input = new Scanner(System.in);
         UserInterface ui = new CommandLineInterface(output, input);
-        List<Choice> userChoices= new ArrayList<>();
 
-        Choice boardConfig = new BoardSize((CommandLineInterface) ui);
-        Choice playerConfig = new ParticipantChoice((CommandLineInterface) ui);
-        Choice orderConfig = new ParticipantOrder((CommandLineInterface) ui);
+        MenuFactory menuFactory = new MenuFactory(ui);
 
-        userChoices.add(boardConfig);
-        userChoices.add(playerConfig);
-        userChoices.add(orderConfig);
-
-        MenuFactory inputCollector = new MenuFactory();
-        inputCollector.collectUserInput(userChoices);
-
-        SetUpTicTacToeGame setup = new SetUpTicTacToeGame(inputCollector.getUserValues());
-        setup.setUpGame();
+        GameFactory gameFactory = new GameFactory(menuFactory.collectUserInput());
+        gameFactory.setUpGame();
+        Game game = new Game(gameFactory.getPlayerOne(), gameFactory.getPlayerTwo(), gameFactory.getBoard(), ui, gameFactory.getGameRules());
+        game.start();
     }
 }

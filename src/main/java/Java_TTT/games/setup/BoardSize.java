@@ -1,16 +1,16 @@
 package Java_TTT.games.setup;
 
-import Java_TTT.ui.CommandLineInterface;
+import Java_TTT.ui.UserInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoardSize implements Choice {
-    private CommandLineInterface ui;
+    private UserInterface ui;
     private int boardChoice;
     private ChoiceValidator choiceValidator;
 
-    public BoardSize(CommandLineInterface ui) {
+    public BoardSize(UserInterface ui) {
         this.ui = ui;
     }
 

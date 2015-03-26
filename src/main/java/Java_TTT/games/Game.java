@@ -2,7 +2,7 @@ package Java_TTT.games;
 
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.GameRulesInterface;
+import Java_TTT.rules.GameRules;
 import Java_TTT.ui.UserInterface;
 
 public class Game {
@@ -10,21 +10,21 @@ public class Game {
     private GameParticipants player2;
     private Board board;
     private UserInterface userinterface;
-    private GameRulesInterface boardRules;
+    private GameRules gameRules;
     private GameParticipants currentPlayer;
 
-    public Game(GameParticipants player1, GameParticipants player2, Board board, UserInterface userinterface, GameRulesInterface boardRules) {
+    public Game(GameParticipants player1, GameParticipants player2, Board board, UserInterface userinterface, GameRules gameRules) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
         this.userinterface = userinterface;
-        this.boardRules = boardRules;
+        this.gameRules = gameRules;
     }
 
     public void start() {
         printIntro();
         playGame();
-        printGameWinner(boardRules.getBoardWinner());
+        printGameWinner(gameRules.getBoardWinner());
         userinterface.printBoard(board);
     }
 
@@ -32,8 +32,8 @@ public class Game {
         currentPlayer = player1;
         while(!board.isFull()) {
             getPlayerMove(currentPlayer);
-            System.out.println(boardRules.getBoardWinner());
-            if (!boardRules.getBoardWinner().isEmpty() || board.isFull()) {
+            System.out.println(gameRules.getBoardWinner());
+            if (!gameRules.getBoardWinner().isEmpty() || board.isFull()) {
                 return false;
             }
             switchPlayers();

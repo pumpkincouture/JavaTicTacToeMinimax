@@ -36,9 +36,8 @@ public class MenuFactoryTest {
         inputValues.add(2);
         inputValues.add(1);
 
-        MenuFactory inputCollector= new MenuFactory();
-        inputCollector.collectUserInput(userChoices);
+        MenuFactory inputCollector= new MenuFactory(mockUI);
 
-        assertEquals(inputValues, inputCollector.getUserValues());
+        assertEquals(inputValues, inputCollector.collectUserInput());
     }
 }

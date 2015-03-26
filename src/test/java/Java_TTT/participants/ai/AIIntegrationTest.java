@@ -4,7 +4,6 @@ import Java_TTT.ui.MockUserInterface;
 import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
-import Java_TTT.rules.GameRulesInterface;
 import Java_TTT.rules.GameRules;
 import org.junit.Test;
 
@@ -20,16 +19,16 @@ public class AIIntegrationTest {
     private MockUserInterface mockUi = new MockUserInterface(output, input);
     private GameParticipants player1;
     private GameParticipants player2;
-    private GameRulesInterface boardRules;
+    private GameRules gameRules;
     private Game game;
 
     @Test
     public void gameWithTwoAIsFor4x4Board() {
         board = new Board(4);
-        boardRules = new GameRules(board);
-        player1 = new HardAI("X", boardRules, board);
-        player2 = new HardAI("O", boardRules, board);
-        game = new Game(player1, player2, board, mockUi, boardRules);
+        gameRules = new GameRules(board);
+        player1 = new HardAI("X", gameRules, board);
+        player2 = new HardAI("O", gameRules, board);
+        game = new Game(player1, player2, board, mockUi, gameRules);
         int gameCounter = 0;
 
         for (int i = 0; i < 1000; i++) {
@@ -38,17 +37,17 @@ public class AIIntegrationTest {
         }
 
         assertEquals(1000, gameCounter);
-        assertEquals("", boardRules.getBoardWinner());
-        assertEquals(true, boardRules.isGameOver());
+        assertEquals("", gameRules.getBoardWinner());
+        assertEquals(true, gameRules.isGameOver());
     }
 
     @Test
     public void gameWithTwoAIsFor3x3Board() {
         board = new Board(3);
-        boardRules = new GameRules(board);
-        player1 = new HardAI("X", boardRules, board);
-        player2 = new HardAI("O", boardRules, board);
-        game = new Game(player1, player2, board, mockUi, boardRules);
+        gameRules = new GameRules(board);
+        player1 = new HardAI("X", gameRules, board);
+        player2 = new HardAI("O", gameRules, board);
+        game = new Game(player1, player2, board, mockUi, gameRules);
         int gameCounter = 0;
 
         for (int i = 0; i < 1000; i++) {
@@ -57,7 +56,7 @@ public class AIIntegrationTest {
         }
 
         assertEquals(1000, gameCounter);
-        assertEquals("", boardRules.getBoardWinner());
-        assertEquals(true, boardRules.isGameOver());
+        assertEquals("", gameRules.getBoardWinner());
+        assertEquals(true, gameRules.isGameOver());
     }
 }

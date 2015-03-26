@@ -1,12 +1,10 @@
 package Java_TTT.games.setup;
 
 import Java_TTT.boards.Board;
-import Java_TTT.games.Game;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.ai.HardAI;
 import Java_TTT.participants.ai.SimpleAI;
 import Java_TTT.participants.human.Human;
-import Java_TTT.rules.GameRulesInterface;
 import Java_TTT.rules.GameRules;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
@@ -15,7 +13,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
-public class SetUpTicTacToeGame {
+public class GameFactory {
     private List<Integer> userChoices;
     private Board board;
     private GameParticipants player1;
@@ -23,10 +21,9 @@ public class SetUpTicTacToeGame {
     private PrintStream output;
     private Scanner input;
     private UserInterface ui;
-    private GameRulesInterface boardRules;
-    private Game game;
+    private GameRules gameRules;
 
-    public SetUpTicTacToeGame(List<Integer> userChoices) {
+    public GameFactory(List<Integer> userChoices) {
         this.userChoices = userChoices;
     }
 
@@ -36,7 +33,6 @@ public class SetUpTicTacToeGame {
         setUpRules();
         setUpPlayers();
         setUpOrder();
-        getGame();
     }
 
     public void setUpCommandLine() {
@@ -49,41 +45,33 @@ public class SetUpTicTacToeGame {
         board = new Board(userChoices.get(0));
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
     public void setUpRules() {
         switch(userChoices.get(0)) {
             case 3:
-                boardRules = new GameRules(board);
+                gameRules = new GameRules(board);
                 break;
             case 4:
-                boardRules = new GameRules(board);
+                gameRules = new GameRules(board);
         }
-    }
-
-    public GameRulesInterface getBoardRules() {
-        return boardRules;
     }
 
     public void setUpPlayers() {
         switch(userChoices.get(1)) {
             case 1:
-                player1 = new Human("X", (CommandLineInterface) ui);
-                player2 = new Human("O", (CommandLineInterface) ui);
+                player1 = new Human("X", ui);
+                player2 = new Human("O", ui);
                 break;
             case 2:
-                player1 = new Human("X", (CommandLineInterface) ui);
+                player1 = new Human("X", ui);
                 player2 = new SimpleAI("O", board);
                 break;
             case 3:
-                player1 = new Human("X", (CommandLineInterface) ui);
-                player2 = new HardAI("O", boardRules, board);
+                player1 = new Human("X", ui);
+                player2 = new HardAI("O", gameRules, board);
                 break;
             case 4:
                 player1 = new SimpleAI("O", board);
-                player2 = new HardAI("X", boardRules, board);
+                player2 = new HardAI("X", gameRules, board);
                 break;
         }
     }
@@ -106,8 +94,11 @@ public class SetUpTicTacToeGame {
         return player2;
     }
 
-    public void getGame() {
-        game = new Game(player1, player2, board, ui, boardRules);
-        game.start();
+    public Board getBoard() {
+        return board;
+    }
+
+    public GameRules getGameRules() {
+        return gameRules;
     }
 }

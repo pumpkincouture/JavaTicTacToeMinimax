@@ -3,20 +3,20 @@ package Java_TTT.participants.ai;
 import Java_TTT.boards.Board;
 import Java_TTT.participants.GameParticipants;
 import Java_TTT.participants.Participant;
-import Java_TTT.rules.GameRulesInterface;
+import Java_TTT.rules.GameRules;
 
 import java.util.*;
 
 public class HardAI extends Participant implements GameParticipants {
     public static final int MAX_DEPTH = 6;
-    private GameRulesInterface boardRules;
+    private GameRules gameRules;
     private int choice;
     private Board board;
 
 
-    public HardAI(String gamePiece, GameRulesInterface boardRules, Board board) {
+    public HardAI(String gamePiece, GameRules gameRules, Board board) {
         super(gamePiece);
-        this.boardRules = boardRules;
+        this.gameRules = gameRules;
         this.board = board;
     }
 
@@ -85,27 +85,45 @@ public class HardAI extends Participant implements GameParticipants {
     }
 
     private boolean isOpponentWinner() {
-        if (boardRules.getBoardWinner() == "") {
+        if (gameRules.getBoardWinner() == "") {
             return false;
-        } else if (boardRules.getBoardWinner() != this.getGamePiece()) {
+        } else if (gameRules.getBoardWinner() != this.getGamePiece()) {
             return true;
         }
         return false;
     }
 
     private boolean isComputerWinner() {
-        return (boardRules.getBoardWinner() == this.getGamePiece());
+        return (gameRules.getBoardWinner() == this.getGamePiece());
     }
 
     private boolean isGameOver() {
-        return boardRules.isGameOver();
+        return gameRules.isGameOver();
     }
 
     private String switchPlayers(String gamePiece) {
-        return gamePiece == this.getGamePiece() ? boardRules.getOpponentPiece(gamePiece) : this.getGamePiece();
+        return gamePiece == this.getGamePiece() ? gameRules.getOpponentPiece(gamePiece) : this.getGamePiece();
     }
 
     private String convertChosenIndexToString(int chosenSpace) {
         return Integer.toString(chosenSpace + 1);
+    }
+
+    public class Branch {
+        private final int score;
+        private final int move;
+
+        public Branch(int score, int move) {
+            this.score = score;
+            this.move = move;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public int getMove() {
+            return move;
+        }
     }
 }

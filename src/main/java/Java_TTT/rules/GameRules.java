@@ -5,24 +5,21 @@ import Java_TTT.boards.Board;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameRules implements GameRulesInterface {
+public class GameRules {
     private Board board;
 
     public GameRules(Board board) {
         this.board = board;
     }
 
-    @Override
     public boolean isGameOver() {
         return !getBoardWinner().isEmpty() || board.getOpenSpaces().isEmpty();
     }
 
-    @Override
     public String getOpponentPiece(String gamePiece) {
         return findOpponentPiece(gamePiece);
     }
 
-    @Override
     public String getBoardWinner() {
         for (String winningGamePiece : boardWinner()) {
             if (!winningGamePiece.isEmpty()) {
