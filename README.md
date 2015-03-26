@@ -4,8 +4,8 @@ Choose between 3x3 or 4x4 board. Player configurations are: Human vs Human, Huma
 
 ## Setting Up
 Clone the repository to your computer. Navigate into the ```javaTicTacToeMinimax``` directory via the Terminal.
-You will need [Maven](http://maven.apache.org/) 4.0.0 to play. To get Maven, make sure you have [Homebrew](http://brew.sh/) installed by typing  ```brew --version```. Open up your terminal, type ```brew install
-maven```. To check if Maven was installed, type ```mvn -version```. For troubleshooting, please refer to the Homebrew documentation.
+You will need [Maven](http://maven.apache.org/) 4.0.0 to play. To get Maven, make sure you have [Homebrew](http://brew.sh/) installed by typing  ```brew --version```.
+Type ```brew install maven```. To check if Maven was installed, type ```mvn -version```. For troubleshooting, please refer to the Homebrew documentation.
 The game requires Java version 1.8 or higher. To check your version, type ```java -version```.
 
 ## Starting the Game
