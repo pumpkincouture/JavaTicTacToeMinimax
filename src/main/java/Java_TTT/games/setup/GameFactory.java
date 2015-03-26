@@ -1,10 +1,10 @@
 package Java_TTT.games.setup;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.ai.HardAI;
-import Java_TTT.participants.ai.SimpleAI;
-import Java_TTT.participants.human.Human;
+import Java_TTT.participants.HardAI;
+import Java_TTT.participants.Participant;
+import Java_TTT.participants.SimpleAI;
+import Java_TTT.participants.Human;
 import Java_TTT.rules.GameRules;
 import Java_TTT.ui.CommandLineInterface;
 import Java_TTT.ui.UserInterface;
@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class GameFactory {
     private List<Integer> userChoices;
     private Board board;
-    private GameParticipants player1;
-    private GameParticipants player2;
+    private Participant player1;
+    private Participant player2;
     private PrintStream output;
     private Scanner input;
     private UserInterface ui;
@@ -77,7 +77,7 @@ public class GameFactory {
     }
 
     public void setUpOrder() {
-        GameParticipants switchedPlayer = player1;
+        Participant switchedPlayer = player1;
         switch(userChoices.get(2)) {
             case 2:
                 player1 = player2;
@@ -86,11 +86,11 @@ public class GameFactory {
         }
     }
 
-    public GameParticipants getPlayerOne() {
+    public Participant getPlayerOne() {
         return player1;
     }
 
-    public GameParticipants getPlayerTwo() {
+    public Participant getPlayerTwo() {
         return player2;
     }
 

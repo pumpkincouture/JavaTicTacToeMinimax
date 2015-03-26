@@ -1,13 +1,11 @@
-package Java_TTT.participants.ai;
+package Java_TTT.participants;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.Participant;
 import Java_TTT.rules.GameRules;
 
 import java.util.*;
 
-public class HardAI extends Participant implements GameParticipants {
+public class HardAI extends Participant {
     public static final int MAX_DEPTH = 6;
     private GameRules gameRules;
     private int choice;

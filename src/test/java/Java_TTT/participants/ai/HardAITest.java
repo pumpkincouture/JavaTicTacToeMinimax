@@ -1,6 +1,7 @@
 package Java_TTT.participants.ai;
 
 import Java_TTT.boards.Board;
+import Java_TTT.participants.HardAI;
 import Java_TTT.rules.GameRules;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

@@ -1,12 +1,10 @@
-package Java_TTT.participants.ai;
+package Java_TTT.participants;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.Participant;
 
 import java.util.Random;
 
-public class SimpleAI extends Participant implements GameParticipants {
+public class SimpleAI extends Participant {
     private Random randomGenerator;
     private Board board;
 

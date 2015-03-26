@@ -11,4 +11,8 @@ public abstract class Participant {
     public String getGamePiece() {
         return gamePiece;
     }
+
+    public abstract String getMove();
+
+    public abstract String getName();
 }

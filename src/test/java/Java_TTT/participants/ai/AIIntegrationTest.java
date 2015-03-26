@@ -1,9 +1,10 @@
 package Java_TTT.participants.ai;
 
+import Java_TTT.participants.HardAI;
+import Java_TTT.participants.Participant;
 import Java_TTT.ui.MockUserInterface;
 import Java_TTT.boards.Board;
 import Java_TTT.games.Game;
-import Java_TTT.participants.GameParticipants;
 import Java_TTT.rules.GameRules;
 import org.junit.Test;
 
@@ -17,8 +18,8 @@ public class AIIntegrationTest {
     private PrintStream output = new PrintStream(System.out);
     private Scanner input = new Scanner(System.in);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private GameParticipants player1;
-    private GameParticipants player2;
+    private Participant player1;
+    private Participant player2;
     private GameRules gameRules;
     private Game game;
 

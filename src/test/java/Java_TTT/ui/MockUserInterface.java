@@ -1,7 +1,7 @@
 package Java_TTT.ui;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.GameParticipants;
+import Java_TTT.participants.Participant;
 
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -49,11 +49,11 @@ public class MockUserInterface extends CommandLineInterface implements UserInter
     public void chooseGameConfiguration() { displayGameOptions = true;
     }
 
-    public void printChoice(GameParticipants player, String choice) {
+    public void printChoice(Participant player, String choice) {
         displayPlayersChoiceMessage = true;
     }
 
-    public void printGamePieceAssignment(GameParticipants player1, GameParticipants player2) {
+    public void printGamePieceAssignment(Participant player1, Participant player2) {
         displayGamePieceAssignmentCalled = true;
     }
 

@@ -1,10 +1,8 @@
-package Java_TTT.participants.human;
+package Java_TTT.participants;
 
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.Participant;
 import Java_TTT.ui.UserInterface;
 
-public class Human extends Participant implements GameParticipants {
+public class Human extends Participant {
     private UserInterface ui;
 
     public Human(String gamePiece, UserInterface ui) {
@@ -12,10 +10,12 @@ public class Human extends Participant implements GameParticipants {
         this.ui = ui;
     }
 
+    @Override
     public String getName() {
         return this.getClass().getSimpleName();
     }
 
+    @Override
     public String getMove() {
         return ui.captureChoice();
     }

@@ -1,9 +1,9 @@
 package Java_TTT.ui;
 
 import Java_TTT.boards.Board;
-import Java_TTT.participants.GameParticipants;
-import Java_TTT.participants.human.Human;
-import Java_TTT.participants.ai.SimpleAI;
+import Java_TTT.participants.Human;
+import Java_TTT.participants.Participant;
+import Java_TTT.participants.SimpleAI;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -18,12 +18,16 @@ public class CommandLineInterfaceTest {
     private Board board;
     private PrintStream output = new PrintStream(printedToScreen);
     private MockUserInterface mockUi = new MockUserInterface(output, input);
-    private GameParticipants player1 = new Human("X", mockUi);
-    private GameParticipants player2 = new SimpleAI("O", board);
+    private Participant player1 = new Human("X", mockUi);
+    private Participant player2 = new SimpleAI("O", board);
 
 
-    private void fillBoard(String choice, String gamePiece) {
-        board.placeMove(choice, gamePiece);
+    private void addMovesToBoard(String... positions) {
+        for (int counter = 0; counter < board.getLength(); counter++) {
+            if (positions[counter] != "*") {
+                board.placeMove(String.valueOf(counter + 1), positions[counter]);
+            }
+        }
     }
 
     private String scannerInput(String mockInput) {
@@ -156,13 +160,10 @@ public class CommandLineInterfaceTest {
     public void printBoardWithSomeInputs() {
         this.ui = new CommandLineInterface(output, input);
         this.board = new Board(3);
-        fillBoard("1", "O");
-        fillBoard("2", "X");
-        fillBoard("3", "X");
-        fillBoard("5", "O");
-        fillBoard("6", "X");
-        fillBoard("8", "O");
-        fillBoard("9", "X");
+
+        addMovesToBoard("O", "X", "X",
+                        "*", "O", "X",
+                        "*", "O", "X");
         ui.printBoard(board);
         assertEquals("\n" +
                 "------------\n" +

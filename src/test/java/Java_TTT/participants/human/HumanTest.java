@@ -1,5 +1,6 @@
 package Java_TTT.participants.human;
 
+import Java_TTT.participants.Human;
 import Java_TTT.ui.MockUserInterface;
 import org.junit.Before;
 import org.junit.Test;
